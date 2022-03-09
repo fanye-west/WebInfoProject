@@ -1,3 +1,5 @@
 # Web Information Technologies
-#### INFO30005_2022_SM1 
+#### INFO30005 2022 Semester 1 
+
+
 
