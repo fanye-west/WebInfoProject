@@ -1,15 +1,15 @@
 {
-    "name": "Diabetes at Home",
+    "name": "Diabetes at home app",
     "version": "1.0.0",
-    "description": "A Nodejs App",
+    "description": "Diabetes at home app",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
+        "dev": "echo \"\nView app at: \n\thttp://127.0.0.1:3000 \n\t\tor \n\thttp://localhost:3000 \n\nPress CMD-C to quit\n\" && set NODE_ENV=development && node index.js"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "Aditya Ajit, Evie Hadlow, Fane ye, Grant Holtes, Tanay Khandelwal",
+    "license": "MIT",
     "dependencies": {
-        "express": "^4.16.4"
+        "express": "^4.17.3"
     }
 }

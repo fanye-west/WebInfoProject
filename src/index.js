@@ -1,16 +1,22 @@
 //This will eventually hold our root server code in node.js, to run on heroku
 
-const express = require("express");
-const routes = require("./server/routes");
+const express = require('express');
 
-// App
 const app = express();
+const port = 3000;
 
-// Set port
-const port = process.env.PORT || "8888";
-app.set("port", port);
+//Define route files 
+var indexRouter = require('./routes/index');
+var publicStaticRouter = require('./routes/public');
 
-app.use('/', routes);
+// app.get('/', function(req, res) {
+//     res.send('Hello World!');
+// });
 
-// Server
-app.listen(port, () => console.log(`Server running on localhost:${port}`));
+//Define how URLs map to routes
+app.use('/', indexRouter);
+app.use('/', publicStaticRouter);
+
+app.listen(port, function() {
+    console.log(`App listening on port ${port}`);
+});
