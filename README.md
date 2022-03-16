@@ -10,14 +10,37 @@ This repository contains the code and assets for the project components of INFO3
 - Grant Holtes
 - Tanay Khandelwal
 
+## Usage:
+### Running in development mode:
+To run the frontend **only** run the below:
+```
+cd scr/gui
+ws
+```
+
+### Deploying:
+
 ### Directory structure:
 The code in the repository is organised by **functionality**:
 ```
-src:
-	|- static:
-	|	|- style (CSS)
-	|	|- scripts: (JS)
-	|	|- assets: (Images, icons)
+src/
+	|- static/
+	|	|- images/
+	|	|- icons/
+	|- gui/
+	|	|- style/ (CSS)
+	|	|- scripts/ (Frontend JS)
 	|	|- HTML (organised by user access role: public, clinition, patient)
-	|- server.js
+	|- models/ (Contains all data models and object classes)
+	|- server/ (Backend JS)
+	|- index.js
 ```
+
+
+### Tutorial attendances:
+
+- Aditya Ajit
+- Evie Hadlow
+- Fane ye
+- Grant Holtes
+- Tanay Khandelwal

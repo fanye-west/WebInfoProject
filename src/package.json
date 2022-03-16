@@ -1,0 +1,15 @@
+{
+    "name": "Diabetes at Home",
+    "version": "1.0.0",
+    "description": "A Nodejs App",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.4"
+    }
+}
