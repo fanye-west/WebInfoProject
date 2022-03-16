@@ -1,5 +1,5 @@
 {
-    "name": "Diabetes at home app",
+    "name": "diabetesathomeapp",
     "version": "1.0.0",
     "description": "Diabetes at home app",
     "main": "index.js",
@@ -10,6 +10,7 @@
     "author": "Aditya Ajit, Evie Hadlow, Fane ye, Grant Holtes, Tanay Khandelwal",
     "license": "MIT",
     "dependencies": {
-        "express": "^4.17.3"
+        "express": "^4.17.3",
+        "http-errors": "^2.0.0"
     }
 }
