@@ -6,7 +6,7 @@ This repository contains the code and assets for the project components of INFO3
 ### Group members:
 - Aditya Ajit
 - Evie Hadlow
-- Fane ye
+- Fane Ye
 - Grant Holtes
 - Tanay Khandelwal
 
@@ -29,7 +29,7 @@ npm run dev
 ### Deploying:
 
 ## Setup:
-How to set up the development enviroment (based on https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
+How to set up the development enviroment, based on [mozilla express node](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
 1. Install node at https://nodejs.org/en/
 2. test node install by typing in terminal ```node -v``` and ```npm -v```.
 3. Install express with ```npm install express``` or install all dependancies with ```cd src```, then ```npm install```
