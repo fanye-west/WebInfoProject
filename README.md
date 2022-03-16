@@ -13,13 +13,6 @@ This repository contains the code and assets for the project components of INFO3
 ## Usage:
 
 ### Running in development mode:
-To run the frontend **only** run the below:
-```
-cd scr/gui
-ws
-```
-
-### Running in full development mode:
 This will run the app in dev mode
 ```
 cd scr
@@ -27,6 +20,7 @@ npm run dev
 ```
 
 ### Deploying:
+TBC
 
 ## Setup:
 How to set up the development enviroment, based on [mozilla express node](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
