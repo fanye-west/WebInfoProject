@@ -1,8 +1,45 @@
+/* Conatiners */
+
 .logo {
     /* conatiner for the logo */
     margin-left: 10px;
     color: #ffffff;
 }
+
+.outer_block_text_column {
+    /* Used to contain one or many text inside a flex box */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    max-width: 460px;
+    min-width: none;
+    margin: auto;
+    text-align: justify;
+    background-color: red;
+}
+
+.inner_block_text_column {
+    /* Used to container text inside a flex box */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.light_theme_colour_background {
+    background-color: #d3d3ff;
+}
+
+.dark_theme_colour_background {
+    /* used for titles in column text */
+    background-color: blue;
+    color: #EEEEEE;
+    text-align: center;
+}
+
+
+/* Buttons */
 
 .light_button {
     /* primary use is for the nav bar login buttons */
@@ -15,4 +52,57 @@
     height: 30px;
     width: 120px;
     color: #222222;
+}
+
+
+/* text */
+
+h1 {
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h4 {
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+
+/*layout rules for different screen sizes */
+
+@media only screen and (max-width: 500px) {
+    /* Rules for when the iphone X is being used */
+}
+
+@media only screen and (max-width: 1800px) and (min-width: 500px) {
+    /* Rules for when the ipad is being used */
+}
+
+@media only screen and (min-width: 1800px) {
+    /* Rules for when the desktop is being used */
+    .outer_block_text_column {
+        /* Used to container text inside a flex box */
+        max-width: 600px;
+    }
+    .inner_block_text_column {
+        /* Used to container text inside a flex box */
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
 }

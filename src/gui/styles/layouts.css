@@ -1,3 +1,5 @@
+/* page level layout components */
+
 .navigation {
     position: absolute;
     left: 0;
@@ -6,6 +8,16 @@
     top: 0;
     height: 50px;
 }
+
+.main_page_body_under_navigation {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 70px;
+}
+
+
+/* Flexboxes */
 
 .row_flex_spaced {
     /*Source: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
@@ -16,6 +28,15 @@
     align-items: center;
     gap: 10px;
     background-color: blue;
+}
+
+.about_page_body_flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .login_row_flex_header {
@@ -29,4 +50,26 @@
     width: 260px;
     margin-right: 15px;
     margin-left: 10px;
+}
+
+
+/*layout rules for different screen sizes */
+
+@media only screen and (max-width: 500px) {
+    /* Rules for when the iphone X is being used */
+}
+
+@media only screen and (max-width: 1800px) and (min-width: 500px) {
+    /* Rules for when the ipad is being used */
+}
+
+@media only screen and (min-width: 1800px) {
+    /* Rules for when the desktop is being used */
+    body {
+        font-size: 18px;
+    }
+    .main_page_body_under_navigation {
+        left: 150px;
+        right: 150px;
+    }
 }
