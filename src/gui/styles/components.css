@@ -1,4 +1,18 @@
 .logo {
     /* conatiner for the logo */
-    padding: 10px;
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+.light_button {
+    /* primary use is for the nav bar login buttons */
+    font-size: 12px;
+    font-weight: bold;
+    font-family: sans-serif;
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 120px;
+    color: #222222;
 }
