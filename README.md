@@ -26,7 +26,7 @@ TBC
 How to set up the development enviroment, based on [mozilla express node](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
 1. Install node at https://nodejs.org/en/
 2. test node install by typing in terminal ```node -v``` and ```npm -v```.
-3. Install express with ```npm install express``` or install all dependancies with ```cd src```, then ```npm install```
+3. Install all dependancies with ```cd src```, then ```npm install```
 
 
 ## Directory structure:
