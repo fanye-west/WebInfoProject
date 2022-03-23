@@ -27,13 +27,13 @@
 }
 
 .light_theme_colour_background {
-    background-color: #d3d3ff;
+    background-color: #EAF6FF;
 }
 
 .dark_theme_colour_background {
     /* used for titles in column text */
-    background-color: blue;
-    color: #EEEEEE;
+    background-color: #0062a8;
+    color: #EAF6FF;
     text-align: center;
 }
 
@@ -45,16 +45,19 @@
     font-size: 12px;
     font-weight: bold;
     font-family: sans-serif;
-    background-color: #eeeeee;
+    background-color: #ffffff;
     border: none;
     border-radius: 10px;
     height: 30px;
     width: 120px;
-    color: #222222;
+    color: #858982;
 }
 
 
 /* text */
+body {
+    color: #0062A8;
+}
 
 h1 {
     font-family: sans-serif;
