@@ -10,6 +10,9 @@ const port = 3000;
 var indexRouter = require('./routes/index');
 var publicStaticRouter = require('./routes/public');
 
+//Ensure static files are available
+app.use(express.static(__dirname + '/gui'));
+
 //Define how URLs map to routes
 app.use('/', indexRouter);
 app.use('/public', publicStaticRouter);
