@@ -1,9 +1,23 @@
-/* Conatiners */
+/* Containers */
 
 .logo {
     /* conatiner for the logo */
     margin-left: 10px;
     color: #ffffff;
+}
+
+.centered_column {
+    /* Used to contain one or many text inside a flex box */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 460px;
+    min-width: none;
+    margin: auto;
+    text-align: center;
 }
 
 .outer_block_text_column {
@@ -20,11 +34,48 @@
 
 .inner_block_text_column {
     /* Used to container text inside a flex box */
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-left: 20px;
     margin-right: 20px;
 }
+
+
+/* text boxes */
+
+.rounded_box_full_width {
+    border-radius: 15px;
+    width: 500px;
+    height: 200px;
+    width: 90%
+}
+
+.rounded_box_half_width {
+    border-radius: 15px;
+    width: 300px;
+    height: 180px;
+}
+
+.rounded_box_half_width.white {
+    background-color: #FFFFFF;
+}
+
+.rounded_box_half_width.light_blue {
+    background-color: #EAF6FF;
+}
+
+.rounded_box_half_width.white.transparent {
+    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.rounded_box_half_width.light_blue.transparent {
+    background-color: #EAF6FF;
+    background-color: rgba(234, 246, 255, 0.8);
+}
+
+
+/* Background colours */
 
 .light_theme_colour_background {
     background-color: #EAF6FF;
@@ -40,34 +91,43 @@
 
 /* Buttons */
 
-.light_button {
-    /* primary use is for the nav bar login buttons */
+.main_button {
     font-size: 12px;
     font-weight: bold;
     font-family: sans-serif;
-    background-color: #ffffff;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     height: 30px;
     width: 120px;
+}
+
+.main_button.white {
+    background-color: #ffffff;
     color: #858982;
+}
+
+.main_button.dark_blue {
+    background-color: #0062A8;
+    color: #FFFFFF;
 }
 
 
 /* text */
+
 body {
     font-family: "source-sans-3";
-
     color: #0062A8;
 }
 
 h1 {
+    font-size: 20px;
     font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
 h2 {
+    font-size: 15pt;
     font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -83,6 +143,17 @@ h4 {
     font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
+}
+
+p {
+    font-size: 14px;
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+p.grey {
+    color: #3C3E41;
 }
 
 
@@ -108,5 +179,31 @@ h4 {
         margin-bottom: 20px;
         margin-left: 40px;
         margin-right: 40px;
+    }
+    .rounded_box_half_width {
+        border-radius: 15px;
+        width: 450px;
+        height: 270px;
+    }
+    h1 {
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    p {
+        font-family: sans-serif;
+        font-size: 20px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    .main_button {
+        font-size: 20px;
+        font-weight: bold;
+        font-family: sans-serif;
+        border: none;
+        border-radius: 25px;
+        height: 50px;
+        width: 240px;
     }
 }

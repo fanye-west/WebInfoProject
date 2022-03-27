@@ -1,4 +1,7 @@
-/* page level layout components */
+/* page level layout components divs*/
+
+
+/* Div to form the nav bar */
 
 .navigation {
     position: absolute;
@@ -9,11 +12,15 @@
     height: 50px;
 }
 
+
+/* Div to form the page under a nav bar */
+
 .main_page_body_under_navigation {
     position: absolute;
     left: 10px;
     right: 10px;
-    top: 70px;
+    top: 60px;
+    min-height: 90%;
 }
 
 
@@ -21,6 +28,8 @@
 
 .row_flex_spaced {
     /*Source: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -39,15 +48,35 @@
     align-items: flex-start;
 }
 
+.row_page_body_flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.column_page_body_flex {
+    position: absolute;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
 .login_row_flex_header {
     /*Source: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 8px;
-    width: 260px;
     margin-right: 15px;
     margin-left: 10px;
 }
@@ -57,6 +86,14 @@
 
 @media only screen and (max-width: 500px) {
     /* Rules for when the iphone X is being used */
+    .reactive_body_column {
+        width: 100%;
+        min-height: 100%;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+    }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
@@ -68,8 +105,12 @@
     body {
         font-size: 18px;
     }
+    .navigation {
+        height: 80px;
+    }
     .main_page_body_under_navigation {
         left: 150px;
         right: 150px;
+        top: 100px;
     }
 }
