@@ -26,10 +26,12 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
+    justify-content: flex-start;
     max-width: 460px;
     min-width: none;
     margin: auto;
     text-align: justify;
+    background-color: red;
 }
 
 .inner_block_text_column {
@@ -181,7 +183,7 @@ p.grey {
         margin-right: 40px;
     }
     .rounded_box_half_width {
-        border-radius: 15px;
+        border-radius: 25px;
         width: 450px;
         height: 270px;
     }

@@ -40,12 +40,15 @@
 }
 
 .about_page_body_flex {
+    position: absolute;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 25px;
-    justify-content: space-between;
+    gap: 10px;
+    justify-content: space-around;
     align-items: flex-start;
+    background-color: green;
 }
 
 .row_page_body_flex {
