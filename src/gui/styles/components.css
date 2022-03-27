@@ -29,9 +29,7 @@
     justify-content: flex-start;
     max-width: 460px;
     min-width: none;
-    margin: auto;
     text-align: justify;
-    background-color: red;
 }
 
 .inner_block_text_column {
