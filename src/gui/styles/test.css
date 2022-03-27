@@ -4,20 +4,17 @@
     justify-content: center;
     align-items: stretch;
     gap: 10px;
-
 }
 
 .page_left_element {
     display: flex;
     width: 50%;
-
 }
 
 .page_right_element {
     display: flex;
     flex-direction: column;
     width: 50%;
-
 }
 
 .outer_block_text_column {
@@ -28,7 +25,6 @@
     margin-right: 0px;
     padding: 0px;
 }
-
 
 .inner_block_text_column {
     /* Used to container text inside a flex box */
@@ -41,17 +37,11 @@
 .light_theme_colour_background#video {
     display: flex;
     justify-content: space-evenly;
-
-
-
 }
 
 iframe {
     width: 375px;
 }
-
-
-
 
 header {
     position: absolute;
@@ -103,7 +93,6 @@ header {
 
 .light_theme_colour_background {
     background-color: #EAF6FF;
-
 }
 
 .dark_theme_colour_background {
@@ -131,9 +120,9 @@ header {
 
 
 /* text */
+
 body {
     font-family: "source-sans-3";
-
     color: #0062A8;
 }
 
@@ -160,39 +149,31 @@ h3 {
 }
 
 @media only screen and (max-width: 500px) {
-
     /* Rules for when the iphone X is being used */
     .about_page_body_flex_outer {
         display: flex;
         flex-direction: column;
     }
-
     .page_left_element {
         display: flex;
         width: 100%;
     }
-
     .page_right_element {
         display: flex;
         width: 100%;
     }
-
     .light_theme_colour_background#video {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
     }
-
     iframe {
         width: 333px;
     }
 }
 
-
-
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
     /* Rules for when the ipad is being used */
-
 }
 
 @media only screen and (min-width: 1800px) {
@@ -200,14 +181,11 @@ h3 {
         display: flex;
         width: 50%;
     }
-
     .page_right_element {
         display: flex;
         width: 50%;
     }
-
     iframe {
         width: 375px;
     }
-
 }

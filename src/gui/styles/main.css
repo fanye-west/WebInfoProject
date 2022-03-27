@@ -1,6 +1,362 @@
+/* /////////////////////// BACKGROUNDS /////////////////////// */
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
 body {
     background-image: url("../assets/images/sunriseBlur.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    font-family: "source-sans-3";
+}
+
+
+/* /////////////////////// LAYOUTS /////////////////////// */
+
+
+/* page level layout components divs*/
+
+
+/* Div to form the nav bar */
+
+.navigation {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    height: 50px;
+}
+
+
+/* Div to form the page under a nav bar */
+
+.main_page_body_under_navigation {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 70px;
+    bottom: 20px;
+    background-color: red;
+}
+
+
+/* Flexboxes */
+
+.row_flex_spaced {
+    /*Source: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background-color: #0062a8;
+}
+
+.about_page_body_flex {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+
+/* .about_page_body_flex_outer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+} */
+
+.row_page_body_flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.column_page_body_flex {
+    position: absolute;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_row_flex_header {
+    /*Source: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-right: 15px;
+    margin-left: 10px;
+}
+
+
+/*layout rules for different screen sizes */
+
+@media only screen and (max-width: 500px) {
+    /* Rules for when the iphone X is being used */
+}
+
+@media only screen and (max-width: 1800px) and (min-width: 500px) {
+    /* Rules for when the ipad is being used */
+}
+
+@media only screen and (min-width: 1800px) {
+    /* Rules for when the desktop is being used */
+    body {
+        font-size: 18px;
+    }
+    .navigation {
+        height: 80px;
+    }
+    .main_page_body_under_navigation {
+        left: 150px;
+        right: 150px;
+        top: 100px;
+        bottom: 20px;
+    }
+}
+
+
+/* /////////////////////// COMPONANTS /////////////////////// */
+
+
+/* Containers */
+
+.logo {
+    /* conatiner for the logo */
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+.centered_column {
+    /* Used to contain one or many text inside a flex box */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 460px;
+    min-width: none;
+    margin: auto;
+    text-align: center;
+}
+
+.outer_block_text_column {
+    /* Used to contain one or many text inside a flex box */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    max-width: 460px;
+    min-width: none;
+    text-align: justify;
+}
+
+.inner_block_text_column {
+    /* Used to container text inside a flex box */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.page_left_element {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.page_right_element {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* text boxes */
+
+.rounded_box_full_width {
+    border-radius: 15px;
+    width: 500px;
+    height: 200px;
+    width: 90%
+}
+
+.rounded_box_half_width {
+    border-radius: 15px;
+    width: 300px;
+    height: 180px;
+}
+
+.rounded_box_half_width.white {
+    background-color: #FFFFFF;
+}
+
+.rounded_box_half_width.light_blue {
+    background-color: #EAF6FF;
+}
+
+.rounded_box_half_width.white.transparent {
+    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.rounded_box_half_width.light_blue.transparent {
+    background-color: #EAF6FF;
+    background-color: rgba(234, 246, 255, 0.8);
+}
+
+
+/* Background colours */
+
+.light_theme_colour_background {
+    background-color: #EAF6FF;
+}
+
+.dark_theme_colour_background {
+    /* used for titles in column text */
+    background-color: #0062a8;
+    color: #EAF6FF;
+    text-align: center;
+}
+
+
+/* Buttons */
+
+.main_button {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    width: 120px;
+}
+
+.main_button.white {
+    background-color: #ffffff;
+    color: #858982;
+}
+
+.main_button.dark_blue {
+    background-color: #0062A8;
+    color: #FFFFFF;
+}
+
+
+/* text */
+
+body {
+    font-family: "source-sans-3";
+    color: #0062A8;
+}
+
+h1 {
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 15pt;
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h4 {
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 14px;
+    font-family: sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+p.grey {
+    color: #3C3E41;
+}
+
+
+/*layout rules for different screen sizes */
+
+@media only screen and (max-width: 500px) {
+    /* Rules for when the iphone X is being used */
+}
+
+@media only screen and (max-width: 1800px) and (min-width: 500px) {
+    /* Rules for when the ipad is being used */
+}
+
+@media only screen and (min-width: 1800px) {
+    /* Rules for when the desktop is being used */
+    .outer_block_text_column {
+        /* Used to container text inside a flex box */
+        max-width: 600px;
+    }
+    .inner_block_text_column {
+        /* Used to container text inside a flex box */
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    .rounded_box_half_width {
+        border-radius: 25px;
+        width: 450px;
+        height: 270px;
+    }
+    h1 {
+        font-size: 30px;
+        font-family: sans-serif;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    p {
+        font-family: sans-serif;
+        font-size: 20px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    .main_button {
+        font-size: 20px;
+        font-weight: bold;
+        font-family: sans-serif;
+        border: none;
+        border-radius: 25px;
+        height: 50px;
+        width: 240px;
+    }
 }

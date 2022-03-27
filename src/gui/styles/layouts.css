@@ -1,3 +1,6 @@
+/* /////////////////////// LAYOUTS /////////////////////// */
+
+
 /* page level layout components divs*/
 
 
@@ -19,7 +22,7 @@
     position: absolute;
     left: 10px;
     right: 10px;
-    top: 60px;
+    top: 50px;
     min-height: 90%;
 }
 
