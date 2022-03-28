@@ -8,18 +8,49 @@
     <title>About Diabetes at Home</title>
 
     <link rel="stylesheet" href="../styles/main.css">
+    <script src="../scripts/navigation.js"></script>
 </head>
 
 <body>
-    <!-- Navigation bar -->
     <header class="navigation">
+        <!-- Navigation bar -->
         <div class="row_flex_spaced">
             <div class="logo">
                 <p>LOGO</p>
             </div>
-            <div class="login_row_flex_header">
-                <button class="light_button">Patient Login</button>
-                <button class="light_button">Practitioner Login</button>
+            <div class="login_row_flex_header" id="navigation_buttons">
+                <a href="../index.html"><button class="home_button white">H</button></a>
+                <a href="../index.html"><button class="main_button white">Patient Login</button></a>
+                <a href="../index.html"><button class="main_button white">Practitioner Login</button></a>
+            </div>
+            <div class="nav_icon" id="navigation_hamburger">
+                <button class="icon_button" onclick="hamburgerExpander()">
+                    <img class="icon" src="../assets/icons/hamburger_menu_icon.png">
+                </button>
+            </div>
+        </div>
+        <!-- Expanded hamburger modal -->
+        <div class="navigation_hamburger_expanded" id="navigation_hamburger_clicked_modal">
+            <div class="row_flex_spaced">
+                <div class="logo">
+                    LOGO
+                </div>
+                <div class="nav_icon" id="navigation_hamburger">
+                    <button class="icon_button" onclick="hamburgerHider()">
+                        <img class="icon" src="../assets/icons/hamburger_menu_icon.png">
+                    </button>
+                </div>
+            </div>
+            <div class="navigation_hamburger_button_list">
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="main_button white">Home</button></a>
+                </div>
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="main_button white">Patient Login</button></a>
+                </div>
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="main_button white">Practitioner Login</button></a>
+                </div>
             </div>
         </div>
     </header>

@@ -20,12 +20,34 @@ body {
 /* Div to form the nav bar */
 
 .navigation {
-    position: absolute;
+    z-index: 2;
+    position: fixed;
     left: 0;
     right: 0;
     width: 100%;
     top: 0;
     height: 50px;
+}
+
+.navigation_hamburger_expanded {
+    z-index: 3;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    top: 0px;
+    right: 0;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    background-color: #0062a8;
+}
+
+.navigation_hamburger_button_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 
@@ -266,6 +288,48 @@ body {
     color: #FFFFFF;
 }
 
+.home_button {
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px;
+    height: 40px;
+    width: 40px;
+}
+
+.home_button.white {
+    background-color: #ffffff;
+    color: #858982;
+}
+
+.icon_button {
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+}
+
+.button_margin_wrapper {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+
+/* icons */
+
+.nav_icon {
+    height: 50px;
+    width: 50px;
+    padding-right: 5px;
+}
+
+.icon {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
 
 /* text */
 
@@ -274,30 +338,20 @@ body {
 }
 
 h1 {
-    font-size: 20px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    font-size: 25px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     font-weight: bold;
 }
 
 h2 {
     font-size: 15pt;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-h3 {
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-h4 {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -311,14 +365,32 @@ p.grey {
 
 @media only screen and (max-width: 500px) {
     /* Rules for when the iphone X is being used */
+    #navigation_buttons {
+        display: none;
+    }
+    #navigation_hamburger_clicked_modal {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
     /* Rules for when the ipad is being used */
+    #navigation_buttons {
+        display: none;
+    }
+    #navigation_hamburger_clicked_modal {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 1800px) {
     /* Rules for when the desktop is being used */
+    #navigation_hamburger {
+        display: none;
+    }
+    #navigation_hamburger_clicked_modal {
+        display: none;
+    }
     .outer_block_text_column {
         /* Used to container text inside a flex box */
         max-width: 800px;
@@ -338,12 +410,12 @@ p.grey {
     h1 {
         font-size: 30px;
         font-family: sans-serif;
-        margin-top: 8px;
-        margin-bottom: 8px;
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
     p {
         font-family: sans-serif;
-        font-size: 20px;
+        font-size: 22px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
@@ -355,6 +427,15 @@ p.grey {
         border-radius: 10px;
         height: 60px;
         width: 300px;
+    }
+    .home_button {
+        font-size: 20px;
+        font-weight: bold;
+        font-family: sans-serif;
+        border: none;
+        border-radius: 10px;
+        height: 60px;
+        width: 60px;
     }
     .page_right_element {
         gap: 50px;
