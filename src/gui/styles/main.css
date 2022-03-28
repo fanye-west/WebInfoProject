@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap');
+
 /* /////////////////////// BACKGROUNDS /////////////////////// */
 
-@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
 body {
     background-image: url("../assets/images/sunriseBlur.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    font-family: "source-sans-3";
+    font-family: 'Source Sans 3', sans-serif;
 }
 
 
@@ -60,26 +61,17 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
+    gap: 27px;
+    justify-content: center;
     align-items: flex-start;
 }
-
-
-/* .about_page_body_flex_outer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 10px;
-} */
 
 .row_page_body_flex {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 27px;
     justify-content: center;
     align-items: flex-start;
 }
@@ -128,10 +120,19 @@ body {
         height: 80px;
     }
     .main_page_body_under_navigation {
-        left: 150px;
-        right: 150px;
+        left: 10px;
+        right: 10px;
         top: 100px;
         bottom: 20px;
+    }
+    .about_page_body_flex {
+        gap: 50px;
+    }
+    .column_page_body_flex {
+        gap: 50px;
+    }
+    .row_page_body_flex {
+        gap: 50px;
     }
 }
 
@@ -184,13 +185,13 @@ body {
 .page_left_element {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .page_right_element {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 
@@ -205,8 +206,8 @@ body {
 
 .rounded_box_half_width {
     border-radius: 15px;
-    width: 300px;
-    height: 180px;
+    width: 320px;
+    height: 200px;
 }
 
 .rounded_box_half_width.white {
@@ -232,6 +233,7 @@ body {
 
 .light_theme_colour_background {
     background-color: #EAF6FF;
+    border-radius: 0px 0px 15px 15px;
 }
 
 .dark_theme_colour_background {
@@ -239,6 +241,7 @@ body {
     background-color: #0062a8;
     color: #EAF6FF;
     text-align: center;
+    border-radius: 15px 15px 0px 0px;
 }
 
 
@@ -247,11 +250,10 @@ body {
 .main_button {
     font-size: 12px;
     font-weight: bold;
-    font-family: sans-serif;
     border: none;
-    border-radius: 15px;
-    height: 30px;
-    width: 120px;
+    border-radius: 7px;
+    height: 40px;
+    width: 200px;
 }
 
 .main_button.white {
@@ -268,39 +270,34 @@ body {
 /* text */
 
 body {
-    font-family: "source-sans-3";
     color: #0062A8;
 }
 
 h1 {
     font-size: 20px;
-    font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
+    font-weight: bold;
 }
 
 h2 {
     font-size: 15pt;
-    font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
 h3 {
-    font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
 h4 {
-    font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
 p {
     font-size: 14px;
-    font-family: sans-serif;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -324,7 +321,7 @@ p.grey {
     /* Rules for when the desktop is being used */
     .outer_block_text_column {
         /* Used to container text inside a flex box */
-        max-width: 600px;
+        max-width: 800px;
     }
     .inner_block_text_column {
         /* Used to container text inside a flex box */
@@ -335,8 +332,8 @@ p.grey {
     }
     .rounded_box_half_width {
         border-radius: 25px;
-        width: 450px;
-        height: 270px;
+        width: 550px;
+        height: 300px;
     }
     h1 {
         font-size: 30px;
@@ -355,8 +352,14 @@ p.grey {
         font-weight: bold;
         font-family: sans-serif;
         border: none;
-        border-radius: 25px;
-        height: 50px;
-        width: 240px;
+        border-radius: 10px;
+        height: 60px;
+        width: 300px;
+    }
+    .page_right_element {
+        gap: 50px;
+    }
+    .page_left_element {
+        gap: 50px;
     }
 }
