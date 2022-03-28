@@ -334,27 +334,35 @@ body {
 }
 
 
-/* text */
+/* text for default desktop view*/
 
 body {
     color: #0062A8;
 }
 
 h1 {
-    font-size: 25px;
+    font-size: 32px;
     margin-top: 0px;
     margin-bottom: 0px;
     font-weight: bold;
 }
 
 h2 {
-    font-size: 15pt;
+    font-size: 27px;
     margin-top: 0px;
     margin-bottom: 0px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 23px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
 }
 
 p {
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -374,6 +382,35 @@ p.grey {
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
+    h1 {
+        font-size: 28px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 22px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 15px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
@@ -384,6 +421,35 @@ p.grey {
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
+
+    h1 {
+        font-size: 28px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 25px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    h3 {
+        font-size: 21px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 15px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
 }
 
 @media only screen and (min-width: 1800px) {
@@ -410,22 +476,12 @@ p.grey {
         width: 550px;
         height: 300px;
     }
-    h1 {
-        font-size: 30px;
-        font-family: sans-serif;
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-    p {
-        font-family: sans-serif;
-        font-size: 22px;
-        margin-top: 8px;
-        margin-bottom: 8px;
-    }
+
+
     .main_button {
         font-size: 20px;
         font-weight: bold;
-        font-family: sans-serif;
+        font-family: 'Source Sans 3', sans-serif;
         border: none;
         border-radius: 10px;
         height: 60px;
@@ -434,7 +490,7 @@ p.grey {
     .home_button {
         font-size: 20px;
         font-weight: bold;
-        font-family: sans-serif;
+        font-family: 'Source Sans 3', sans-serif;
         border: none;
         border-radius: 10px;
         height: 60px;
