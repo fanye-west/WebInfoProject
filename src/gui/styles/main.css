@@ -395,7 +395,12 @@ p {
     margin-bottom: 20px;
 }
 
+
+
 p.grey {
+    font-size: 18px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     color: #3C3E41;
 }
 
