@@ -59,6 +59,9 @@ body {
     right: 10px;
     top: 70px;
     bottom: 20px;
+    display: flex;
+    align-items: center;
+
 }
 
 
@@ -85,7 +88,19 @@ body {
     flex-wrap: wrap;
     gap: 27px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.about_page_body_flex#about_website_page {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .row_page_body_flex {
@@ -191,10 +206,14 @@ body {
     flex-wrap: nowrap;
     align-items: stretch;
     justify-content: flex-start;
-    max-width: 600px;
+    max-width: px;
     min-width: none;
     text-align: justify;
 }
+
+.outer_block_text_column
+
+
 
 .inner_block_text_column {
     /* Used to container text inside a flex box */
@@ -206,18 +225,24 @@ body {
 
 .page_left_element {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 25px;
-    width: 600px;
+    width: 800px;
+    align-items: stretch;
 }
 
 .page_right_element {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    width: 600px;
+    width: 800px;
+    justify-content: center;
 
 
+}
+
+.light_theme_colour_background#video {
+    display: flex;
 }
 
 
@@ -451,6 +476,13 @@ p.grey {
         font-size: 15px;
         margin-top: 8px;
         margin-bottom: 8px;
+    }
+
+    .page_right_element {
+        width: 500px
+    }
+    .page_left_element {
+        width: 500px
     }
 
 }
