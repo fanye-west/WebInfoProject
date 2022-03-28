@@ -191,7 +191,7 @@ body {
     flex-wrap: nowrap;
     align-items: stretch;
     justify-content: flex-start;
-    max-width: 460px;
+    max-width: 600px;
     min-width: none;
     text-align: justify;
 }
@@ -208,12 +208,15 @@ body {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    width: 600px;
 }
 
 .page_right_element {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    width: 600px;
+
 
 }
 
