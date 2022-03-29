@@ -59,9 +59,6 @@ body {
     right: 10px;
     top: 70px;
     bottom: 20px;
-    display: flex;
-    align-items: center;
-
 }
 
 
@@ -88,19 +85,19 @@ body {
     flex-wrap: wrap;
     gap: 27px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .about_page_body_flex#about_website_page {
     position: absolute;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     gap: 100px;
     justify-content: center;
     align-items: center;
-
 }
 
 .row_page_body_flex {
@@ -211,11 +208,7 @@ body {
     text-align: justify;
 }
 
-.outer_block_text_column
-
-
-
-.inner_block_text_column {
+.outer_block_text_column .inner_block_text_column {
     /* Used to container text inside a flex box */
     margin-top: 5px;
     margin-bottom: 5px;
@@ -223,26 +216,24 @@ body {
     margin-right: 20px;
 }
 
-.page_left_element {
-    display: flex;
-    flex-direction: row;
-    gap: 25px;
-    width: 800px;
-    align-items: stretch;
-}
-
-.page_right_element {
+.page_column_element {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    width: 800px;
-    justify-content: center;
-
-
+    width: 700px;
+    height: 100%;
+    align-items: stretch;
 }
 
-.light_theme_colour_background#video {
+.video_frame {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+iframe {
+    width: 50%;
 }
 
 
@@ -362,6 +353,14 @@ body {
 }
 
 
+/* images */
+
+.display_image {
+    width: 600px;
+    height: 600px;
+}
+
+
 /* text for default desktop view*/
 
 body {
@@ -395,8 +394,6 @@ p {
     margin-bottom: 20px;
 }
 
-
-
 p.grey {
     font-size: 18px;
     margin-top: 8px;
@@ -415,35 +412,35 @@ p.grey {
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
+    #about_website_page_large_display_image {
+        display: none;
+    }
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h2 {
         font-size: 22px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h3 {
         font-size: 18px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     p {
         font-size: 15px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
-
-    
+    .page_column_element {
+        width: 100%
+    }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
@@ -454,42 +451,35 @@ p.grey {
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
-
+    #about_website_page_large_display_image {
+        display: none;
+    }
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h2 {
         font-size: 25px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h3 {
         font-size: 21px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     p {
         font-size: 15px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
-
-    .page_right_element {
+    .page_column_element {
         width: 500px
     }
-    .page_left_element {
-        width: 500px
-    }
-
 }
 
 @media only screen and (min-width: 1800px) {
@@ -516,8 +506,6 @@ p.grey {
         width: 550px;
         height: 300px;
     }
-
-
     .main_button {
         font-size: 20px;
         font-weight: bold;
@@ -538,7 +526,6 @@ p.grey {
     }
     .page_right_element {
         gap: 50px;
-
     }
     .page_left_element {
         gap: 50px;
