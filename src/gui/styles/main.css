@@ -89,10 +89,6 @@ body {
     row-gap: 4%;
     margin-left: 3%;
     margin-right: 3%;
-
-
-
-
 }
 
 .about_page_body_flex {
@@ -169,12 +165,12 @@ body {
         font-size: 18px;
     }
     .navigation {
-        height: 80px;
+        height: 100px;
     }
     .main_page_body_under_navigation {
         left: 10px;
         right: 10px;
-        top: 100px;
+        top: 120px;
         bottom: 20px;
     }
     .about_page_body_flex {
@@ -234,16 +230,14 @@ body {
     margin-right: 20px;
 }
 
-.inner_block_text_column#right_margin_text {
-}
-
+.inner_block_text_column#right_margin_text {}
 
 .outer_block_text_column#about_diabetes {
     grid-row: 1/-1;
     grid-col: 1/2;
     justify-self: end;
-
 }
+
 .outer_block_text_column#helpful_websites {
     grid-row: 1/2;
     grid-col: 2/3;
@@ -255,7 +249,6 @@ body {
     grid-row: 2/3;
     grid-col: 2/3;
 }
-
 
 .page_column_element {
     display: flex;
@@ -319,7 +312,6 @@ iframe {
     background-color: #EAF6FF;
     border-radius: 0px 0px 15px 15px;
     height: 100%;
-
 }
 
 .light_theme_colour_background#video {
@@ -327,7 +319,6 @@ iframe {
     justify-content: center;
     align-items: center;
 }
-
 
 .dark_theme_colour_background {
     /* used for titles in column text */
@@ -337,7 +328,6 @@ iframe {
     border-radius: 15px 15px 0px 0px;
     height: 47px;
     line-height: 47px;
-
 }
 
 
@@ -425,7 +415,8 @@ a.image_link {
 
 /* text for default desktop view*/
 
-body, a {
+body,
+a {
     color: #0062A8;
 }
 
@@ -463,6 +454,9 @@ p.grey {
     color: #3C3E41;
 }
 
+.navigation_title {
+    color: #FFFFFF;
+}
 
 
 /*layout rules for different screen sizes */
@@ -504,19 +498,15 @@ p.grey {
     .page_column_element {
         width: 100%
     }
-
     .video_frame {
         display: flex;
         flex-direction: column;
         margin: 20px;
         gap: 20px;
-
     }
-
     iframe {
         width: 90%;
     }
-
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
