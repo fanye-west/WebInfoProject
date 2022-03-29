@@ -317,6 +317,7 @@ iframe {
     border-radius: 7px;
     height: 40px;
     width: 40px;
+    margin: 0px;
 }
 
 .home_button.white {
@@ -335,6 +336,15 @@ iframe {
     margin-right: 5px;
     margin-top: 0px;
     margin-bottom: 15px;
+}
+
+a.image_link {
+    font-size: 0px;
+    /* THIS FONT SIZE IS CRUICIAL, DO NOT CHANGE OR REMOVE */
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 
@@ -523,6 +533,7 @@ p.grey {
         border-radius: 10px;
         height: 60px;
         width: 60px;
+        margin: 0px;
     }
     .page_right_element {
         gap: 50px;
