@@ -54,6 +54,9 @@ body {
 /* Div to form the page under a nav bar */
 
 .main_page_body_under_navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     left: 10px;
     right: 10px;
@@ -75,6 +78,21 @@ body {
     align-items: center;
     gap: 10px;
     background-color: #0062a8;
+}
+
+.about_page_body_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: stretch;
+    column-gap: 3%;
+    row-gap: 4%;
+    margin-left: 3%;
+    margin-right: 3%;
+
+
+
+
 }
 
 .about_page_body_flex {
@@ -216,6 +234,29 @@ body {
     margin-right: 20px;
 }
 
+.inner_block_text_column#right_margin_text {
+}
+
+
+.outer_block_text_column#about_diabetes {
+    grid-row: 1/-1;
+    grid-col: 1/2;
+    justify-self: end;
+
+}
+.outer_block_text_column#helpful_websites {
+    grid-row: 1/2;
+    grid-col: 2/3;
+    display: flex;
+    align-items: stretch;
+}
+
+.outer_block_text_column#videos {
+    grid-row: 2/3;
+    grid-col: 2/3;
+}
+
+
 .page_column_element {
     display: flex;
     flex-direction: column;
@@ -229,11 +270,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px;
+    gap: 5%
 }
 
 iframe {
-    width: 50%;
+    width: 350px;
+    height: 200px;
 }
 
 
@@ -276,7 +318,16 @@ iframe {
 .light_theme_colour_background {
     background-color: #EAF6FF;
     border-radius: 0px 0px 15px 15px;
+    height: 100%;
+
 }
+
+.light_theme_colour_background#video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .dark_theme_colour_background {
     /* used for titles in column text */
@@ -286,6 +337,7 @@ iframe {
     border-radius: 15px 15px 0px 0px;
     height: 47px;
     line-height: 47px;
+
 }
 
 
@@ -373,7 +425,7 @@ a.image_link {
 
 /* text for default desktop view*/
 
-body {
+body, a {
     color: #0062A8;
 }
 
@@ -393,7 +445,6 @@ h2 {
 
 h3 {
     font-size: 23px;
-    margin-top: 30px;
     margin-bottom: 0px;
     font-weight: bold;
 }
@@ -402,6 +453,7 @@ p {
     font-size: 18px;
     margin-top: 20px;
     margin-bottom: 20px;
+    line-height: 1.7;
 }
 
 p.grey {
@@ -410,6 +462,7 @@ p.grey {
     margin-bottom: 8px;
     color: #3C3E41;
 }
+
 
 
 /*layout rules for different screen sizes */
@@ -451,6 +504,19 @@ p.grey {
     .page_column_element {
         width: 100%
     }
+
+    .video_frame {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        gap: 20px;
+
+    }
+
+    iframe {
+        width: 90%;
+    }
+
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
@@ -489,6 +555,10 @@ p.grey {
     }
     .page_column_element {
         width: 500px
+    }
+    iframe {
+        width: 45%;
+        height: 90%;
     }
 }
 
