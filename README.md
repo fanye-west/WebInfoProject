@@ -42,7 +42,7 @@ The code in the repository is organised by **functionality**:
 ```
 src/
 	|- gui/
-	|	|- 	assets/
+	|	|- assets/
 	|	|	|- images/
 	|	|	|- icons/
 	|	|- public/ (Public HTML pages)
