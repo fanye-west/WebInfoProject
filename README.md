@@ -11,12 +11,20 @@ This repository contains the code and assets for the project components of INFO3
 - Tanay Khandelwal
 
 ## Usage:
+There are two options for running: Full application (frontend + backend) or frontend only.
 
-### Running in development mode:
+### Full application - Running in development mode:
 This will run the app in dev mode
 ```
 cd scr
 npm run dev 
+```
+
+### Front end only
+Run with ```ws``` or a web server of your choice
+```
+cd scr/gui
+ws
 ```
 
 ### Deploying:
