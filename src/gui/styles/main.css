@@ -240,24 +240,23 @@ body.light_theme_colour_background {
     margin-right: 20px;
 }
 
-.inner_block_text_column#right_margin_text {}
 
 .outer_block_text_column#about_diabetes {
     grid-row: 1/-1;
-    grid-col: 1/2;
+    grid-column: 1/2;
     justify-self: end;
 }
 
 .outer_block_text_column#helpful_websites {
     grid-row: 1/2;
-    grid-col: 2/3;
+    grid-column: 2/3;
     display: flex;
     align-items: stretch;
 }
 
 .outer_block_text_column#videos {
     grid-row: 2/3;
-    grid-col: 2/3;
+    grid-column: 2/3;
 }
 
 .page_column_element {
