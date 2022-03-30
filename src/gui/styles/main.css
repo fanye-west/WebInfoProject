@@ -337,7 +337,7 @@ iframe {
 
 /* Buttons */
 
-.main_button {
+.default_button {
     font-size: 12px;
     font-weight: bold;
     border: none;
@@ -346,12 +346,12 @@ iframe {
     width: 200px;
 }
 
-.main_button.white {
+.default_button.white {
     background-color: #ffffff;
     color: #858982;
 }
 
-.main_button.dark_blue {
+.default_button.dark_blue {
     background-color: #0062A8;
     color: #FFFFFF;
 }
@@ -580,7 +580,7 @@ p.grey {
         width: 550px;
         height: 300px;
     }
-    .main_button {
+    .default_button {
         font-size: 20px;
         font-weight: bold;
         font-family: 'Source Sans 3', sans-serif;
@@ -598,11 +598,5 @@ p.grey {
         height: 60px;
         width: 60px;
         margin: 0px;
-    }
-    .page_right_element {
-        gap: 50px;
-    }
-    .page_left_element {
-        gap: 50px;
     }
 }
