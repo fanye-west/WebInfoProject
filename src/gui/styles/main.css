@@ -51,7 +51,7 @@ body.light_theme_colour_background {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 
 
@@ -161,6 +161,12 @@ body.light_theme_colour_background {
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
     /* Rules for when the ipad is being used */
+    .navigation_hamburger_button_list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+    }
 }
 
 @media only screen and (min-width: 1800px) {
@@ -356,6 +362,18 @@ iframe {
     color: #FFFFFF;
 }
 
+.default_button.dark_blue_white_boarder {
+    background-color: #0062A8;
+    border: 2px solid #EAF6FF;
+    color: #EAF6FF;
+}
+
+.default_button.dark_blue_white_boarder:hover {
+    background-color: #EAF6FF;
+    border: 2px solid #EAF6FF;
+    color: #0062A8;
+}
+
 .home_button {
     font-size: 12px;
     font-weight: bold;
@@ -369,6 +387,18 @@ iframe {
 .home_button.white {
     background-color: #ffffff;
     color: #858982;
+}
+
+.home_button.dark_blue_white_boarder {
+    background-color: #0062A8;
+    border: 2px solid #EAF6FF;
+    color: #EAF6FF;
+}
+
+.home_button.dark_blue_white_boarder:hover {
+    background-color: #EAF6FF;
+    border: 2px solid #EAF6FF;
+    color: #0062A8;
 }
 
 .icon_button {
