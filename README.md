@@ -5,6 +5,7 @@ This repository contains the code and assets for the project components of INFO3
 
 ### Group members:
 - Aditya Ajit
+- Dash Park
 - Evie Hadlow
 - Fane Ye
 - Grant Holtes
@@ -34,7 +35,7 @@ TBC
 How to set up the development enviroment, based on [mozilla express node](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
 1. Install node at https://nodejs.org/en/
 2. test node install by typing in terminal ```node -v``` and ```npm -v```.
-3. Install all dependancies with ```cd src```, then ```npm install```
+3. Install all dependencies with ```cd src```, then ```npm install```
 
 
 ## Directory structure:
@@ -61,7 +62,8 @@ README.md
 
 Tutorials missed are listed below:
 - Aditya Ajit: 0
+- Dash Park
 - Evie Hadlow: 0
-- Fane ye: 0
+- Fane Ye: 0
 - Grant Holtes: 0
 - Tanay Khandelwal: 0

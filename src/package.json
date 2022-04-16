@@ -8,10 +8,11 @@
         "dev": "echo \"\nView app at: \n\thttp://127.0.0.1:3000 \n\t\tor \n\thttp://localhost:3000 \n\nPress CMD-C to quit\n\" && set NODE_ENV=development && node index.js",
         "start": "node index.js"
     },
-    "author": "Aditya Ajit, Evie Hadlow, Fane Ye, Grant Holtes, Tanay Khandelwal",
+    "author": "Aditya Ajit, Dash Park, Evie Hadlow, Fane Ye, Grant Holtes, Tanay Khandelwal",
     "license": "MIT",
     "dependencies": {
         "express": "^4.17.3",
+        "express-handlebars": "^6.0.5",
         "http-errors": "^2.0.0"
     }
 }
