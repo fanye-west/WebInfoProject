@@ -47,6 +47,6 @@ app.set('view engine', 'hbs') // set Handlebars view engine
 app.use(express.json()) // needed if POST data is in JSON format
 
 //Listen
-app.listen(port, function() {
-    console.log(`App listening on port ${port}`);
-});
+app.listen(process.env.PORT || 3000, () => {
+    console.log('App is running')
+})
