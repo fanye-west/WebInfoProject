@@ -9,7 +9,7 @@
         "start": "node index.js",
         "build": "git push heroku main && heroku ps:scale web=1"
     },
-    "author": "Aditya Ajit, Evie Hadlow, Fane Ye, Grant Holtes, Tanay Khandelwal",
+    "author": "Aditya Ajit, Dash Park, Evie Hadlow, Fane Ye, Grant Holtes, Tanay Khandelwal",
     "license": "MIT",
     "dependencies": {
         "express": "^4.17.3",
