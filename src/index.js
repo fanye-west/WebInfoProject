@@ -13,12 +13,16 @@ const port = 3000;
 app.use(express.static(__dirname + '/gui'));
 
 //Define route files 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/indexRouter');
 var publicStaticRouter = require('./routes/public');
+var publicStaticRouter = require('./routes/patientPostDataAPI.js');
 
 //Define how URLs map to routes
+//  Pages
 app.use('/', indexRouter);
 app.use('/public', publicStaticRouter);
+//  APIs
+app.use('/api', publicStaticRouter);
 
 // catch HTTP Errors
 app.use(function(req, res, next) {
