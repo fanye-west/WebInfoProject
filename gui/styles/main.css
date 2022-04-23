@@ -578,7 +578,6 @@ p.grey {
     }
     h3 {
         font-size: 19px;
-        margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
@@ -594,6 +593,8 @@ p.grey {
         width: 45%;
         height: 90%;
     }
+
+    
 }
 
 @media only screen and (min-width: 1800px) {
