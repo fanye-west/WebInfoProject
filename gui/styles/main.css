@@ -358,6 +358,12 @@ iframe {
     height: 100%;
 }
 
+.light_theme_colour_background#patient_info_box {
+    background-color: #EAF6FF;
+    border-radius: 15px 15px 15px 15px;
+    height: 100%;
+}
+
 .light_theme_colour_background#video {
     display: flex;
     justify-content: center;
