@@ -93,6 +93,7 @@ body.light_theme_colour_background {
     row-gap: 4%;
     margin-left: 3%;
     margin-right: 3%;
+    max-height: 90vh;
 }
 
 .about_page_body_flex {
@@ -157,6 +158,12 @@ body.light_theme_colour_background {
 
 @media only screen and (max-width: 500px) {
     /* Rules for when the iphone X is being used */
+
+    .about_page_body_grid {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
@@ -480,6 +487,10 @@ p {
     line-height: 1.7;
 }
 
+a>h3 {
+    text-align: left ;
+}
+
 p.grey {
     font-size: 18px;
     margin-top: 8px;
@@ -566,7 +577,7 @@ p.grey {
         font-weight: bold;
     }
     h3 {
-        font-size: 21px;
+        font-size: 19px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
