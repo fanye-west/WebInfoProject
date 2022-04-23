@@ -163,12 +163,13 @@ body.light_theme_colour_background {
         flex-direction: column;
         row-gap: 20px;
     }
+
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
-    
+
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
@@ -215,6 +216,31 @@ body.light_theme_colour_background {
 
 
 /* /////////////////////// COMPONANTS /////////////////////// */
+
+
+/* Text Elements */
+#badge_text {
+    vertical-align: baseline;
+}
+
+#badge_icon {
+    vertical-align: middle;
+}
+
+ul.patient_info_list {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.patient_info_list>li {
+    /* Aligns one span left, the other */
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+}
 
 
 /* Containers */
@@ -290,9 +316,6 @@ body.light_theme_colour_background {
     align-items: center;
     justify-content: center;
 }
-
-
-
 
 .page_column_element {
     display: flex;
@@ -452,6 +475,16 @@ iframe {
     margin-right: 5px;
     margin-top: 0px;
     margin-bottom: 15px;
+}
+
+.change_password_button {
+    font-size: 12px;
+    border: none;
+    border-radius: 7px;
+    padding: 8px;
+    background-color: #0062A8;
+    color: #FFFFFF;
+
 }
 
 a.image_link {
