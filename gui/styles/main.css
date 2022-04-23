@@ -227,22 +227,24 @@ body.light_theme_colour_background {
     vertical-align: middle;
 }
 
-ul.patient_info_list {
+ul.patient_dash_list {
     padding: 0;
     list-style-type: none;
     margin: 0px;
 }
 
-ul.patient_info_list>li {
+ul.patient_dash_list>li {
     /* Aligns one span left, the other */
     display: flex;
     justify-content: space-between;
     margin: 10px;
     margin-left: 0px;
     margin-right: 0px;
-
 }
 
+.ranges_data_box>span {
+    border-style: solid;
+}
 
 /* Containers */
 
@@ -288,10 +290,10 @@ ul.patient_info_list>li {
 }
 
 .inner_block_text_column.patient_dash {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -421,6 +423,9 @@ iframe {
 }
 
 
+
+
+
 /* Buttons */
 
 .default_button {
@@ -511,6 +516,15 @@ a.image_link {
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+.default_button.dark_blue>h3 {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-right: 20px;
+    text-align: right;
 }
 
 
