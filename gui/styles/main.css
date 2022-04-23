@@ -230,6 +230,7 @@ body.light_theme_colour_background {
 ul.patient_info_list {
     padding: 0;
     list-style-type: none;
+    margin: 0px;
 }
 
 ul.patient_info_list>li {
@@ -286,6 +287,13 @@ ul.patient_info_list>li {
     margin-right: 20px;
 }
 
+.inner_block_text_column.patient_dash {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+
+}
 
 .outer_block_text_column#about_diabetes {
     grid-row: 1/-1;
@@ -372,6 +380,17 @@ iframe {
     background-color: rgba(234, 246, 255, 0.8);
 }
 
+#patient_dash_doctor_message_box {
+    border-radius: 15px;
+    height: 200px;
+    background-color: #FFFFFF;
+}
+
+#patient_dash_doctor_message_text {
+    padding: 10px;
+    margin: 10px;
+}
+
 
 /* Background colours */
 
@@ -381,10 +400,8 @@ iframe {
     height: 100%;
 }
 
-.light_theme_colour_background#patient_info_box {
-    background-color: #EAF6FF;
+.light_theme_colour_background.patient_dash {
     border-radius: 15px 15px 15px 15px;
-    height: 100%;
 }
 
 .light_theme_colour_background#video {
