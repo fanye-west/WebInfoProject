@@ -68,6 +68,13 @@ body.light_theme_colour_background {
     bottom: 20px;
 }
 
+.main_page_body_under_navigation#patient_dashboard_page {
+    flex-direction: column;
+    row-gap: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* Flexboxes */
 
@@ -96,9 +103,9 @@ body.light_theme_colour_background {
     max-height: 90vh;
 }
 
-.patient_info_grid {
+.patient_dash_grid {
     height: 45%;
-    width: 70%;
+    width: 100%;
     display: grid;
     grid-template-columns:repeat(2, 1fr);
     grid-template-rows:repeat(6, 1fr);
@@ -255,6 +262,35 @@ body.light_theme_colour_background {
 
 /* /////////////////////// COMPONANTS /////////////////////// */
 
+/* Patient dash table */
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid purple;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th:nth-child(1) {
+    width: 1fr;
+}
+
+th:nth-child(2) {
+    width: 1fr;
+}
+
+th:nth-child(3) {
+    width: 1fr;
+}
+
+th:nth-child(4) {
+    width: 1fr;
+}
+
+th,td {
+    padding: 20px;
+}
 
 /* Text Elements */
 #badge_text {
