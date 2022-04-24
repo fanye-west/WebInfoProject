@@ -267,9 +267,70 @@ table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    border: 3px solid purple;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+
+}
+thead {
+    background: #0062a8;
+}
+
+/* Maing borders for only the inside of the table */
+
+table th {
+    border: 3px solid #ffffff;
+    border-bottom: 0;
+
+}
+table td {
+    border: 3px solid #ffffff;
+    border-bottom: 0;
+
+}
+table tr:first-child th {
+    border-top: 0;
+    border-left: 0;
+}
+table tr th:last-child {
+    border-right: 0;
+}
+table tr td:first-child {
+    border-left: 0;
+}
+table tr td:last-child {
+    border-right: 0;
+}
+table tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Rounding the corners of the table */
+th:first-of-type {
+    border-top-left-radius: 15px;
+}
+th:last-of-type {
+    border-top-right-radius: 15px;
+}
+tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 15px;
+}
+tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 15px;
+}
+
+/* Formatting zebra colour and text*/
+thead tr{
+    letter-spacing: 1.5px;
+    color: #ffffff;
+
+}
+tbody tr:nth-child(odd) {
+    background-color: #EAF6FF;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #B1CCE0;
 }
 
 th:nth-child(1) {
@@ -287,6 +348,8 @@ th:nth-child(3) {
 th:nth-child(4) {
     width: 1fr;
 }
+
+
 
 th,td {
     padding: 20px;
@@ -671,6 +734,8 @@ p.grey {
 .navigation_title {
     color: #FFFFFF;
 }
+
+
 
 
 /*layout rules for different screen sizes */
