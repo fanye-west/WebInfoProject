@@ -4,6 +4,7 @@ var createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars') // include handlebars
+require('./models')
 
 //Constants
 const app = express();
