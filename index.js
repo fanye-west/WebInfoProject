@@ -4,6 +4,7 @@ var createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars') // include handlebars
+require('./models')
 
 //Constants
 const app = express();
@@ -15,14 +16,14 @@ app.use(express.static(__dirname + '/gui'));
 //Define route files 
 var indexRouter = require('./routes/indexRouter');
 var publicStaticRouter = require('./routes/public');
-var publicStaticRouter = require('./routes/patientPostDataAPI.js');
+var patientRouter = require('./routes/patientRouter.js');
+var clinitianRouter = require('./routes/clinitianRouter.js');
 
 //Define how URLs map to routes
-//  Pages
 app.use('/', indexRouter);
 app.use('/public', publicStaticRouter);
-//  APIs
-app.use('/api', publicStaticRouter);
+app.use('/user/patient', patientRouter);
+app.use('/user/clinician', clinitianRouter);
 
 // catch HTTP Errors
 app.use(function(req, res, next) {

@@ -76,6 +76,7 @@ body.light_theme_colour_background {
     margin-right: auto;
 }
 
+
 /* Flexboxes */
 
 .row_flex_spaced {
@@ -106,8 +107,8 @@ body.light_theme_colour_background {
 .patient_dash_grid {
     width: 100%;
     display: grid;
-    grid-template-columns:repeat(2, 1fr);
-    grid-template-rows:repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     column-gap: 20px;
     row-gap: 20px;
 }
@@ -126,19 +127,16 @@ body.light_theme_colour_background {
     grid-column: 0/1;
     grid-row: 4/7;
 }
+
 .outer_block_text_column#patient_dash_add_data_button {
     grid-column: 2/3;
     grid-row: 6/7;
 }
+
 #patient_dash_add_data_button>.default_button.dark_blue {
     width: 100%;
     height: 100%;
 }
-
-
-
-
-
 
 .about_page_body_flex {
     position: absolute;
@@ -159,8 +157,6 @@ body.light_theme_colour_background {
     justify-content: center;
     align-items: center;
 }
-
-
 
 .row_page_body_flex {
     width: 100%;
@@ -201,23 +197,22 @@ body.light_theme_colour_background {
 
 @media only screen and (max-width: 500px) {
     /* Rules for when the iphone X is being used */
-
     .about_page_body_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
-
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
-
+    .main_page_body_under_navigation {
+        align-items: flex-start;
+    }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
-
     /* Rules for when the ipad is being used */
     .navigation_hamburger_button_list {
         display: flex;
@@ -228,31 +223,25 @@ body.light_theme_colour_background {
 }
 
 @media only screen and (min-width: 1800px) {
-
     /* Rules for when the desktop is being used */
     body {
         font-size: 18px;
     }
-
     .navigation {
         height: 100px;
     }
-
     .main_page_body_under_navigation {
         left: 10px;
         right: 10px;
         top: 120px;
         bottom: 20px;
     }
-
     .about_page_body_flex {
         gap: 50px;
     }
-
     .column_page_body_flex {
         gap: 50px;
     }
-
     .row_page_body_flex {
         gap: 50px;
     }
@@ -261,11 +250,9 @@ body.light_theme_colour_background {
 
 /* /////////////////////// COMPONANTS /////////////////////// */
 
+
 /* Patient dash table */
 
-.patient_dash_data_table{
-    height: 40%;
-}
 table {
     table-layout: fixed;
     width: 100%;
@@ -273,61 +260,73 @@ table {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-
 }
+
 thead {
     background: #0062a8;
 }
+
 
 /* Maing borders for only the inside of the table */
 
 table th {
     border: 3px solid #ffffff;
     border-bottom: 0;
-
 }
+
 table td {
     border: 3px solid #ffffff;
     border-bottom: 0;
-
 }
+
 table tr:first-child th {
     border-top: 0;
     border-left: 0;
 }
+
 table tr th:last-child {
     border-right: 0;
 }
+
 table tr td:first-child {
     border-left: 0;
 }
+
 table tr td:last-child {
     border-right: 0;
 }
+
 table tr:last-child td {
     border-bottom: 0;
 }
 
+
 /* Rounding the corners of the table */
+
 th:first-of-type {
     border-top-left-radius: 15px;
 }
+
 th:last-of-type {
     border-top-right-radius: 15px;
 }
+
 tr:last-of-type td:first-of-type {
     border-bottom-left-radius: 15px;
 }
+
 tr:last-of-type td:last-of-type {
     border-bottom-right-radius: 15px;
 }
 
+
 /* Formatting zebra colour and text*/
-thead tr{
+
+thead tr {
     letter-spacing: 1.5px;
     color: #ffffff;
-
 }
+
 tbody tr:nth-child(odd) {
     background-color: #EAF6FF;
 }
@@ -352,13 +351,14 @@ th:nth-child(4) {
     width: 1fr;
 }
 
-
-
-th,td {
+th,
+td {
     padding: 20px;
 }
 
+
 /* Text Elements */
+
 #badge_text {
     vertical-align: baseline;
 }
@@ -391,6 +391,7 @@ ul.patient_dash_list>li {
 .ranges_data_box>span {
     border-style: solid;
 }
+
 
 /* Containers */
 
@@ -462,9 +463,7 @@ ul.patient_dash_list>li {
 
 .outer_block_text_column#about_us {
     margin-right: 50px;
-
 }
-
 
 .outer_block_text_column#logo1 {
     display: flex;
@@ -491,6 +490,41 @@ ul.patient_dash_list>li {
 iframe {
     width: 350px;
     height: 200px;
+}
+
+.basic_column {
+    /*flex box for login pages*/
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-width: 500px;
+    min-width: none;
+}
+
+.center_text_column {
+    text-align: center;
+    padding: 1rem;
+    margin: 1.5rem;
+}
+
+.left_text_column {
+    padding: 1rem;
+    margin-left: 2rem;
+}
+
+.input_feild {
+    /*Input contaners*/
+    background-color: #B1CCE0;
+    color: #0062A8;
+    border-color: none;
+    border: none;
+    border-radius: 7px;
+    width: 400px;
+    height: 40px;
+    align-self: center;
+    padding: 1rem;
 }
 
 
@@ -537,6 +571,12 @@ iframe {
     margin: 10px;
 }
 
+.rounded_box_half_width.long {
+    height: 550px;
+    width: 500px;
+    background-color: #EAF6FF;
+}
+
 
 /* Background colours */
 
@@ -565,9 +605,6 @@ iframe {
     height: 47px;
     line-height: 47px;
 }
-
-
-
 
 
 /* Buttons */
@@ -601,6 +638,15 @@ iframe {
     background-color: #EAF6FF;
     border: 2px solid #EAF6FF;
     color: #0062A8;
+}
+
+.default_button.dark_blue_centered {
+    background-color: #0062A8;
+    color: #FFFFFF;
+    align-self: center;
+    margin: 2rem;
+    margin-top: 3.5rem;
+    font-size: 14pt;
 }
 
 .home_button {
@@ -650,7 +696,6 @@ iframe {
     padding: 8px;
     background-color: #0062A8;
     color: #FFFFFF;
-
 }
 
 a.image_link {
@@ -745,67 +790,60 @@ p.grey {
 }
 
 
-
-
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
-
     /* Rules for when the iphone X is being used */
     #navigation_buttons {
         display: none;
     }
-
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
     #about_website_page_large_display_image {
         display: none;
     }
-
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h2 {
         font-size: 22px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h3 {
         font-size: 18px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     p {
-        font-size: 15px;
+        font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
-
+    p.grey {
+        font-size: 14px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #3C3E41;
+    }
     .page_column_element {
         width: 100%
     }
-
     .video_frame {
         display: flex;
         flex-direction: column;
         margin: 20px;
         gap: 20px;
     }
-
     iframe {
         width: 90%;
     }
-
     .outer_block_text_column#about_us {
         margin-left: 5px;
         margin-right: 5px;
@@ -813,81 +851,62 @@ p.grey {
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
-
     /* Rules for when the ipad is being used */
     #navigation_buttons {
         display: none;
     }
-
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
     .display_image {
         width: 400px;
         height: 400px;
     }
-
-    .inner_block_text_column.patient_dash {
-        margin-top: 5px;
-        margin-bottom: 10px;
-
-    }
-    
-
-    /* ul.patient_dash_list>li {
-        margin: 0px;
-    } */
-
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h2 {
         font-size: 25px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h3 {
         font-size: 19px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     p {
-        font-size: 15px;
+        font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
-
+    p.grey {
+        font-size: 16px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #3C3E41;
+    }
     .page_column_element {
         width: 500px
     }
-
     iframe {
         width: 45%;
         height: 90%;
     }
-
-
 }
 
 @media only screen and (min-width: 1800px) {
-
     /* Rules for when the desktop is being used */
     #navigation_hamburger {
         display: none;
     }
-
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
     .inner_block_text_column {
         /* Used to container text inside a flex box */
         margin-top: 20px;
@@ -895,13 +914,11 @@ p.grey {
         margin-left: 40px;
         margin-right: 40px;
     }
-
     .rounded_box_half_width {
         border-radius: 25px;
         width: 550px;
         height: 300px;
     }
-
     .default_button {
         font-size: 20px;
         font-weight: bold;
@@ -911,7 +928,6 @@ p.grey {
         height: 60px;
         width: 300px;
     }
-
     .home_button {
         font-size: 20px;
         font-weight: bold;
