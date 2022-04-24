@@ -1,17 +1,17 @@
-3<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient login</title>
+    <title>Clinician Dashboard</title>
 
     <link rel="stylesheet" href="../styles/main.css">
     <script src="../scripts/navigation.js"></script>
 </head>
 
-<body class="light_theme_colour_background">
+<body>
     <header class="navigation">
         <!-- Navigation bar -->
         <div class="row_flex_spaced">
@@ -20,17 +20,13 @@
                     <button class="icon_button">
                         <img class="icon" src="../assets/icons/logo_sml.png">
                     </button>
-
                 </div>
                 <h1 class="navigation_title">Diabetes at Home</h1>
             </div>
             <div class="login_row_flex_header" id="navigation_buttons">
                 <a href="../index.html" class="image_link"><button class="home_button dark_blue_white_boarder"><img
                             class="icon" src="../assets/icons/home.png"></button></a>
-                <a href="../index.html"><button class="default_button dark_blue_white_boarder">Patient
-                        Login</button></a>
-                <a href="../index.html"><button class="default_button dark_blue_white_boarder">Practitioner
-                        Login</button></a>
+                <a href="../index.html"><button class="default_button dark_blue_white_boarder">Logout</button></a>
             </div>
             <div class="nav_icon" id="navigation_hamburger">
                 <button class="icon_button" onclick="hamburgerExpander()">
@@ -57,39 +53,24 @@
                     <a href="../index.html"><button class="default_button dark_blue_white_boarder">Home</button></a>
                 </div>
                 <div class="button_margin_wrapper">
-                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Patient
-                            Login</button></a>
-                </div>
-                <div class="button_margin_wrapper">
-                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Practitioner
-                            Login</button></a>
+                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Logout</button></a>
                 </div>
             </div>
         </div>
     </header>
-    <!--Patient Login Box-->
-    <div class ="main_page_body_under_navigation" >
-         <div class ="rounded_box_half_width long">
-             <div class="basic_column">
-                <div class="center_text_column" id=> 
-                     <h1>Practitioner Login</h1>
-                </div>
-                <!--Username input feild-->
-                <div class="left_text_column">
-                     <h2>Username</h2>
-                </div>
-                <input class="input_feild" type="text" id="username" placeholder="">
-                <!--Password input feild-->
-                <div class="left_text_column">
-                    <h2>Password</h2>
-               </div>
-               <input class="input_feild" type="text" id="password" placeholder="">
-               <!--Login Button-->
-               <button class="default_button dark_blue_centered">Login</button>
-            </div>
-         </div>
 
-    </div>
+    <!-- main body contents -->
+    <div class="main_page_body_under_navigation">
+       
+        </div>
+
+
 
 </body>
+
+
+
+
+
+
 </html>

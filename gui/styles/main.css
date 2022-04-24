@@ -3,7 +3,7 @@
 /* /////////////////////// BACKGROUNDS /////////////////////// */
 
 body {
-    background-image: url("../assets/images/sunriseBlur.jpeg");
+    /* background-image: url("../assets/images/sunriseBlur.jpeg"); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
