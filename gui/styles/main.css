@@ -134,6 +134,10 @@ body.light_theme_colour_background {
     grid-column: 2/3;
     grid-row: 6/7;
 }
+.outer_block_text_column#doctor_dash_profile_box {
+
+}
+
 
 #patient_dash_add_data_button>.default_button.dark_blue {
     width: 100%;
@@ -417,7 +421,8 @@ ul.patient_dash_list>li {
 
 }
 
-#your_profile_header {
+.profile_header {
+    display: flex;
     align-items: flex-end;
 }
 
@@ -722,14 +727,7 @@ iframe {
     margin-bottom: 15px;
 }
 
-.change_password_button {
-    font-size: 12px;
-    border: none;
-    border-radius: 7px;
-    padding: 8px;
-    background-color: #0062A8;
-    color: #FFFFFF;
-}
+
 
 a.image_link {
     font-size: 0px;
@@ -740,7 +738,7 @@ a.image_link {
     margin-bottom: 0px;
 }
 
-.default_button.dark_blue>h3 {
+#add_data_button_heading {
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
@@ -749,6 +747,13 @@ a.image_link {
     text-align: right;
 }
 
+.default_button.dark_blue.small_button {
+    height: 25px;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+}
 
 /* icons */
 
