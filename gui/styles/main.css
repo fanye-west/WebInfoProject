@@ -138,9 +138,6 @@ body.light_theme_colour_background {
 
 
 
-
-
-
 .about_page_body_flex {
     position: absolute;
     width: 100%;
@@ -485,6 +482,43 @@ iframe {
 }
 
 
+.basic_column {
+    /*flex box for login pages*/
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-width: 500px;
+    min-width: none;
+}
+
+
+.center_text_column{
+    text-align: center;
+    padding: 1rem;
+    margin: 1.5rem;
+}
+
+.left_text_column{
+    padding: 1rem;
+    margin-left: 2rem;
+}
+
+.input_feild{
+    /*Input contaners*/
+    background-color: #B1CCE0;
+    color: #0062A8;
+    border-color: none;
+    border: none;
+    border-radius: 7px;
+    width: 400px;
+    height: 40px;
+    align-self: center;
+    padding: 1rem;
+}
+
+
 /* text boxes */
 
 .rounded_box_full_width {
@@ -527,6 +561,13 @@ iframe {
     padding: 10px;
     margin: 10px;
 }
+
+.rounded_box_half_width.long {
+    height: 550px;
+    width: 500px;
+    background-color: #EAF6FF;
+}
+
 
 
 /* Background colours */
@@ -592,6 +633,15 @@ iframe {
     background-color: #EAF6FF;
     border: 2px solid #EAF6FF;
     color: #0062A8;
+}
+
+.default_button.dark_blue_centered{
+    background-color: #0062A8;
+    color: #FFFFFF;
+    align-self:center;
+    margin: 2rem;
+    margin-top:3.5rem;
+    font-size: 14pt;
 }
 
 .home_button {
