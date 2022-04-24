@@ -15,18 +15,14 @@ app.use(express.static(__dirname + '/gui'));
 //Define route files 
 var indexRouter = require('./routes/indexRouter');
 var publicStaticRouter = require('./routes/public');
-var publicStaticRouter = require('./routes/patientPostDataAPI.js');
 var patientRouter = require('./routes/patientRouter.js');
 var clinitianRouter = require('./routes/clinitianRouter.js');
 
 //Define how URLs map to routes
-//  Pages
 app.use('/', indexRouter);
 app.use('/public', publicStaticRouter);
 app.use('/user/patient', patientRouter);
 app.use('/user/clinician', clinitianRouter);
-//  APIs
-app.use('/api', publicStaticRouter);
 
 // catch HTTP Errors
 app.use(function(req, res, next) {
