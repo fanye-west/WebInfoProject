@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const dataSchema = require('data')
-const noteSchema = require('note')
+const dataSchema = require('../models/data').schema
+const noteSchema = require('../models/note').schema
 
 const patientSchema = new mongoose.Schema({
     first_name: String,

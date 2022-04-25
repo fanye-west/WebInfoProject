@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const valueSchema = require('value')
+const valueSchema = require('../models/value').schema
 
 const dataSchema = new mongoose.Schema({
     glucose: valueSchema,

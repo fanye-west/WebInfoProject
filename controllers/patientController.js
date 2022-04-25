@@ -1,17 +1,17 @@
 //Import Models
 // TODO add models
 const res = require('express/lib/response');
-const schema = require('../models/schema');
+const Patient = require('../models/patient');
 
 const mock_patient = require('../models/mock_patient.js')
 
 const getPatientDash = async(req, res, next) => {
     try {
         // TODO Add DB call and actual HRB render here, eg:
-        // const patientData = await schema.find()
-        // return res.render('patientDash', { data: ... });
+        const patientData = await Patient.find().lean()
+        console.log(patientData);
 
-        return res.render('patientDash', { layout: 'patientLayout', patient: mock_patient });
+        return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
     }

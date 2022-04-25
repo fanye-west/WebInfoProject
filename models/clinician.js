@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const patientSchema = require('patient')
+const patientSchema = require('patient').schema
 
 const clinicianSchema = new mongoose.Schema({
     first_name: String,
