@@ -3,11 +3,14 @@
 /* /////////////////////// BACKGROUNDS /////////////////////// */
 
 body {
-    /* background-image: url("../assets/images/sunriseBlur.jpeg"); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: 'Source Sans 3', sans-serif;
+}
+
+body.normal_theme_colour_background {
+    background-image: url("../assets/images/sunriseBlur.jpeg");
 }
 
 body.light_theme_colour_background {
@@ -69,12 +72,15 @@ body.light_theme_colour_background {
 }
 
 .main_page_body_under_navigation#patient_dashboard_page {
+    /* position: absolute; */
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     row-gap: 20px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-    height: 1000px;
+    /* height: 1000px; */
 }
 
 .main_page_body_under_navigation#patient_data_entry {
@@ -150,9 +156,6 @@ body.light_theme_colour_background {
     grid-column: 2/3;
     grid-row: 6/7;
 }
-.outer_block_text_column#doctor_dash_profile_box {
-
-}
 
 .outer_block_text_column#patient_data_entry_box {
     width: 100%;
@@ -218,6 +221,9 @@ body.light_theme_colour_background {
     grid-column: 2/3;
     grid-row: 6/7;
 }
+
+.outer_block_text_column#doctor_dash_profile_box {}
+
 
 #patient_dash_add_data_button>.default_button.dark_blue {
     width: 100%;
@@ -298,7 +304,6 @@ body.light_theme_colour_background {
         width: 95%;
         height: 900px;
     }
-
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
@@ -317,10 +322,10 @@ body.light_theme_colour_background {
         justify-content: center;
         align-items: flex-end;
     }
-        .main_page_body_under_navigation#patient_dashboard_page {
-            width: 95%;
-            height: 1000px;
-        }
+    .main_page_body_under_navigation#patient_dashboard_page {
+        width: 95%;
+        height: 1000px;
+    }
 }
 
 @media only screen and (min-width: 1800px) {
@@ -468,7 +473,6 @@ td {
     vertical-align: middle;
 }
 
-
 ul.patient_dash_list {
     padding: 0;
     list-style-type: none;
@@ -482,9 +486,7 @@ ul.patient_dash_list>li {
     margin: 5px;
     margin-left: 0px;
     margin-right: 0px;
-    
 }
-
 
 .ranges_data_box {
     width: 200px;
@@ -498,7 +500,6 @@ ul.patient_dash_list>li {
     padding: 2px;
     border-radius: 3px;
     border: 0.5px solid;
-
 }
 
 .profile_header {
@@ -812,8 +813,6 @@ iframe {
     margin-bottom: 15px;
 }
 
-
-
 a.image_link {
     font-size: 0px;
     /* THIS FONT SIZE IS CRUICIAL, DO NOT CHANGE OR REMOVE */
@@ -936,26 +935,21 @@ p.grey {
     /* Rules for when the iphone X is being used */
     th {
         padding: 1px;
-
     }
     td {
         padding: 5px;
-
     }
     table th {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
-
     table td {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
-        .ranges_data_box {
-            width: 130px;
-        }
-
-
+    .ranges_data_box {
+        width: 130px;
+    }
     #navigation_buttons {
         display: none;
     }
@@ -1019,7 +1013,6 @@ p.grey {
     }
     .ranges_data_element {
         padding: 1px;
-
     }
     #navigation_buttons {
         display: none;
