@@ -2,12 +2,15 @@
 // TODO add models
 const res = require('express/lib/response');
 
+const mock_patient = require('../models/mock_patient.js')
+
 const getPatientDash = async(req, res, next) => {
     try {
         // TODO Add DB call and actual HRB render here, eg:
         // const patientData = await ....
         // return res.render('patientDash', { data: ... });
-        return res.render('patientDash');
+
+        return res.render('patientDash', { layout: 'patientLayout', patient: mock_patient });
     } catch (err) {
         return next(err)
     }
@@ -18,7 +21,7 @@ const getPatientDataEntry = async(req, res, next) => {
         // TODO Add DB call and actual HRB render here, eg:
         // const patientData = await ....
         // return res.render('patientDash', { data: ... });
-        return res.render('patientDataEntry');
+        return res.render('patientDataEntry', { layout: 'patientLayout' });
     } catch (err) {
         return next(err)
     }

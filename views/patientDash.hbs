@@ -1,1 +1,139 @@
-<H1>Patient Dash Page Body Goes Here!</H1>
+<!-- main body contents -->
+{{#with patient}}
+<div class="main_page_body_under_navigation" id="patient_dashboard_page">
+	<div class="patient_dash_grid">
+		<div class="outer_block_text_column" id="patient_dash_your_profile_box">
+			<div class="light_theme_colour_background four_corners">
+				<div class="inner_block_text_column four_corners">
+					<!-- <h3>Your Profile</h3> -->
+					<ul class="patient_dash_list">
+						<li class="profile_header">
+							<span><h3>Your Profile</h3></span>
+							<span> <button class="default_button dark_blue small_button">Change Password</button></span>
+						</li>
+						<li>
+							<span> <b>Name:</b></span>
+							<span>{{first_name}} {{last_name}}</span>
+						</li>
+
+						<li>
+							<span><b>Username:</b></span>
+							<span>{{user_name}}</span>
+						</li>
+
+						<li>
+							<span><b>D.O.B:</b></span>
+							<span>{{dob}}</span>
+						</li>
+
+						<li>
+							<span><b>Badge:</b></span>
+							<span>
+								<span id="badge_text">{{badge}}</span> 
+								{{!-- <img id="badge_icon" src="../assets/icons/silver_medal.png" alt="silver medal"
+									width="20" height="27">  --}}
+							</span>
+						</li>
+						<!-- <li style="float:right;">
+							<button class="change_password_button">Change Password</button>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="outer_block_text_column" id="patient_dash_doctor_message">
+			<div class="light_theme_colour_background four_corners">
+				<div class="inner_block_text_column four_corners">
+					<h3>Message from your doctor:</h3>
+					<div id="patient_dash_doctor_message_box">
+						<p id="patient_dash_doctor_message_text">
+							{{messages.[0]}}</p> 
+							{{!-- TODO - get last message not first --}}
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="outer_block_text_column" id="patient_dash_ranges">
+			<div class="light_theme_colour_background four_corners">
+				<div class="inner_block_text_column four_corners">
+					<h3>Your set ranges</h3>
+					<ul class="patient_dash_list">
+						<li>
+							<span> <b>Blood Glucose (nmol/L):</b></span>
+							<span class="ranges_data_box">
+								<span class="ranges_data_element">{{glucose_bounds.[0]}}</span>
+								<span class="ranges_data_element">{{glucose_bounds.[1]}}</span>
+							</span>
+						</li>
+
+						<li>
+							<span class="metric_title"><b>Weight(kg):</b></span>
+							<span class="ranges_data_box">
+								<span class="ranges_data_element">{{weight_bounds.[0]}}</span>
+								<span class="ranges_data_element">{{weight_bounds.[1]}}</span>
+							</span>
+						</li>
+
+						<li>
+							<span class="metric_title"><b>Insuline Doses</b></span>
+							<span class="ranges_data_box">
+								<span class="ranges_data_element">{{insulin_bounds.[0]}}</span>
+								<span class="ranges_data_element">{{insulin_bounds.[1]}}</span>
+							</span>
+						</li>
+
+						<li>
+							<span ><b>Steps:</b></span>
+							<span class="ranges_data_box">
+								<span class="ranges_data_element">{{exercise_bounds.[0]}}</span>
+								<span class="ranges_data_element">{{exercise_bounds.[1]}}</span>
+							</span>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="outer_block_text_column" id="patient_dash_add_data_button">
+			<button class="default_button dark_blue">
+				<h3 id="add_data_button_heading"> + Add Data</h3>
+			</button>
+		</div>
+
+
+
+
+	</div>
+
+	<div class="patient_dash_data_table">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">Blood Glucose <br>(nmol/L)</th>
+					<th scope="col">Weight <br>(kg)</th>
+					<th scope="col">Insulin Doses</th>
+					<th scope="col">Steps</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{{#each data}}
+				<tr>
+					<td>{{date}}</td>
+					<td>{{glucose.value}}</td>
+					<td>{{weight.value}}</td>
+					<td>{{insulin.value}}</td>
+					<td>{{exercise.value}}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</div>
+{{/with}}

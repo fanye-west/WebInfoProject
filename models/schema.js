@@ -1,11 +1,11 @@
-const mongoose = require('mongoose') 
+const mongoose = require('mongoose')
 
 const valueSchema = new mongoose.Schema({
     is_recorded: Boolean,
     is_required: Boolean,
     value: Number,
     comment: String,
-    when: {type: Date, default: Date.now}
+    when: { type: Date, default: Date.now }
 })
 
 const dataSchema = new mongoose.Schema({
@@ -13,7 +13,12 @@ const dataSchema = new mongoose.Schema({
     weight: valueSchema,
     insulin: valueSchema,
     exercise: valueSchema,
-    date: {type: Date, default: Date.now}
+    date: { type: Date, default: Date.now }
+})
+
+const noteSchema = new mongoose.Schema({
+    text: String,
+    date: { type: Date, default: Date.now }
 })
 
 const patientSchema = new mongoose.Schema({
@@ -28,7 +33,7 @@ const patientSchema = new mongoose.Schema({
     messages: [String],
     badge: String,
     rank: Number,
-    notes: [String],
+    notes: [noteSchema],
     glucose_bounds: [Number, Number],
     weight_bounds: [Number, Number],
     insulin_bounds: [Number, Number],
@@ -36,8 +41,8 @@ const patientSchema = new mongoose.Schema({
 
 })
 
-const clinicianSchema = new mongoose.Schema({ 
-    first_name: String, 
+const clinicianSchema = new mongoose.Schema({
+    first_name: String,
     last_name: String,
     user_name: String,
     password: String,
@@ -47,9 +52,9 @@ const clinicianSchema = new mongoose.Schema({
     patients: [patientSchema]
 })
 
-const Clinician = mongoose.model('Clinician', clinicianSchema) 
-const Patient = mongoose.model('Patient', patientSchema) 
-const Data = mongoose.model('Data', dataSchema) 
+const Clinician = mongoose.model('Clinician', clinicianSchema)
+const Patient = mongoose.model('Patient', patientSchema)
+const Data = mongoose.model('Data', dataSchema)
 const Value = mongoose.model('Value', valueSchema)
 
-module.exports = {Clinician, Patient, Data, Value}
+module.exports = { Clinician, Patient, Data, Value }
