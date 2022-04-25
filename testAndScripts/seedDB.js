@@ -31,50 +31,41 @@ mock_patient = {
     exercise_required: false
 }
 
-newPatient = new Patient(mock_patient)
-console.log(newPatient)
-newPatient.save()
+// newPatient = new Patient(mock_patient)
+// console.log(newPatient)
+// newPatient.save()
+
+var id = "62668042f2c4e1d37f21d7b2"
 var i;
-for (i = 0; i < 5; i++) {
+for (i = 0; i < 10; i++) {
     glucose = new Value({
         is_recorded: true,
-        is_required: newPatient.glucose_required,
         value: getRandomInt(10),
         comment: "my glucose comment: " + i,
     })
     weight = new Value({
         is_recorded: true,
-        is_required: newPatient.weight_required,
         value: getRandomInt(10) + 60,
         comment: "my weight comment: " + i,
     })
     insulin = new Value({
         is_recorded: true,
-        is_required: newPatient.insulin_required,
         value: getRandomInt(3),
         comment: "my insulin comment: " + i,
     })
     exercise = new Value({
         is_recorded: true,
-        is_required: newPatient.exercise_required,
         value: getRandomInt(10000) + 5000,
         comment: "my exercise comment: " + i,
     })
-    data = new Data({
+    newdata = new Data({
             glucose: glucose,
             weight: weight,
             insulin: insulin,
             exercise: exercise
         })
         // console.log(data);
-    Patient.updateOne({ _id: newPatient._id }, {
-        $push: { data: data },
-        function(err, result) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(result);
-            }
-        }
-    });
+    let res = Patient.updateOne({ _id: id }, {
+        $push: { data: newdata }
+    }).exec();
 }

@@ -5,7 +5,7 @@ const Patient = require('../models/patient');
 const mock_patient = require('../models/mock_patient.js')
 
 //Deliverable 2 Hardcoded values
-const PatientID = "6266702d768936c0cd64d4a0"
+const PatientID = "62668042f2c4e1d37f21d7b2"
 
 const getPatientDash = async(req, res, next) => {
     try {
