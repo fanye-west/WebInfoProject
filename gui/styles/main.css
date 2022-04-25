@@ -548,7 +548,7 @@ ul.patient_dash_list>li {
 }
 
 .outer_block_text_column .inner_block_text_column {
-    /* Used to container text inside a flex box */
+    /* Used to contain text inside a flex box */
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 20px;
