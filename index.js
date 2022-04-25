@@ -4,6 +4,7 @@ var createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars') // include handlebars
+
 require('./models')
 
 //Constants
@@ -40,7 +41,8 @@ app.use(function(err, req, res, next) {
 // configure Handlebars 
 app.engine('hbs', exphbs.engine({
     defaultlayout: "main",
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: require('./config/helpers')
 }))
 app.set('view engine', 'hbs') // set Handlebars view engine
 

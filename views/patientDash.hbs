@@ -23,7 +23,7 @@
 
 						<li>
 							<span><b>D.O.B:</b></span>
-							<span>{{dob}}</span>
+							<span>{{dateFormat dob "L"}}</span>
 						</li>
 
 						<li>
@@ -121,7 +121,7 @@
 			<tbody>
 				{{#each data}}
 				<tr>
-					<td>{{date}}</td>
+					<td>{{dateFormat date "DD/MM/YY"}}</td>
 					<td>{{glucose.value}}</td>
 					<td>{{weight.value}}</td>
 					<td>{{insulin.value}}</td>

@@ -72,12 +72,15 @@ body.light_theme_colour_background {
 }
 
 .main_page_body_under_navigation#patient_dashboard_page {
+    /* position: absolute; */
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     row-gap: 20px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-    height: 1000px;
+    /* height: 1000px; */
 }
 
 
