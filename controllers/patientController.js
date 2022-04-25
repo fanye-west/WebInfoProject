@@ -21,10 +21,10 @@ const getPatientDash = async(req, res, next) => {
 
 const getPatientDataEntry = async(req, res, next) => {
     try {
-        // TODO Add DB call and actual HRB render here, eg:
-        // const patientData = await ....
-        // return res.render('patientDash', { data: ... });
-        return res.render('patientDataEntry', { layout: 'patientLayout' });
+        // TODO Add DB call and actual HRB render here:
+        const patientData = await Patient.findById(PatientID).lean()
+
+        return res.render('patientDataEntry', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
     }

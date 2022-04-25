@@ -129,11 +129,10 @@ body.light_theme_colour_background {
 
 .patient_data_grid {
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    column-gap: 20px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(4, 1fr);
     row-gap: 10px;
 }
 
@@ -144,11 +143,16 @@ body.light_theme_colour_background {
     row-gap: 20px;
 }
 
+.data_grid {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1/3 1/3 1/3;
+}
+
 #doctor_dash_profile_box {
     grid-column: 0/2;
     grid-row: 0/1;
 }
-
 
 
 .outer_block_text_column#patient_dash_your_profile_box {
@@ -173,67 +177,6 @@ body.light_theme_colour_background {
 
 .outer_block_text_column#patient_data_entry_box {
     width: 100%;
-    padding-bottom: 10px;
-}
-
-.outer_block_text_column#data_entry_heading {
-    grid-column: 0/1;
-    grid-row: 1/2;
-}
-
-.outer_block_text_column#data_comment_heading {
-    grid-column: 1/2;
-    grid-row: 1/2;
-}
-
-.outer_block_text_column#blood_glucose_input {
-    grid-column: 0/1;
-    grid-row: 2/3;
-}
-
-.outer_block_text_column#blood_glucose_comment {
-    grid-column: 2/3;
-    grid-row: 2/3;
-}
-
-.outer_block_text_column#weight_input {
-    grid-column: 0/1;
-    grid-row: 3/4;
-}
-
-.outer_block_text_column#weight_comment {
-    grid-column: 2/3;
-    grid-row: 3/4;
-}   
-
-.outer_block_text_column#insulin_dose_input {
-    grid-column: 0/1;
-    grid-row: 4/5;
-}
-
-.outer_block_text_column#insulin_dose_comment {
-    grid-column: 2/3;
-    grid-row: 4/5;
-}
-
-.outer_block_text_column#daily_steps_input {
-    grid-column: 0/1;
-    grid-row: 5/6;
-}
-
-.outer_block_text_column#daily_steps_comment {
-    grid-column: 2/3;
-    grid-row: 5/6;
-}
-
-.outer_block_text_column#cancel_button {
-    grid-column: 0/1;
-    grid-row: 6/7;
-}
-
-.outer_block_text_column#submit_button {
-    grid-column: 2/3;
-    grid-row: 6/7;
 }
 
 .outer_block_text_column#doctor_dash_profile_box {}
@@ -714,6 +657,23 @@ iframe {
     margin-top: 0px
 }
 
+.data_entry {
+    height: 50px;
+    width: 70%;
+    border: none;
+    border-radius: 7px;
+    font-size: 20px;
+    margin-left: 15%;
+}
+
+.data_comment {
+    height: 50px;
+    width: 80%;
+    border: none;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
 /* Background colours */
 
 .light_theme_colour_background {
@@ -856,6 +816,8 @@ a.image_link {
     font-size: 12px;
 }
 
+
+
 .default_button.dark_blue.image_text_button {
     display:flex;
     align-items: center;
@@ -866,7 +828,8 @@ a.image_link {
 }
 
 
-.data_submit_button.dark_blue.small_button {
+.data_submit.dark_blue.small_button {
+    display: flex;
     height: 25px;
     width: 50%;
     margin-left: 10px;
@@ -874,11 +837,12 @@ a.image_link {
     font-size: 12px;
 }
 
-.data_submit_button.grey.small_button {
+.data_submit.grey.small_button {
     display: flex;
     height: 25px;
     width: 50%;
-    align-items: auto;
+    margin-left: 10px;
+    margin-right: 10px;
     font-size: 12px;
 }
 
