@@ -3,11 +3,14 @@
 /* /////////////////////// BACKGROUNDS /////////////////////// */
 
 body {
-    /* background-image: url("../assets/images/sunriseBlur.jpeg"); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: 'Source Sans 3', sans-serif;
+}
+
+body.normal_theme_colour_background {
+    background-image: url("../assets/images/sunriseBlur.jpeg");
 }
 
 body.light_theme_colour_background {
@@ -69,14 +72,24 @@ body.light_theme_colour_background {
 }
 
 .main_page_body_under_navigation#patient_dashboard_page {
+    /* position: absolute; */
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     row-gap: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    /* height: 1000px; */
+}
+
+.main_page_body_under_navigation#patient_data_entry {
+    flex-direction: column;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
     height: 1000px;
 }
-
 
 /* Flexboxes */
 
@@ -112,7 +125,16 @@ body.light_theme_colour_background {
     grid-template-rows: repeat(6, 1fr);
     column-gap: 20px;
     row-gap: 20px;
+}
 
+.patient_data_grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    column-gap: 20px;
+    row-gap: 10px;
 }
 
 .clinician_dash_grid {
@@ -149,6 +171,72 @@ body.light_theme_colour_background {
     grid-row: 6/7;
 }
 
+.outer_block_text_column#patient_data_entry_box {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.outer_block_text_column#data_entry_heading {
+    grid-column: 0/1;
+    grid-row: 1/2;
+}
+
+.outer_block_text_column#data_comment_heading {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.outer_block_text_column#blood_glucose_input {
+    grid-column: 0/1;
+    grid-row: 2/3;
+}
+
+.outer_block_text_column#blood_glucose_comment {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.outer_block_text_column#weight_input {
+    grid-column: 0/1;
+    grid-row: 3/4;
+}
+
+.outer_block_text_column#weight_comment {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}   
+
+.outer_block_text_column#insulin_dose_input {
+    grid-column: 0/1;
+    grid-row: 4/5;
+}
+
+.outer_block_text_column#insulin_dose_comment {
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+
+.outer_block_text_column#daily_steps_input {
+    grid-column: 0/1;
+    grid-row: 5/6;
+}
+
+.outer_block_text_column#daily_steps_comment {
+    grid-column: 2/3;
+    grid-row: 5/6;
+}
+
+.outer_block_text_column#cancel_button {
+    grid-column: 0/1;
+    grid-row: 6/7;
+}
+
+.outer_block_text_column#submit_button {
+    grid-column: 2/3;
+    grid-row: 6/7;
+}
+
+.outer_block_text_column#doctor_dash_profile_box {}
 
 
 #patient_dash_add_data_button>.default_button.dark_blue {
@@ -230,7 +318,6 @@ body.light_theme_colour_background {
         width: 95%;
         height: 900px;
     }
-
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
@@ -249,10 +336,10 @@ body.light_theme_colour_background {
         justify-content: center;
         align-items: flex-end;
     }
-        .main_page_body_under_navigation#patient_dashboard_page {
-            width: 95%;
-            height: 1000px;
-        }
+    .main_page_body_under_navigation#patient_dashboard_page {
+        width: 95%;
+        height: 1000px;
+    }
 }
 
 @media only screen and (min-width: 1800px) {
@@ -400,7 +487,6 @@ td {
     vertical-align: middle;
 }
 
-
 ul.patient_dash_list {
     padding: 0;
     list-style-type: none;
@@ -414,9 +500,7 @@ ul.patient_dash_list>li {
     margin: 5px;
     margin-left: 0px;
     margin-right: 0px;
-    
 }
-
 
 .ranges_data_box {
     width: 200px;
@@ -430,7 +514,6 @@ ul.patient_dash_list>li {
     padding: 2px;
     border-radius: 3px;
     border: 0.5px solid;
-
 }
 
 .profile_header {
@@ -681,6 +764,11 @@ iframe {
     color: #FFFFFF;
 }
 
+.default_button.grey {
+    background-color: #808080;
+    color: #FFFFFF;
+}
+
 .default_button.dark_blue_white_boarder {
     background-color: #0062A8;
     border: 2px solid #EAF6FF;
@@ -742,8 +830,6 @@ iframe {
     margin-bottom: 15px;
 }
 
-
-
 a.image_link {
     font-size: 0px;
     /* THIS FONT SIZE IS CRUICIAL, DO NOT CHANGE OR REMOVE */
@@ -779,6 +865,21 @@ a.image_link {
     padding-left: 20px;
 
 
+
+.data_submit_button.dark_blue.small_button {
+    height: 25px;
+    width: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.data_submit_button.grey.small_button {
+    display: flex;
+    height: 25px;
+    width: 50%;
+    align-items: auto;
+    font-size: 12px;
 }
 
 /* icons */
@@ -860,26 +961,21 @@ p.grey {
     /* Rules for when the iphone X is being used */
     th {
         padding: 1px;
-
     }
     td {
         padding: 5px;
-
     }
     table th {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
-
     table td {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
-        .ranges_data_box {
-            width: 130px;
-        }
-
-
+    .ranges_data_box {
+        width: 130px;
+    }
     #navigation_buttons {
         display: none;
     }
@@ -943,7 +1039,6 @@ p.grey {
     }
     .ranges_data_element {
         padding: 1px;
-
     }
     #navigation_buttons {
         display: none;

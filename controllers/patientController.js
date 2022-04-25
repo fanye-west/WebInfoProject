@@ -1,13 +1,19 @@
 //Import Models
 // TODO add models
 const res = require('express/lib/response');
+const Patient = require('../models/patient');
+const mock_patient = require('../models/mock_patient.js')
+
+//Deliverable 2 Hardcoded values
+const PatientID = "62668042f2c4e1d37f21d7b2"
 
 const getPatientDash = async(req, res, next) => {
     try {
         // TODO Add DB call and actual HRB render here, eg:
-        // const patientData = await ....
-        // return res.render('patientDash', { data: ... });
-        return res.render('patientDash');
+        const patientData = await Patient.findById(PatientID).lean()
+        console.log(patientData);
+
+        return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
     }
@@ -18,7 +24,7 @@ const getPatientDataEntry = async(req, res, next) => {
         // TODO Add DB call and actual HRB render here, eg:
         // const patientData = await ....
         // return res.render('patientDash', { data: ... });
-        return res.render('patientDataEntry');
+        return res.render('patientDataEntry', { layout: 'patientLayout' });
     } catch (err) {
         return next(err)
     }
