@@ -8,7 +8,7 @@ const mock_patient = require('../models/mock_patient.js')
 const getPatientDash = async(req, res, next) => {
     try {
         // TODO Add DB call and actual HRB render here, eg:
-        // const patientData = await schema.find
+        // const patientData = await schema.find()
         // return res.render('patientDash', { data: ... });
 
         return res.render('patientDash', { layout: 'patientLayout', patient: mock_patient });
