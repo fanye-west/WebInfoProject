@@ -2,13 +2,15 @@
 // TODO add models
 const res = require('express/lib/response');
 const Patient = require('../models/patient');
-
 const mock_patient = require('../models/mock_patient.js')
+
+//Deliverable 2 Hardcoded values
+const PatientID = "6266702d768936c0cd64d4a0"
 
 const getPatientDash = async(req, res, next) => {
     try {
         // TODO Add DB call and actual HRB render here, eg:
-        const patientData = await Patient.find().lean()
+        const patientData = await Patient.findById(PatientID).lean()
         console.log(patientData);
 
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });

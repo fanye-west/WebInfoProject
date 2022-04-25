@@ -18,8 +18,11 @@ const patientSchema = new mongoose.Schema({
     glucose_bounds: [Number, Number],
     weight_bounds: [Number, Number],
     insulin_bounds: [Number, Number],
-    exercise_bounds: [Number, Number]
-
+    exercise_bounds: [Number, Number],
+    glucose_required: Boolean,
+    weight_required: Boolean,
+    insulin_required: Boolean,
+    exercise_required: Boolean
 })
 
 const Patient = mongoose.model('Patient', patientSchema)
