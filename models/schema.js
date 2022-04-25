@@ -56,5 +56,6 @@ const Clinician = mongoose.model('Clinician', clinicianSchema)
 const Patient = mongoose.model('Patient', patientSchema)
 const Data = mongoose.model('Data', dataSchema)
 const Value = mongoose.model('Value', valueSchema)
+const Note = mongoose.model('Note', noteSchema)
 
-module.exports = { Clinician, Patient, Data, Value }
+module.exports = { Clinician, Patient, Data, Value, Note }
