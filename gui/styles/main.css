@@ -115,6 +115,20 @@ body.light_theme_colour_background {
 
 }
 
+.clinician_dash_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 20px;
+}
+
+#doctor_dash_profile_box {
+    grid-column: 0/2;
+    grid-row: 0/1;
+}
+
+
+
 .outer_block_text_column#patient_dash_your_profile_box {
     grid-column: 0/1;
     grid-row: 1/4;
@@ -134,9 +148,7 @@ body.light_theme_colour_background {
     grid-column: 2/3;
     grid-row: 6/7;
 }
-.outer_block_text_column#doctor_dash_profile_box {
 
-}
 
 
 #patient_dash_add_data_button>.default_button.dark_blue {
@@ -615,6 +627,9 @@ iframe {
     background-color: #EAF6FF;
 }
 
+.centered_heading {
+    margin-top: 0px
+}
 
 /* Background colours */
 
@@ -753,6 +768,17 @@ a.image_link {
     margin-left: 10px;
     margin-right: 10px;
     font-size: 12px;
+}
+
+.default_button.dark_blue.image_text_button {
+    display:flex;
+    align-items: center;
+    column-gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+
+
 }
 
 /* icons */
