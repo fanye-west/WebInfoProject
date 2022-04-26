@@ -64,24 +64,24 @@
         <div class="outer_block_text_column" id="patient_data_entry_box">
             <div class="light_theme_colour_background four_corners">
 
-                <h1>Add today's records</h1>
+                <h1 class="data_entry_heading">Add today's records</h1>
 
                 <div class="patient_data_grid">
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Blood Glucose Levels (mmol/L):</p>
+                            <p class="data_entry_label">Blood Glucose Levels (mmol/L):</p>
 
                             <label for="blood_glucose_value"></label>
                             <input class="data_entry" type="text" name="blood_glucose_value" placeholder="8.9" style="background-color:#9AD3A5"></input>
 
-                            <p>You have already filled this in for today</p>
+                            <p class="data_entry_label" id="subheading">You have already filled this in for today</p>
                         </div>
                     
                     </div>
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Add comments for blood glucose levels</p>
+                            <p class="data_comment_label">Add comments for blood glucose levels</p>
                             <label for="blood_glucose_comment"></label>
                             <input class="data_comment" type="text" name="blood_glucose_comment" placeholder="Add an optional comment about your blood glucose"></input>
                         </div>
@@ -89,18 +89,18 @@
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">     
-                            <p>Weight (kg):</p>
+                            <p class="data_entry_label">Weight (kg):</p>
 
                             <label for="weight_value"></label>
                             <input class="data_entry" type="text" name="weight_value" placeholder="e.g. 75" style="background-color:#E58783"></input>
                             
-                            <p>You still need to fill this in for today</p>
+                            <p class="data_entry_label" id="subheading">You still need to fill this in for today</p>
                         </div>
                     </div>
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Add comments for weight</p>
+                            <p class="data_comment_label">Add comments for weight</p>
                             <label for="weight_comment"></label>
                             <input class="data_comment" type="text" name="weight_comment" placeholder="Add an optional comment about your weight"></input>
                             <div></div>
@@ -109,18 +109,18 @@
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Number of Insulin Doses:</p>
+                            <p class="data_entry_label">Number of Insulin Doses:</p>
 
                             <label for="insulin_dose_value"></label>
                             <input class="data_entry" type="text" name="insulin_dose_value" placeholder="e.g. 3" style="background-color:#F2CA95"></input>
                             
-                            <p>Optional record</p>
+                            <p class="data_entry_label" id="subheading">Optional record</p>
                         </div>     
                     </div>
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Add comments for insulin doses</p>
+                            <p class="data_comment_label">Add comments for insulin doses</p>
 
                             <label for="insulin_dose_comment"></label>
                             <input class="data_comment" type="text" name="insulin_dose_comment" placeholder="Add an optional comment about your insludin doses"></input>
@@ -130,18 +130,18 @@
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Daily Steps:</p>
+                            <p class="data_entry_label">Daily Steps:</p>
 
                             <label for="daily_steps_value"></label>
                             <input class="data_entry" type="text" name="daily_steps_value" placeholder="e.g. 10000" style="background-color:#F2CA95"></input>
 
-                            <p>Optional record</p>
+                            <p class="data_entry_label" id="subheading">Optional record</p>
                         </div>
                     </div>
 
                     <div class="outer_block_text_column">
                         <div class="data_grid">
-                            <p>Add comments for daily steps</p>
+                            <p class="data_comment_label">Add comments for daily steps</p>
 
                             <label for="daily_steps_comment"></label>
                             <input class="data_comment" type="text" name="daily_steps_comment" placeholder="Add an optional comment about your step count"></input>
@@ -149,10 +149,13 @@
                     </div>
                 </div>
                 
-                <button class="data_submit grey small_button">Cancel</button>
-
-                <button class="data_submit dark_blue small_button">Submit</button>
-
+                <div class="data_entry_button_grid">
+                    <div class="right_align">
+                        <button class="data_button" id="cancel" style="float: right;">Cancel</button>
+                    </div>
+                    
+                    <button class="data_button" id="submit">Submit</button>
+                </div>
             </div>
         </div>
     </div>
