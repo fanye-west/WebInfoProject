@@ -71,8 +71,7 @@ body.light_theme_colour_background {
     bottom: 20px;
 }
 
-.main_page_body_under_navigation.dashboard_page {
-    /* position: absolute; */
+.main_page_body_under_navigation#dashboard_page {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -80,11 +79,6 @@ body.light_theme_colour_background {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-    /* height: 1000px; */
-}
-
-.main_page_body_under_navigation.dashboard_page {
-    width: 1600px;
 }
 
 .main_page_body_under_navigation#patient_data_entry {
@@ -293,10 +287,6 @@ body.light_theme_colour_background {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
-    }
-    .main_page_body_under_navigation#patient_dashboard_page {
-        width: 95%;
-        height: 900px;
     }
     .main_page_body_under_navigation#dashboard_page {
         width: 95%;
