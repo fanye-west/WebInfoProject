@@ -764,8 +764,13 @@ iframe {
     border-radius: 15px 15px 15px 15px;
     width: 100%;
     display: flex;
-    align-items: center;
 }
+
+.light_theme_colour_background.four_corners.centred_elements {
+        align-items: center;
+
+}
+
 
 #doctor_dash_profile_box>.light_theme_colour_background.four_corners {
     width: 100%;
