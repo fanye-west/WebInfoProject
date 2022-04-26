@@ -189,8 +189,6 @@ body.light_theme_colour_background {
 
 }
 
-
-
 .outer_block_text_column#patient_dash_your_profile_box {
     grid-column: 0/1;
     grid-row: 1/4;
@@ -214,7 +212,6 @@ body.light_theme_colour_background {
 .outer_block_text_column#patient_data_entry_box {
     width: 90%;
 }
-
 
 
 #patient_dash_add_data_button>.default_button.dark_blue {
@@ -290,6 +287,12 @@ body.light_theme_colour_background {
     }
 
     .patient_dash_grid {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .patient_data_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
