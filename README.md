@@ -41,19 +41,22 @@ How to set up the development enviroment, based on [mozilla express node](https:
 ## Directory structure:
 The code in the repository is organised by **functionality**:
 ```
-src/
-	|- gui/
-	|	|- assets/
-	|	|	|- images/
-	|	|	|- icons/
-	|	|- public/ (Public HTML pages)
-	|	|- style/ (CSS)
-	|	|- scripts/ (Frontend JS)
-	|	|- index.html
-	|- models/ (Contains all data models and object classes)
-	|- routes/ (JS files that define the website routes and API routes)
-	|- index.js
-	|- packages.json
+|- gui/
+|	|- assets/
+|	|	|- images/
+|	|	|- icons/
+|	|- public/ (Public HTML pages)
+|	|- style/ (CSS)
+|	|- scripts/ (Frontend JS)
+|	|- index.html
+|- models/ (Contains all data models and object classes)
+|- controllers/ (Contains all data controllers)
+|- routes/ (JS files that define the website routes and API routes)
+|- views/ (Handlebars pages)
+|	|- layouts/ (Handlebars templates)
+|- config/ (Other JS files, such as helpers)
+|- index.js
+|- packages.json
 LICENCE
 README.md
 ```

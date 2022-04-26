@@ -2,6 +2,7 @@
 //Imports
 var createError = require('http-errors');
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const exphbs = require('express-handlebars') // include handlebars
 
@@ -13,6 +14,11 @@ const port = 3000;
 
 //Ensure static files are available
 app.use(express.static(__dirname + '/gui'));
+
+//Use body parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
 //Define route files 
 var indexRouter = require('./routes/indexRouter');
