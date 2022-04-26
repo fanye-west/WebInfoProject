@@ -60,11 +60,11 @@
     </header>
 
     <!-- main body contents -->
-    <div class="main_page_body_under_navigation">
+    <div class="main_page_body_under_navigation dashboard_page clinician_page">
         <div class="clinician_dash_grid">
             <div class="outer_block_text_column" id="doctor_dash_profile_box">
-                <div class="light_theme_colour_background four_corners"
-                    <div class="inner_block_text_column four_corners">
+                <div class="light_theme_colour_background four_corners">
+                    <div class="inner_block_text_column four_corners" id="inner_block_clinician_page">
                         <div class="profile_header">
                             <span>
                                 <h3 class="centered_heading">Welcome, Dr. Jane Doe</h3>
@@ -96,11 +96,80 @@
 
 
             <div class="outer_block_text_column" id="clinician_table_header">
-                <div class="inner_block_text_column four_corners">
-                    <h3>Your patients on 14/3/2022: </h3>
+                <div class="inner_block_text_column four_corners" id="clinician_table_search">
+                    <div>
+                        <h3 class="centered_heading">Your patients on 14/3/2022: </h3>
+                    </div>
+                    <div class="search_bar">
+                        <input type="search" id="site-search" name="q">
+                        <button>Search</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="patient_dash_data_table">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Patient ID</th>
+                        <th scope="col">Blood Glucose <br>(nmol/L)</th>
+                        <th scope="col">Weight <br>(kg)</th>
+                        <th scope="col">Insulin Doses</th>
+                        <th scope="col">Steps</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+        </div>
+
     </div>
 </body>
 
