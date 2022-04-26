@@ -71,7 +71,7 @@ body.light_theme_colour_background {
     bottom: 20px;
 }
 
-.main_page_body_under_navigation#patient_dashboard_page {
+.main_page_body_under_navigation.dashboard_page {
     /* position: absolute; */
     display: flex;
     flex-direction: column;
@@ -82,6 +82,13 @@ body.light_theme_colour_background {
     margin-right: auto;
     /* height: 1000px; */
 }
+
+.main_page_body_under_navigation.dashboard_page {
+    width: 1600px;
+
+}
+
+
 
 .main_page_body_under_navigation#patient_data_entry {
     flex-direction: column;
@@ -143,7 +150,7 @@ body.light_theme_colour_background {
     grid-template-rows: repeat(2, 1fr);
     row-gap: 10px;
     column-gap: 15%;
-    width: 90%;
+    width: 100%;
 }
 
 .data_entry_button_grid {
@@ -292,6 +299,7 @@ body.light_theme_colour_background {
         row-gap: 20px;
     }
 
+<<<<<<< HEAD
     .patient_data_grid {
         display: flex;
         flex-direction: column;
@@ -299,6 +307,9 @@ body.light_theme_colour_background {
     }
 
     .main_page_body_under_navigation#patient_dashboard_page {
+=======
+    .main_page_body_under_navigation#dashboard_page {
+>>>>>>> c377917a2e5df9b347e2bf323012d8734da6572d
         width: 95%;
         height: 900px;
     }
@@ -324,7 +335,7 @@ body.light_theme_colour_background {
         align-items: flex-end;
     }
 
-    .main_page_body_under_navigation#patient_dashboard_page {
+    .main_page_body_under_navigation#dashboard_page {
         width: 95%;
         height: 1000px;
     }
@@ -574,8 +585,7 @@ ul.patient_dash_list>li {
     width: 100%;
 }
 #inner_block_clinician_page {
-        margin-left: 40px;
-        margin-right: 40px;
+    margin-right: 40px;
 }
 
 
@@ -627,6 +637,17 @@ ul.patient_dash_list>li {
 iframe {
     width: 350px;
     height: 200px;
+}
+
+#clinician_table_search {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.search_bar {
+    display: flex;
+    align-items: center;
 }
 
 
@@ -750,11 +771,16 @@ iframe {
     border-radius: 15px 15px 15px 15px;
     width: 100%;
     display: flex;
-    align-items: center;
 }
 
+.light_theme_colour_background.four_corners.centred_elements {
+        align-items: center;
+
+}
+
+
 #doctor_dash_profile_box>.light_theme_colour_background.four_corners {
-    width: 90%;
+    width: 100%;
 }
 
 .light_theme_colour_background#video {
