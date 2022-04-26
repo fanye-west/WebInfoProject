@@ -196,8 +196,6 @@ body.light_theme_colour_background {
 
 }
 
-
-
 .outer_block_text_column#patient_dash_your_profile_box {
     grid-column: 0/1;
     grid-row: 1/4;
@@ -221,7 +219,6 @@ body.light_theme_colour_background {
 .outer_block_text_column#patient_data_entry_box {
     width: 90%;
 }
-
 
 
 #patient_dash_add_data_button>.default_button.dark_blue {
@@ -302,7 +299,17 @@ body.light_theme_colour_background {
         row-gap: 20px;
     }
 
+<<<<<<< HEAD
+    .patient_data_grid {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .main_page_body_under_navigation#patient_dashboard_page {
+=======
     .main_page_body_under_navigation#dashboard_page {
+>>>>>>> c377917a2e5df9b347e2bf323012d8734da6572d
         width: 95%;
         height: 900px;
     }
