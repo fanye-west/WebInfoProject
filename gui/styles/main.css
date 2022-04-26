@@ -140,7 +140,9 @@ body.light_theme_colour_background {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    row-gap: 20px;
+    row-gap: 10px;
+    column-gap: 15%;
+    width: 90%;
 }
 
 .data_grid {
@@ -150,9 +152,35 @@ body.light_theme_colour_background {
 }
 
 #doctor_dash_profile_box {
-    grid-column: 0/2;
-    grid-row: 0/1;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: flex-start;
+
 }
+
+#add_new_patient_button {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+#comment_toggle_button {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+#clinician_table_header {
+    grid-column: 1/2;
+    grid-row: 2/3;
+
+}
+
 
 
 .outer_block_text_column#patient_dash_your_profile_box {
@@ -179,7 +207,6 @@ body.light_theme_colour_background {
     width: 100%;
 }
 
-.outer_block_text_column#doctor_dash_profile_box {}
 
 
 #patient_dash_add_data_button>.default_button.dark_blue {
@@ -246,32 +273,38 @@ body.light_theme_colour_background {
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
+
     /* Rules for when the iphone X is being used */
     .about_page_body_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
+
     .patient_dash_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
+
     .main_page_body_under_navigation#patient_dashboard_page {
         width: 95%;
         height: 900px;
     }
+
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
+
     .main_page_body_under_navigation {
         align-items: flex-start;
     }
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
+
     /* Rules for when the ipad is being used */
     .navigation_hamburger_button_list {
         display: flex;
@@ -279,6 +312,7 @@ body.light_theme_colour_background {
         justify-content: center;
         align-items: flex-end;
     }
+
     .main_page_body_under_navigation#patient_dashboard_page {
         width: 95%;
         height: 1000px;
@@ -286,25 +320,31 @@ body.light_theme_colour_background {
 }
 
 @media only screen and (min-width: 1800px) {
+
     /* Rules for when the desktop is being used */
     body {
         font-size: 18px;
     }
+
     .navigation {
         height: 100px;
     }
+
     .main_page_body_under_navigation {
         left: 10px;
         right: 10px;
         top: 120px;
         bottom: 20px;
     }
+
     .about_page_body_flex {
         gap: 50px;
     }
+
     .column_page_body_flex {
         gap: 50px;
     }
+
     .row_page_body_flex {
         gap: 50px;
     }
@@ -461,7 +501,7 @@ ul.patient_dash_list>li {
 
 .profile_header {
     display: flex;
-    align-items: flex-end;
+    align-items: space-between;
 }
 
 .ranges_data_box>span {
@@ -567,6 +607,8 @@ iframe {
     width: 350px;
     height: 200px;
 }
+
+
 
 .basic_column {
     /*flex box for login pages*/
@@ -684,6 +726,7 @@ iframe {
 
 .light_theme_colour_background.four_corners {
     border-radius: 15px 15px 15px 15px;
+    width: 100%;
 }
 
 .light_theme_colour_background#video {
@@ -721,6 +764,11 @@ iframe {
 
 .default_button.dark_blue {
     background-color: #0062A8;
+    color: #FFFFFF;
+}
+
+.default_button.faded_blue {
+    background-color: #2962A8;
     color: #FFFFFF;
 }
 
@@ -799,14 +847,19 @@ a.image_link {
     margin-bottom: 0px;
 }
 
-#add_data_button_heading {
+.data_button_heading {
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
     padding-right: 20px;
     text-align: right;
+    font-size: 20px;
 }
+
+.data_button_heading.clinician_page_button {}
+
+
 
 .default_button.dark_blue.small_button {
     height: 25px;
@@ -818,13 +871,15 @@ a.image_link {
 
 
 
-.default_button.dark_blue.image_text_button {
-    display:flex;
+.default_button.image_text_button {
+    display: flex;
     align-items: center;
     column-gap: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
+    width: 70%;
+    height: 80%;
 }
 
 
@@ -922,74 +977,91 @@ p.grey {
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
+
     /* Rules for when the iphone X is being used */
     th {
         padding: 1px;
     }
+
     td {
         padding: 5px;
     }
+
     table th {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
+
     table td {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
+
     .ranges_data_box {
         width: 130px;
     }
+
     #navigation_buttons {
         display: none;
     }
+
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
     #about_website_page_large_display_image {
         display: none;
     }
+
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h2 {
         font-size: 22px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h3 {
         font-size: 18px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     p {
         font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
+
     p.grey {
         font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
         color: #3C3E41;
     }
+
     .page_column_element {
         width: 100%
     }
+
     .video_frame {
         display: flex;
         flex-direction: column;
         margin: 20px;
         gap: 20px;
     }
+
     iframe {
         width: 90%;
     }
+
     .outer_block_text_column#about_us {
         margin-left: 5px;
         margin-right: 5px;
@@ -997,54 +1069,66 @@ p.grey {
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
+
     /* Rules for when the ipad is being used */
     .ranges_data_box {
         width: 100px;
     }
+
     .ranges_data_element {
         padding: 1px;
     }
+
     #navigation_buttons {
         display: none;
     }
+
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
     .display_image {
         width: 400px;
         height: 400px;
     }
+
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h2 {
         font-size: 25px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h3 {
         font-size: 19px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     p {
         font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
+
     p.grey {
         font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
         color: #3C3E41;
     }
+
     .page_column_element {
         width: 500px
     }
+
     iframe {
         width: 45%;
         height: 90%;
@@ -1052,13 +1136,16 @@ p.grey {
 }
 
 @media only screen and (min-width: 1800px) {
+
     /* Rules for when the desktop is being used */
     #navigation_hamburger {
         display: none;
     }
+
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
     .inner_block_text_column {
         /* Used to container text inside a flex box */
         margin-top: 20px;
@@ -1066,11 +1153,13 @@ p.grey {
         margin-left: 40px;
         margin-right: 40px;
     }
+
     .rounded_box_half_width {
         border-radius: 25px;
         width: 550px;
         height: 300px;
     }
+
     .default_button {
         font-size: 20px;
         font-weight: bold;
@@ -1080,6 +1169,7 @@ p.grey {
         height: 60px;
         width: 300px;
     }
+
     .home_button {
         font-size: 20px;
         font-weight: bold;
