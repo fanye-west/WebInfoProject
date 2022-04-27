@@ -228,7 +228,7 @@ body.white_background {
     width: 100%;
 }
 
-.outer_block_text_column#cancel_button{
+.outer_block_text_column#cancel_button {
     align-items: flex-end;
 }
 
@@ -303,42 +303,51 @@ body.white_background {
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
+
     /* Rules for when the iphone X is being used */
     .about_page_body_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
+
     .patient_dash_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
+
     .patient_data_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
         align-items: center;
     }
+
     .data_grid {
         display: flex;
         flex-direction: column;
     }
-    .main_page_body_under_navigation#patient_dashboard_page {
+
+    .main_page_body_under_navigation.dashboard_page {
         width: 95%;
         height: 900px;
     }
+
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
+
     .main_page_body_under_navigation {
         align-items: flex-start;
     }
+
     .outer_block_text_column#patient_data_entry_box {
         width: 100%;
     }
+
     .data_entry_button_grid {
         display: flex;
         flex-direction: column;
@@ -351,6 +360,7 @@ body.white_background {
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
+
     /* Rules for when the ipad is being used */
     .navigation_hamburger_button_list {
         display: flex;
@@ -358,10 +368,13 @@ body.white_background {
         justify-content: center;
         align-items: flex-end;
     }
-    .main_page_body_under_navigation#patient_dashboard_page {
+
+    .main_page_body_under_navigation.dashboard_page {
         width: 95%;
         height: 1000px;
     }
+
+
     .patient_data_grid {
         width: 100%;
         height: 75%;
@@ -374,25 +387,31 @@ body.white_background {
 }
 
 @media only screen and (min-width: 1800px) {
+
     /* Rules for when the desktop is being used */
     body {
         font-size: 18px;
     }
+
     .navigation {
         height: 100px;
     }
+
     .main_page_body_under_navigation {
         left: 10px;
         right: 10px;
         top: 120px;
         bottom: 20px;
     }
+
     .about_page_body_flex {
         gap: 50px;
     }
+
     .column_page_body_flex {
         gap: 50px;
     }
+
     .row_page_body_flex {
         gap: 50px;
     }
@@ -550,13 +569,13 @@ ul.patient_dash_list {
 .profile_header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
-.top_heading{
+.top_heading {
     margin-top: 0px;
 }
 
@@ -956,9 +975,12 @@ a.image_link {
 .default_button.dark_blue.small_button {
     height: 25px;
     width: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
     font-size: 12px;
+
+}
+
+.small_button_position {
+    display: flex;
 }
 
 .default_button.image_text_button {
@@ -1026,6 +1048,7 @@ a.image_link {
     width: 600px;
     height: 600px;
 }
+
 /* images --- end ---- */
 
 /* text for default desktop view*/
@@ -1105,78 +1128,96 @@ p.grey {
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
+
     /* Rules for when the iphone X is being used */
     th {
         padding: 1px;
     }
+
     td {
         padding: 5px;
     }
+
     table th {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
+
     table td {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
+
     .ranges_data_box {
         width: 130px;
     }
+
     #navigation_buttons {
         display: none;
     }
+
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
     #about_website_page_large_display_image {
         display: none;
     }
+
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h2 {
         font-size: 22px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h3 {
         font-size: 18px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     p {
         font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
+
     p.grey {
         font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
         color: #3C3E41;
     }
+
     .page_column_element {
         width: 100%
     }
+
     .video_frame {
         display: flex;
         flex-direction: column;
         margin: 20px;
         gap: 20px;
     }
+
     iframe {
         width: 90%;
     }
+
     .outer_block_text_column#about_us {
         margin-left: 5px;
         margin-right: 5px;
     }
+
     .data_entry_heading {
         margin-left: 0%;
         margin-top: 50px;
@@ -1184,33 +1225,40 @@ p.grey {
         font-weight: bold;
         text-align: center;
     }
+
     .data_entry_label {
         margin-left: 5%;
         line-height: 5px;
     }
+
     .data_entry {
         width: 88%;
         margin-left: 5%;
     }
+
     .data_comment_label {
         display: none;
     }
+
     .data_comment {
         width: 88%;
         margin-left: 5%;
     }
+
     .align_cancel_button {
         justify-content: center;
         text-align: center;
         align-content: flex-end;
         position: relative;
     }
+
     .align_submit_button {
         text-align: center;
         justify-content: center;
         justify-items: center;
         align-items: center;
     }
+
     .data_button {
         height: 50%;
         width: 80%;
@@ -1219,10 +1267,12 @@ p.grey {
         font-size: 7pt;
         font-weight: bold;
     }
+
     .data_button#submit {
         background-color: #0062A8;
         color: #FFFFFF;
     }
+
     .data_button#cancel {
         background-color: #808080;
         color: #FFFFFF;
@@ -1233,58 +1283,71 @@ p.grey {
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
+
     /* Rules for when the ipad is being used */
     .ranges_data_box {
         width: 100px;
     }
+
     .ranges_data_element {
         padding: 1px;
     }
+
     #navigation_buttons {
         display: none;
     }
+
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
     .display_image {
         width: 400px;
         height: 400px;
     }
+
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h2 {
         font-size: 25px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     h3 {
         font-size: 19px;
         margin-bottom: 0px;
         font-weight: bold;
     }
+
     p {
         font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
+
     p.grey {
         font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
         color: #3C3E41;
     }
+
     .page_column_element {
         width: 500px
     }
+
     iframe {
         width: 45%;
         height: 90%;
     }
+
     .data_entry {
         height: 50px;
         width: 90%;
@@ -1293,6 +1356,7 @@ p.grey {
         font-size: 20px;
         margin-left: 15%;
     }
+
     .data_entry_label {
         margin-left: 15%;
         line-height: 5px;
@@ -1300,35 +1364,42 @@ p.grey {
         font-weight: bold;
         white-space: nowrap;
     }
+
     .data_comment_label {
         line-height: 5px;
         white-space: nowrap;
         font-size: 14px;
     }
+
     .data_entry_label#subheading {
         font-size: 11px;
         color: #808080;
         font-weight: normal;
     }
+
     .data_entry_heading {
         margin-left: 3%;
         margin-top: 50px;
         margin-bottom: 30px;
         font-weight: bold;
     }
+
     .patient_data_grid {
         column-gap: 7%;
     }
 }
 
 @media only screen and (min-width: 1800px) {
+
     /* Rules for when the desktop is being used */
     #navigation_hamburger {
         display: none;
     }
+
     #navigation_hamburger_clicked_modal {
         display: none;
     }
+
     .inner_block_text_column {
         /* Used to container text inside a flex box */
         margin-top: 20px;
@@ -1336,11 +1407,13 @@ p.grey {
         margin-left: 40px;
         margin-right: 40px;
     }
+
     .rounded_box_half_width {
         border-radius: 25px;
         width: 550px;
         height: 300px;
     }
+
     .default_button {
         font-size: 20px;
         font-weight: bold;
@@ -1350,6 +1423,7 @@ p.grey {
         height: 60px;
         width: 300px;
     }
+
     .home_button {
         font-size: 20px;
         font-weight: bold;
