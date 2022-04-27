@@ -71,7 +71,7 @@ body.light_theme_colour_background {
     bottom: 20px;
 }
 
-.main_page_body_under_navigation#patient_dashboard_page {
+.main_page_body_under_navigation.dashboard_page {
     /* position: absolute; */
     display: flex;
     flex-direction: column;
