@@ -1,4 +1,5 @@
 const Patient = require('../models/patient');
+const Clinician = require('../models/clinician');
 const Value = require('../models/value');
 const Data = require('../models/data');
 require('../models')
@@ -21,21 +22,41 @@ mock_patient = {
     badge: "Gold",
     rank: "1",
     notes: [],
-    glucose_bounds: [0, 10],
-    weight_bounds: [50, 60],
-    insulin_bounds: [0.001, 0.004],
-    exercise_bounds: [5000, 25000],
+    glucose_bounds: [0, 7.1],
+    weight_bounds: [58, 65],
+    insulin_bounds: [1, 3],
+    exercise_bounds: [9000, 25000],
     glucose_required: true,
     weight_required: false,
     insulin_required: true,
     exercise_required: false
 }
 
-// newPatient = new Patient(mock_patient)
-// console.log(newPatient)
-// newPatient.save()
+newPatient = new Patient(mock_patient)
+console.log(newPatient._id)
 
-var id = "62668042f2c4e1d37f21d7b2"
+// newPatient.save()
+console.log("newPatient created")
+
+mock_clinician = {
+    first_name: "Jane",
+    last_name: "Doe",
+    user_name: "JDoe87",
+    password: "gduwygdwuywdgqyuqdwgdwquywdgqyu",
+    email: "JDoe@hotmail.com",
+    dob: "7/2/1987",
+    bio: "Just a simple made up doctor, trying their best",
+    patients: [mock_patient]
+}
+
+newClinician = new Clinician(mock_clinician)
+    // newClinician.save()
+console.log("newClinician created")
+
+
+
+
+var id = "6269533c9517b0335cd37f70"
 var i;
 for (i = 0; i < 10; i++) {
     glucose = new Value({
@@ -69,3 +90,5 @@ for (i = 0; i < 10; i++) {
         $push: { data: newdata }
     }).exec();
 }
+
+console.log("Data added created")
