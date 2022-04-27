@@ -17,6 +17,10 @@ body.light_theme_colour_background {
     background-image: url("../assets/images/sunriseBlurLight.jpeg");
 }
 
+body.white_background {
+    background-color: "white";
+}
+
 
 /* /////////////////////// LAYOUTS /////////////////////// */
 
@@ -92,6 +96,7 @@ body.light_theme_colour_background {
     margin-right: auto;
 }
 
+
 /* Flexboxes */
 
 .row_flex_spaced {
@@ -162,7 +167,7 @@ body.light_theme_colour_background {
     grid-template-rows: 1/3 1/3 1/3;
 }
 
-.data_entry_format_grid{
+.data_entry_format_grid {
     width: 100%;
     height: 95%;
     display: grid;
@@ -174,7 +179,6 @@ body.light_theme_colour_background {
     grid-row: 1/2;
     display: flex;
     justify-content: flex-start;
-
 }
 
 #add_new_patient_button {
@@ -182,7 +186,6 @@ body.light_theme_colour_background {
     grid-row: 1/2;
     display: flex;
     justify-content: flex-end;
-
 }
 
 #comment_toggle_button {
@@ -190,13 +193,11 @@ body.light_theme_colour_background {
     grid-row: 2/3;
     display: flex;
     justify-content: flex-end;
-
 }
 
 #clinician_table_header {
     grid-column: 1/2;
     grid-row: 2/3;
-
 }
 
 .outer_block_text_column#patient_dash_your_profile_box {
@@ -223,8 +224,12 @@ body.light_theme_colour_background {
     width: 90%;
 }
 
-.outer_block_text_column#data_grid{
+.outer_block_text_column#data_grid {
     width: 100%;
+}
+
+.outer_block_text_column#cancel_button{
+    justify-items: right;
 }
 
 #patient_dash_add_data_button>.default_button.dark_blue {
@@ -291,51 +296,42 @@ body.light_theme_colour_background {
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
-
     /* Rules for when the iphone X is being used */
     .about_page_body_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
-
     .patient_dash_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
-
     .patient_data_grid {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
         align-items: center;
     }
-
     .data_grid {
         display: flex;
         flex-direction: column;
     }
-    
     .main_page_body_under_navigation#patient_dashboard_page {
         width: 95%;
         height: 900px;
     }
-
     .about_page_body_flex#about_website_page {
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
-
     .main_page_body_under_navigation {
         align-items: flex-start;
     }
-
     .outer_block_text_column#patient_data_entry_box {
         width: 100%;
     }
-
     .data_entry_button_grid {
         display: flex;
         flex-direction: column;
@@ -348,7 +344,6 @@ body.light_theme_colour_background {
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
-
     /* Rules for when the ipad is being used */
     .navigation_hamburger_button_list {
         display: flex;
@@ -356,12 +351,10 @@ body.light_theme_colour_background {
         justify-content: center;
         align-items: flex-end;
     }
-
     .main_page_body_under_navigation#patient_dashboard_page {
         width: 95%;
         height: 1000px;
     }
-
     .patient_data_grid {
         width: 100%;
         height: 75%;
@@ -374,31 +367,25 @@ body.light_theme_colour_background {
 }
 
 @media only screen and (min-width: 1800px) {
-
     /* Rules for when the desktop is being used */
     body {
         font-size: 18px;
     }
-
     .navigation {
         height: 100px;
     }
-
     .main_page_body_under_navigation {
         left: 10px;
         right: 10px;
         top: 120px;
         bottom: 20px;
     }
-
     .about_page_body_flex {
         gap: 50px;
     }
-
     .column_page_body_flex {
         gap: 50px;
     }
-
     .row_page_body_flex {
         gap: 50px;
     }
@@ -559,8 +546,6 @@ ul.patient_dash_list>li {
     width: 100%;
 }
 
-
-
 .ranges_data_box>span {
     border-style: solid;
 }
@@ -616,12 +601,11 @@ ul.patient_dash_list>li {
     margin-right: 20px;
     width: 100%;
 }
+
 #inner_block_clinician_page {
-        margin-left: 40px;
-        margin-right: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
-
-
 
 .outer_block_text_column#about_diabetes {
     grid-row: 1/-1;
@@ -671,8 +655,6 @@ iframe {
     width: 350px;
     height: 200px;
 }
-
-
 
 .basic_column {
     /*flex box for login pages*/
@@ -795,6 +777,7 @@ iframe {
     padding-left: 10px;
     color: black;
 }
+
 
 /* Background colours */
 
@@ -949,8 +932,6 @@ a.image_link {
 
 .data_button_heading.clinician_page_button {}
 
-
-
 .default_button.dark_blue.small_button {
     height: 25px;
     width: 100%;
@@ -958,8 +939,6 @@ a.image_link {
     margin-right: 10px;
     font-size: 12px;
 }
-
-
 
 .default_button.image_text_button {
     display: flex;
@@ -984,14 +963,13 @@ a.image_link {
     height: 50%;
 }
 
-.data_button{
+.data_button {
     align-items: right;
     height: 50px;
     width: 50%;
     font-size: 12px;
     border-radius: 10px;
     font-size: 14pt;
-
 }
 
 .data_button#submit {
@@ -1102,99 +1080,82 @@ p.grey {
     white-space: nowrap;
 }
 
+
 /*layout rules for different screen sizes */
 
 @media only screen and (max-width: 500px) {
-
     /* Rules for when the iphone X is being used */
     th {
         padding: 1px;
     }
-
     td {
         padding: 5px;
     }
-
     table th {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
-
     table td {
         border: 1px solid #ffffff;
         border-bottom: 0;
     }
-
     .ranges_data_box {
         width: 130px;
     }
-
     #navigation_buttons {
         display: none;
     }
-
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
     #about_website_page_large_display_image {
         display: none;
     }
-
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h2 {
         font-size: 22px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h3 {
         font-size: 18px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     p {
         font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
-
     p.grey {
         font-size: 14px;
         margin-top: 8px;
         margin-bottom: 8px;
         color: #3C3E41;
     }
-
     .page_column_element {
         width: 100%
     }
-
     .video_frame {
         display: flex;
         flex-direction: column;
         margin: 20px;
         gap: 20px;
     }
-
     iframe {
         width: 90%;
     }
-
     .outer_block_text_column#about_us {
         margin-left: 5px;
         margin-right: 5px;
     }
-
     .data_entry_heading {
         margin-left: 0%;
         margin-top: 50px;
@@ -1202,41 +1163,34 @@ p.grey {
         font-weight: bold;
         text-align: center;
     }
-
     .data_entry_label {
         margin-left: 5%;
         line-height: 5px;
     }
-
     .data_entry {
         width: 88%;
         margin-left: 5%;
     }
-
     .data_comment_label {
         display: none;
     }
-
     .data_comment {
         width: 88%;
         margin-left: 5%;
     }
-
     .align_cancel_button {
         justify-content: center;
         text-align: center;
         align-content: flex-end;
         position: relative;
     }
-
     .align_submit_button {
         text-align: center;
         justify-content: center;
         justify-items: center;
         align-items: center;
     }
-
-    .data_button{
+    .data_button {
         height: 50%;
         width: 80%;
         font-size: 12px;
@@ -1244,12 +1198,10 @@ p.grey {
         font-size: 7pt;
         font-weight: bold;
     }
-
     .data_button#submit {
         background-color: #0062A8;
         color: #FFFFFF;
     }
-    
     .data_button#cancel {
         background-color: #808080;
         color: #FFFFFF;
@@ -1260,71 +1212,58 @@ p.grey {
 }
 
 @media only screen and (max-width: 1800px) and (min-width: 500px) {
-
     /* Rules for when the ipad is being used */
     .ranges_data_box {
         width: 100px;
     }
-
     .ranges_data_element {
         padding: 1px;
     }
-
     #navigation_buttons {
         display: none;
     }
-
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
     .display_image {
         width: 400px;
         height: 400px;
     }
-
     h1 {
         font-size: 28px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h2 {
         font-size: 25px;
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     h3 {
         font-size: 19px;
         margin-bottom: 0px;
         font-weight: bold;
     }
-
     p {
         font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
     }
-
     p.grey {
         font-size: 16px;
         margin-top: 8px;
         margin-bottom: 8px;
         color: #3C3E41;
     }
-
     .page_column_element {
         width: 500px
     }
-
     iframe {
         width: 45%;
         height: 90%;
     }
-
     .data_entry {
         height: 50px;
         width: 90%;
@@ -1333,7 +1272,6 @@ p.grey {
         font-size: 20px;
         margin-left: 15%;
     }
-    
     .data_entry_label {
         margin-left: 15%;
         line-height: 5px;
@@ -1341,42 +1279,35 @@ p.grey {
         font-weight: bold;
         white-space: nowrap;
     }
-    
     .data_comment_label {
         line-height: 5px;
         white-space: nowrap;
         font-size: 14px;
     }
-    
     .data_entry_label#subheading {
         font-size: 11px;
         color: #808080;
         font-weight: normal;
     }
-    
     .data_entry_heading {
         margin-left: 3%;
         margin-top: 50px;
         margin-bottom: 30px;
         font-weight: bold;
     }
-
     .patient_data_grid {
         column-gap: 7%;
     }
 }
 
 @media only screen and (min-width: 1800px) {
-
     /* Rules for when the desktop is being used */
     #navigation_hamburger {
         display: none;
     }
-
     #navigation_hamburger_clicked_modal {
         display: none;
     }
-
     .inner_block_text_column {
         /* Used to container text inside a flex box */
         margin-top: 20px;
@@ -1384,13 +1315,11 @@ p.grey {
         margin-left: 40px;
         margin-right: 40px;
     }
-
     .rounded_box_half_width {
         border-radius: 25px;
         width: 550px;
         height: 300px;
     }
-
     .default_button {
         font-size: 20px;
         font-weight: bold;
@@ -1400,7 +1329,6 @@ p.grey {
         height: 60px;
         width: 300px;
     }
-
     .home_button {
         font-size: 20px;
         font-weight: bold;
