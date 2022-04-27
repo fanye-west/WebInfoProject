@@ -5,7 +5,7 @@
 
                 <h2 class="data_entry_heading">Add today's records</h2>
                 
-                <form method="post" action="/insertPatientData">
+                <form action='/user/patient/insertPatientData' method='post'>
                     <div class="data_entry_format_grid">
                         <div class="patient_data_grid">
                             <div class="outer_block_text_column" id="data_grid">
@@ -91,12 +91,12 @@
                         </div>
                         
                         <div class="data_entry_button_grid">
-                            <div class="align_cancel_button">
-                                <button class="data_button" id="cancel" onclick="patientRedirectHomeNoAction">Cancel</button>
+                            <div class="outer_block_text_column" id="cancel_button">
+                                <button class="default_button grey " onclick="patientRedirectHomeNoAction()">Cancel</button>
                             </div>
                             
-                            <div class="align_submit_button">
-                                <input class="data_button" id="submit" type="submit">Submit</input>
+                            <div class="outer_block_text_column" id="submit_button">
+                                <input type="submit" value="Submit" class="default_button dark_blue ">
                             </div>
                         </div>
                     </div>
