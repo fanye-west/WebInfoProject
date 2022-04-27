@@ -1,16 +1,14 @@
 //Import Models
-// TODO add models
 const res = require('express/lib/response');
 const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
 require('../models')
 
-const mock_patient = require('../models/mock_patient.js')
-
 var green = "background-color:#9AD3A5";
 var red = "background-color:#E58783";
 var orange = "background-color:#F2CA95";
+var warning_colour = "#E58783"
 
 //Deliverable 2 Hardcoded values
 const PatientID = "62668042f2c4e1d37f21d7b2"
@@ -30,6 +28,22 @@ const getPatientDash = async(req, res, next) => {
         // console.log(req.params.userId);
         const patientData = await Patient.findById(PatientID).lean()
         patientData.data = patientData.data.reverse(); //Display newest to oldest
+        let i;
+        for (i = 0; i < patientData.data.length; i++) {
+            if (patientData.data[i].glucose.value < patientData.glucose_bounds[0] || patientData.data[i].glucose.value > patientData.glucose_bounds[1]) {
+                patientData.data[i]["glucose_colour"] = warning_colour
+            }
+            if (patientData.data[i].weight.value < patientData.weight_bounds[0] || patientData.data[i].weight.value > patientData.weight_bounds[1]) {
+                patientData.data[i]["weight_colour"] = warning_colour
+            }
+            if (patientData.data[i].insulin.value < patientData.insulin_bounds[0] || patientData.data[i].insulin.value > patientData.insulin_bounds[1]) {
+                patientData.data[i]["insulin_colour"] = warning_colour
+            }
+            if (patientData.data[i].exercise.value < patientData.exercise_bounds[0] || patientData.data[i].exercise.value > patientData.exercise_bounds[1]) {
+                patientData.data[i]["exercise_colour"] = warning_colour
+            }
+
+        }
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
@@ -70,63 +84,59 @@ const getPatientDataEntry = async(req, res, next) => {
             exercise_comment = latest_data.exercise.comment
         }
 
-        let glucose_colour = green;
-        let weight_colour = green;
-        let insulin_colour = green;
-        let exercise_colour = green;
+        let glucose_colour = green
+        let weight_colour = green
+        let insulin_colour = green
+        let exercise_colour = green
 
-        let glucose_subheading = "";
-        let weight_subheading = "";
-        let insulin_subheading = "";
-        let exercise_subheading = "";
+        let glucose_subheading = ""
+        let weight_subheading = ""
+        let insulin_subheading = ""
+        let exercise_subheading = ""
 
         if (glucose_value == undefined && patientData.glucose_required) {
-            glucose_colour = red;
+            glucose_colour = red
             glucose_subheading = "You still need to fill this in for today"
         } else if (glucose_value == undefined && !patientData.glucose_required) {
-            glucose_colour = orange;
+            glucose_colour = orange
             glucose_subheading = "Optional record"
         } else {
-            glucose_colour = green;
-            glucose_subheading = "You have already filled this in for today";
+            glucose_colour = green
+            glucose_subheading = "You have already filled this in for today"
         }
 
         if (weight_value == undefined && patientData.weight_required) {
-            weight_colour = red;
+            weight_colour = red
             weight_subheading = "You still need to fill this in for today"
         } else if (weight_value == undefined && !patientData.weight_required) {
-            weight_colour = orange;
+            weight_colour = orange
             weight_subheading = "Optional record"
         } else {
-            weight_colour = green;
-            weight_subheading = "You have already filled this in for today";
+            weight_colour = green
+            weight_subheading = "You have already filled this in for today"
         }
 
         if (insulin_value == undefined && patientData.insulin_required) {
-            insulin_colour = red;
+            insulin_colour = red
             insulin_subheading = "You still need to fill this in for today"
         } else if (insulin_value == undefined && !patientData.insulin_required) {
-            insulin_colour = orange;
+            insulin_colour = orange
             insulin_subheading = "Optional record"
         } else {
-            insulin_colour = green;
-            insulin_subheading = "You have already filled this in for today";
+            insulin_colour = green
+            insulin_subheading = "You have already filled this in for today"
         }
 
         if (exercise_value == undefined && patientData.exercise_required) {
-            exercise_colour = red;
+            exercise_colour = red
             exercise_subheading = "You still need to fill this in for today"
         } else if (exercise_value == undefined && !patientData.exercise_required) {
-            exercise_colour = orange;
+            exercise_colour = orange
             exercise_subheading = "Optional record"
         } else {
-            exercise_colour = green;
-            exercise_subheading = "You have already filled this in for today";
+            exercise_colour = green
+            exercise_subheading = "You have already filled this in for today"
         }
-
-
-
-        // glucose_subheading
 
         patentExistingRecordData = {
             glucose_value: glucose_value,

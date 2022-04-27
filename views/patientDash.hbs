@@ -124,10 +124,10 @@
                 {{#each data}}
                 <tr>
                     <td>{{dateFormat date "DD/MM/YY"}}</td>
-                    <td>{{glucose.value}}</td>
-                    <td>{{weight.value}}</td>
-                    <td>{{insulin.value}}</td>
-                    <td>{{exercise.value}}</td>
+                    <td bgcolor="{{glucose_colour}}">{{glucose.value}}</td>
+                    <td bgcolor="{{weight_colour}}">{{weight.value}}</td>
+                    <td bgcolor="{{insulin_colour}}">{{insulin.value}}</td>
+                    <td bgcolor="{{exercise_colour}}">{{exercise.value}}</td>
                 </tr>
                 {{/each}}
             </tbody>
