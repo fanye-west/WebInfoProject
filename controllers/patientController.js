@@ -25,7 +25,11 @@ const getPatientDash = async(req, res, next) => {
 const getPatientDataEntry = async(req, res, next) => {
     try {
         // TODO Add DB call and actual HRB render here:
+        // Get patient data for today's date
         const patientData = await Patient.findById(PatientID).lean()
+        let latest_data = patientData.data[patientData.data.length - 1];
+        // if latest_data.date
+        console.log(latest_data);
 
         return res.render('patientDataEntry', { layout: 'patientLayout', patient: patientData });
         // return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
@@ -52,7 +56,6 @@ const insertPatientData = async(req, res, next) => {
         //newAuthor = new Author(req.body)
         //await newAuthor.save()
         const requestData = req.body;
-        console.log(requestData);
         //Check data 
         //Numerical
         let blood_glucose_value = parseFloat(req.body.blood_glucose_value)
@@ -64,7 +67,8 @@ const insertPatientData = async(req, res, next) => {
         let weight_comment = req.body.weight_comment
         let insulin_dose_comment = req.body.insulin_dose_comment
         let daily_steps_comment = req.body.daily_steps_comment
-            //Create new data objects
+
+        //Create new data objects
         glucose = new Value({
             is_recorded: true,
             value: blood_glucose_value,
@@ -91,7 +95,6 @@ const insertPatientData = async(req, res, next) => {
             insulin: insulin,
             exercise: exercise
         })
-        console.log(newdata);
         Patient.updateOne({ _id: PatientID }, {
             $push: { data: newdata }
         }).exec();

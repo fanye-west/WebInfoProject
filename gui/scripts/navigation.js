@@ -10,6 +10,7 @@ function hamburgerHider() {
 }
 
 function patientRedirectHomeNoAction() {
+    console.log("returning home");
     window.location.href = '/user/patient';
 }
 
