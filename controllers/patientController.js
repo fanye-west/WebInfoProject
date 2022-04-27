@@ -12,6 +12,7 @@ var warning_colour = "#E58783"
 
 //Deliverable 2 Hardcoded values
 const PatientID = "62668042f2c4e1d37f21d7b2"
+var VISITED_LOGIN = false
 
 // utils
 function isToday(date) {
@@ -23,8 +24,29 @@ function isToday(date) {
 }
 
 // Main functions
+
+const getPatientLogin = async(req, res, next) => {
+    try {
+        return res.render('patientLogin', { layout: 'patientLayout' });
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const patientLoginRedirect = async(req, res, next) => {
+    //Checks login for deliverable 2
+    try {
+        VISITED_LOGIN = true
+        return res.redirect('/user/patient')
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getPatientDash = async(req, res, next) => {
     try {
+        //Check login for deliverable 2
+        if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
         // console.log(req.params.userId);
         const patientData = await Patient.findById(PatientID).lean()
         patientData.data = patientData.data.reverse(); //Display newest to oldest
@@ -52,6 +74,8 @@ const getPatientDash = async(req, res, next) => {
 
 const getPatientDataEntry = async(req, res, next) => {
     try {
+        //Check login for deliverable 2
+        if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
         // TODO Add DB call and actual HRB render here:
         // Get patient data for today's date
         const patientData = await Patient.findById(PatientID).lean()
@@ -237,6 +261,8 @@ const insertPatientData = async(req, res, next) => {
 }
 
 module.exports = {
+    getPatientLogin,
+    patientLoginRedirect,
     getPatientDash,
     getPatientDataEntry,
     insertPatientData,
