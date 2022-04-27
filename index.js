@@ -24,13 +24,13 @@ app.use(bodyParser.raw());
 var indexRouter = require('./routes/indexRouter');
 var publicStaticRouter = require('./routes/public');
 var patientRouter = require('./routes/patientRouter.js');
-var clinitianRouter = require('./routes/clinitianRouter.js');
+var clinicianRouter = require('./routes/clinicianRouter.js');
 
 //Define how URLs map to routes
 app.use('/', indexRouter);
 app.use('/public', publicStaticRouter);
 app.use('/user/patient', patientRouter);
-app.use('/user/clinician', clinitianRouter);
+app.use('/user/clinician', clinicianRouter);
 
 // catch HTTP Errors
 app.use(function(req, res, next) {
