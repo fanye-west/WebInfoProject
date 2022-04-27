@@ -768,8 +768,17 @@ iframe {
     width: 80%;
     border: none;
     border-radius: 7px;
-    font-size: 20px;
+    font-size: 95%;
     margin-left: 15%;
+}
+
+.data_entry::placeholder {
+    padding-left: 10px;
+    color: black;
+}
+
+.data_entry#white::placeholder {
+    color: white;
 }
 
 .data_comment {
@@ -779,6 +788,12 @@ iframe {
     border: none;
     border-radius: 7px;
     font-size: 90%;
+    background-color: #B1CCE0;
+}
+
+.data_comment::placeholder {
+    padding-left: 10px;
+    color: black;
 }
 
 /* Background colours */
@@ -976,6 +991,7 @@ a.image_link {
     font-size: 12px;
     border-radius: 10px;
     font-size: 14pt;
+
 }
 
 .data_button#submit {
@@ -984,7 +1000,7 @@ a.image_link {
 }
 
 .data_button#cancel {
-    background-color: #808080;
+    background-color: #A2A8B1;
     color: #FFFFFF;
     float: right;
 }
@@ -1207,10 +1223,10 @@ p.grey {
     }
 
     .align_cancel_button {
-        text-align: center;
         justify-content: center;
-        justify-items: center;
-        align-items: center;
+        text-align: center;
+        align-content: flex-end;
+        position: relative;
     }
 
     .align_submit_button {
@@ -1226,21 +1242,20 @@ p.grey {
         font-size: 12px;
         border-radius: 10px;
         font-size: 7pt;
+        font-weight: bold;
     }
-    
+
     .data_button#submit {
         background-color: #0062A8;
         color: #FFFFFF;
-        height: 80%;
     }
     
     .data_button#cancel {
         background-color: #808080;
         color: #FFFFFF;
         float: none;
-        height: 80%;
-        align-items: center;
-        justify-items: center;
+        position: relative;
+        top: 25px;
     }
 }
 
@@ -1312,33 +1327,29 @@ p.grey {
 
     .data_entry {
         height: 50px;
-        width: 95%;
+        width: 90%;
         border: none;
         border-radius: 7px;
         font-size: 20px;
-        margin-left: 10%;
+        margin-left: 15%;
     }
-
+    
     .data_entry_label {
-        margin-left: 10%;
+        margin-left: 15%;
         line-height: 5px;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: bold;
         white-space: nowrap;
-    }
-
-    .data_entry::placeholder {
-        font-size: 90%;
     }
     
     .data_comment_label {
         line-height: 5px;
         white-space: nowrap;
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .data_entry_label#subheading {
-        font-size: 13px;
+        font-size: 11px;
         color: #808080;
         font-weight: normal;
     }
