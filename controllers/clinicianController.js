@@ -60,7 +60,7 @@ const getClinicianDash = async(req, res, next) => {
                 first_name: clinicianData.patients[i].first_name,
                 last_name: clinicianData.patients[i].last_name,
             }
-            patientID = clinicianData.patients[i]._id.Value
+            patientID = clinicianData.patients[i]._id.toString()
             console.log(patientID)
             patientData = await Patient.findById(patientID).lean()
             console.log(patientData)
