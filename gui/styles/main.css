@@ -1135,7 +1135,7 @@ p.grey {
     }
 
     td {
-        padding: 5px;
+        padding: 11px;
     }
 
     table th {
@@ -1146,6 +1146,12 @@ p.grey {
     table td {
         border: 1px solid #ffffff;
         border-bottom: 0;
+    }
+
+    .table_font_size {
+        font-size: 14px;
+        padding: 5px;
+
     }
 
     .ranges_data_box {
@@ -1190,6 +1196,7 @@ p.grey {
         margin-top: 8px;
         margin-bottom: 8px;
     }
+
 
     p.grey {
         font-size: 14px;
