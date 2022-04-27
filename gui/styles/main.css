@@ -696,7 +696,7 @@ iframe {
     margin-left: 2rem;
 }
 
-.input_feild {
+.input_field {
     /*Input contaners*/
     background-color: #B1CCE0;
     color: #0062A8;
@@ -946,10 +946,6 @@ a.image_link {
     text-align: right;
     font-size: 20px;
 }
-
-.data_button_heading.clinician_page_button {}
-
-
 
 .default_button.dark_blue.small_button {
     height: 25px;
