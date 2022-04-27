@@ -623,8 +623,8 @@ ul.patient_dash_list {
     /* Used to contain text inside a flex box */
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .inner_block_text_column.four_corners {
@@ -633,6 +633,10 @@ ul.patient_dash_list {
     margin-left: 20px;
     margin-right: 20px;
     width: 100%;
+}
+
+.inner_block_text_column.margin_right {
+    margin-right: 80px;
 }
 
 
@@ -1169,7 +1173,10 @@ p.grey {
     #about_website_page_large_display_image {
         display: none;
     }
-
+    .inner_block_text_column.margin_right {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
     h1 {
         font-size: 28px;
         margin-top: 0px;
@@ -1312,6 +1319,11 @@ p.grey {
         width: 400px;
         height: 400px;
     }
+
+    .inner_block_text_column.margin_right {
+        margin-right: 40px;
+    }
+
 
     h1 {
         font-size: 28px;
