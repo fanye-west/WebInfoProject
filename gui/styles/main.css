@@ -1021,13 +1021,13 @@ a.image_link {
 }
 
 
-/* images */
+/* images --- start ---- */
 
 .display_image {
     width: 600px;
     height: 600px;
 }
-
+/* images --- end ---- */
 
 /* text for default desktop view*/
 
