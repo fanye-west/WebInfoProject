@@ -9,7 +9,7 @@ const clinicianSchema = new mongoose.Schema({
     email: String,
     dob: Date,
     bio: String,
-    patients: [patientSchema]
+    patients: [String]
 })
 
 const Clinician = mongoose.model('Clinician', clinicianSchema)
