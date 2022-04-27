@@ -678,14 +678,14 @@ iframe {
     margin-left: 2rem;
 }
 
-.input_feild {
+.input_field {
     /*Input contaners*/
     background-color: #B1CCE0;
     color: #0062A8;
     border-color: none;
     border: none;
     border-radius: 7px;
-    width: 400px;
+    width: 80%;
     height: 40px;
     align-self: center;
     padding: 1rem;
@@ -999,13 +999,13 @@ a.image_link {
 }
 
 
-/* images */
+/* images --- start ---- */
 
 .display_image {
     width: 600px;
     height: 600px;
 }
-
+/* images --- end ---- */
 
 /* text for default desktop view*/
 
