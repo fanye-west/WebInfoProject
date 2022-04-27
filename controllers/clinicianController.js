@@ -9,7 +9,7 @@ require('../models')
 var warning_colour = "#E58783"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "6269533c9517b0335cd37f71"
+const ClinicianID = "626959b6eeb43f65ef22fa63"
 var VISITED_LOGIN = false
 
 //Utils
@@ -46,27 +46,47 @@ const getClinicianDash = async(req, res, next) => {
         //Check login for deliverable 2
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         const clinicianData = await Clinician.findById(ClinicianID).lean()
-        console.log(clinicianData)
 
         let today = new Date()
 
-        patients_latest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
+        patientsLatest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
         let i
         let patientDataPackage
         let patientData
         for (i = 0; i < clinicianData.patients.length; i++) {
-            console.log(clinicianData.patients[i].first_name)
-            patientDataPackage = {
-                first_name: clinicianData.patients[i].first_name,
-                last_name: clinicianData.patients[i].last_name,
-            }
-            patientID = clinicianData.patients[i]._id.toString()
-            console.log(patientID)
+            patientID = clinicianData.patients[i]
             patientData = await Patient.findById(patientID).lean()
-            console.log(patientData)
-            patientDataPackage["glucose_value"] = patientData.data[patientData.Data.length - 1]
+
+            patientDataPackage = {
+                first_name: patientData.first_name,
+                last_name: patientData.last_name,
+                glucose_value: patientData.data[patientData.data.length - 1].glucose.value,
+                weight_value: patientData.data[patientData.data.length - 1].weight.value,
+                insulin_value: patientData.data[patientData.data.length - 1].insulin.value,
+                exercise_value: patientData.data[patientData.data.length - 1].exercise.value,
+            }
+
+            if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
+                patientDataPackage["glucose_colour"] = warning_colour
+            }
+            if (patientDataPackage.weight_value < patientData.weight_bounds[0] || patientDataPackage.weight_value > patientData.weight_bounds[1]) {
+                patientDataPackage["weight_colour"] = warning_colour
+            }
+            if (patientDataPackage.insulin_value < patientData.insulin_bounds[0] || patientDataPackage.insulin_value > patientData.insulin_bounds[1]) {
+                patientDataPackage["insulin_colour"] = warning_colour
+            }
+            if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
+                patientDataPackage["exercise_colour"] = warning_colour
+            }
+
+            patientsLatest.push(patientDataPackage)
+
+
 
         }
+
+        clinicianData["patientData"] = patientsLatest
+        console.log(clinicianData)
 
         // dashData = {
         //         first_name: first_name,
@@ -74,7 +94,7 @@ const getClinicianDash = async(req, res, next) => {
         //         date: today,
         //         patients_latest: patients_latest
         //     }
-        return res.render('clinicianDash', { layout: 'clinicianLayout' });
+        return res.render('clinicianDash', { layout: 'clinicianLayout', clinician: clinicianData });
     } catch (err) {
         return next(err)
     }

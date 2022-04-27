@@ -1,4 +1,5 @@
 <!-- main body contents -->
+{{#with clinician}}
 <div class="main_page_body_under_navigation dashboard_page clinician_page">
 	<div class="clinician_dash_grid">
 		<div class="outer_block_text_column" id="doctor_dash_profile_box">
@@ -60,48 +61,16 @@
 			</thead>
 
 			<tbody>
+				{{#each patientData}}
 				<tr>
-					<td>John Doe</td>
-					<td>4.4</td>
-					<td>69</td>
-					<td>2</td>
-					<td>1700</td>
+					<td>{{first_name}} {{last_name}}</td>
+					<td bgcolor="{{glucose_colour}}">{{glucose_value}}</td>
+                    <td bgcolor="{{weight_colour}}">{{weight_value}}</td>
+                    <td bgcolor="{{insulin_colour}}">{{insulin_value}}</td>
+                    <td bgcolor="{{exercise_colour}}">{{exercise_value}}</td>
 				</tr>
-				<tr>
-					<td>John Doe</td>
-					<td>4.4</td>
-					<td>69</td>
-					<td>2</td>
-					<td>1700</td>
-				</tr>
-				<tr>
-					<td>John Doe</td>
-					<td>4.4</td>
-					<td>69</td>
-					<td>2</td>
-					<td>1700</td>
-				</tr>
-				<tr>
-					<td>John Doe</td>
-					<td>4.4</td>
-					<td>69</td>
-					<td>2</td>
-					<td>1700</td>
-				</tr>
-				<tr>
-					<td>John Doe</td>
-					<td>4.4</td>
-					<td>69</td>
-					<td>2</td>
-					<td>1700</td>
-				</tr>
-				<tr>
-					<td>John Doe</td>
-					<td>4.4</td>
-					<td>69</td>
-					<td>2</td>
-					<td>1700</td>
-				</tr>
+				{{/each}}
+				
 
 			</tbody>
 
@@ -110,3 +79,4 @@
 	</div>
 
 </div>
+{{/with}}
