@@ -13,13 +13,9 @@ const PatientID = "62668042f2c4e1d37f21d7b2"
 
 const getPatientDash = async(req, res, next) => {
     try {
-        // TODO Add DB call and actual HRB render here, eg:
-        console.log(req.params.userId);
+        // console.log(req.params.userId);
         const patientData = await Patient.findById(PatientID).lean()
-        let records = JSON.parse(patientData.data);
-        records = records.reverse();
-        patientData.data = JSON.stringify(records);
-
+        patientData.data = patientData.data.reverse(); //Display newest to oldest
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
