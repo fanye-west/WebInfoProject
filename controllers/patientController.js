@@ -16,6 +16,10 @@ const getPatientDash = async(req, res, next) => {
         // TODO Add DB call and actual HRB render here, eg:
         console.log(req.params.userId);
         const patientData = await Patient.findById(PatientID).lean()
+        let records = JSON.parse(patientData.data);
+        records = records.reverse();
+        patientData.data = JSON.stringify(records);
+
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
@@ -30,8 +34,8 @@ const getPatientDataEntry = async(req, res, next) => {
         let latest_data = patientData.data[patientData.data.length - 1];
         // if latest_data.date
         console.log(latest_data);
-
-        return res.render('patientDataEntry', { layout: 'patientLayout', patient: patientData });
+        testdata = { testvalue: 1234 }
+        return res.render('patientDataEntry', { layout: 'patientLayout', patient: testdata });
         // return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
@@ -67,6 +71,14 @@ const insertPatientData = async(req, res, next) => {
         let weight_comment = req.body.weight_comment
         let insulin_dose_comment = req.body.insulin_dose_comment
         let daily_steps_comment = req.body.daily_steps_comment
+            //Check current day's data from db, merge in new data where reuired
+            // IF current day not in DB:
+            //      Create new data object (as below)
+            // ELSE current day in DB
+            //      If data exists, overwrite that data pointe
+            //      Else, add data point (these are really the same actions...)
+            //      Unless new data is empty and existing is non-empty, then dont overwite
+            //      Update DB as to not duplicate the day of data (one entry ber 24h UCT+10:00 block)
 
         //Create new data objects
         glucose = new Value({
