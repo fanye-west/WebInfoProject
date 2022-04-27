@@ -229,7 +229,7 @@ body.white_background {
 }
 
 .outer_block_text_column#cancel_button{
-    justify-items: right;
+    align-items: flex-end;
 }
 
 #patient_dash_add_data_button>.default_button.dark_blue {
