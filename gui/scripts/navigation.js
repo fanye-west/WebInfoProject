@@ -20,3 +20,7 @@ function patientRedirectToRecord() {
 function patientLoginRedirect() {
     window.location.href = '/user/patient/loginRedirect';
 }
+
+function clinicianLoginRedirect() {
+    window.location.href = '/user/clinician/loginRedirect';
+}

@@ -27,7 +27,7 @@ function isToday(date) {
 
 const getPatientLogin = async(req, res, next) => {
     try {
-        return res.render('patientLogin', { layout: 'patientLayout' });
+        return res.render('patientLogin', { layout: 'loginLayout' });
     } catch (err) {
         return next(err)
     }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/navigation.js"></script>
+</head>
+
+<body class="light_theme_colour_background">
+    <header class="navigation">
+        <!-- Navigation bar -->
+        <div class="row_flex_spaced">
+            <div class="login_row_flex_header">
+                <div class="nav_icon">
+                    <button class="icon_button">
+                        <img class="icon" src="/assets/icons/logo_sml.png">
+                    </button>
+                </div>
+                <h1 class="navigation_title">Diabetes at Home</h1>
+            </div>
+            <div class="login_row_flex_header" id="navigation_buttons">
+                <a href="/" class="image_link"><button class="home_button dark_blue_white_boarder"><img
+                            class="icon" src="/assets/icons/home.png"></button></a>
+            </div>
+            <div class="nav_icon" id="navigation_hamburger">
+                <button class="icon_button" onclick="hamburgerExpander()">
+                    <img class="icon" src="/assets/icons/hamburger_menu_icon.png">
+                </button>
+            </div>
+        </div>
+        <!-- Expanded hamburger modal -->
+        <div class="navigation_hamburger_expanded" id="navigation_hamburger_clicked_modal">
+            <div class="row_flex_spaced">
+                <div class="nav_icon">
+                    <button class="icon_button">
+                        <img class="icon" src="/assets/icons/logo_sml.png">
+                    </button>
+                </div>
+                <div class="nav_icon" id="navigation_hamburger">
+                    <button class="icon_button" onclick="hamburgerHider()">
+                        <img class="icon" src="/assets/icons/hamburger_menu_icon.png">
+                    </button>
+                </div>
+            </div>
+            <div class="navigation_hamburger_button_list">
+                <div class="button_margin_wrapper">
+                    <a href="/"><button class="default_button dark_blue_white_boarder">Home</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main body contents -->
+    <main> 
+        {{{body}}} 
+    </main> 
+</body>
+</html>
