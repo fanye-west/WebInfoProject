@@ -3,32 +3,32 @@
 <div class="main_page_body_under_navigation dashboard_page">
     <div class="patient_dash_grid">
         <div class="outer_block_text_column" id="patient_dash_your_profile_box">
-            <div class="light_theme_colour_background four_corners">
+            <div class="light_theme_colour_background four_corners align_upper">
                 <div class="inner_block_text_column four_corners">
                     <!-- <h3>Your Profile</h3> -->
                     <ul class="patient_dash_list">
-                        <li class="profile_header">
+                        <li class="list_elements profile_header">
                             <span>
-                                <h3>Your Profile</h3>
+                                <h3 class="top_heading">Your Profile</h3>
                             </span>
                             <span> <button class="default_button dark_blue small_button">Change Password</button></span>
                         </li>
-                        <li>
+                        <li class="list_elements">
                             <span> <b>Name:</b></span>
                             <span>{{first_name}} {{last_name}}</span>
                         </li>
 
-                        <li>
+                        <li class="list_elements">
                             <span><b>Username:</b></span>
                             <span>{{user_name}}</span>
                         </li>
 
-                        <li>
+                        <li class="list_elements">
                             <span><b>D.O.B:</b></span>
                             <span>{{dateFormat dob "L"}}</span>
                         </li>
 
-                        <li>
+                        <li class="list_elements">
                             <span><b>Badge:</b></span>
                             <span>
                                 <span id="badge_text">{{badge}}</span>
@@ -45,9 +45,9 @@
         </div>
 
         <div class="outer_block_text_column" id="patient_dash_doctor_message">
-            <div class="light_theme_colour_background four_corners">
+            <div class="light_theme_colour_background four_corners align_upper">
                 <div class="inner_block_text_column four_corners">
-                    <h3>Message from your doctor:</h3>
+                    <h3 class="profile_header">Message from your doctor:</h3>
                     <div id="patient_dash_doctor_message_box">
                         <p id="patient_dash_doctor_message_text">
                             {{messages.[0]}}</p>
@@ -60,11 +60,11 @@
         </div>
 
         <div class="outer_block_text_column" id="patient_dash_ranges">
-            <div class="light_theme_colour_background four_corners">
+            <div class="light_theme_colour_background four_corners align_upper">
                 <div class="inner_block_text_column four_corners">
-                    <h3>Your set ranges</h3>
+                    <h3 class="profile_header">Your set ranges</h3>
                     <ul class="patient_dash_list">
-                        <li>
+                        <li class="list_elements">
                             <span> <b>Blood Glucose (nmol/L):</b></span>
                             <span class="ranges_data_box">
                                 <span class="ranges_data_element">{{glucose_bounds.[0]}}</span>
@@ -72,7 +72,7 @@
                             </span>
                         </li>
 
-                        <li>
+                        <li class="list_elements">
                             <span class="metric_title"><b>Weight(kg):</b></span>
                             <span class="ranges_data_box">
                                 <span class="ranges_data_element">{{weight_bounds.[0]}}</span>
@@ -80,7 +80,7 @@
                             </span>
                         </li>
 
-                        <li>
+                        <li class="list_elements">
                             <span class="metric_title"><b>Insuline Doses</b></span>
                             <span class="ranges_data_box">
                                 <span class="ranges_data_element">{{insulin_bounds.[0]}}</span>
@@ -88,7 +88,7 @@
                             </span>
                         </li>
 
-                        <li>
+                        <li class="list_elements">
                             <span><b>Steps:</b></span>
                             <span class="ranges_data_box">
                                 <span class="ranges_data_element">{{exercise_bounds.[0]}}</span>
@@ -102,8 +102,8 @@
         </div>
 
         <div class="outer_block_text_column" id="patient_dash_add_data_button">
-            <button class="default_button dark_blue" onclick="patientRedirectToRecord()">
-                    <h3 class="data_button_heading"> + Add Data</h3>
+            <button class="default_button dark_blue">
+                <h3 id="add_data_button_heading"> + Add Data</h3>
             </button>
         </div>
     </div>

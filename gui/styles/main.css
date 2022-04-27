@@ -238,6 +238,13 @@ body.white_background {
     padding: 10px;
 }
 
+#add_data_button_heading {
+    margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+}
+
 .about_page_body_flex {
     position: absolute;
     width: 100%;
@@ -517,7 +524,7 @@ ul.patient_dash_list {
     margin: 0px;
 }
 
-ul.patient_dash_list>li {
+.list_elements {
     /* Aligns one span left, the other */
     display: flex;
     justify-content: space-between;
@@ -543,7 +550,14 @@ ul.patient_dash_list>li {
 .profile_header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.top_heading{
+    margin-top: 0px;
 }
 
 .ranges_data_box>span {
@@ -601,6 +615,8 @@ ul.patient_dash_list>li {
     margin-right: 20px;
     width: 100%;
 }
+
+
 
 #inner_block_clinician_page {
     margin-left: 40px;
@@ -796,6 +812,11 @@ iframe {
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.light_theme_colour_background.four_corners.align_upper {
+    align-items: flex-start;
+
 }
 
 #doctor_dash_profile_box>.light_theme_colour_background.four_corners {
