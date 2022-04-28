@@ -35,7 +35,7 @@ mock_patient = {
 newPatient = new Patient(mock_patient)
 console.log(newPatient._id)
 
-newPatient.save()
+// newPatient.save()
 console.log("newPatient created")
 
 mock_clinician = {
@@ -53,42 +53,49 @@ newClinician = new Clinician(mock_clinician)
     // newClinician.save()
 console.log("newClinician created")
 
-
-
-
-var id = "6269533c9517b0335cd37f70"
+var id = "626a6639ce600ec9408c8abe"
 var i;
-for (i = 0; i < 10; i++) {
+var date
+var N = 15
+var data = []
+for (i = 0; i < N; i++) {
+    date = new Date();
+    date.setDate(date.getDate() - (N - i))
     glucose = new Value({
         is_recorded: true,
         value: getRandomInt(10),
         comment: "my glucose comment: " + i,
+        when: date,
     })
     weight = new Value({
         is_recorded: true,
         value: getRandomInt(10) + 60,
         comment: "my weight comment: " + i,
+        when: date,
     })
     insulin = new Value({
         is_recorded: true,
         value: getRandomInt(3),
         comment: "my insulin comment: " + i,
+        when: date,
     })
     exercise = new Value({
         is_recorded: true,
         value: getRandomInt(10000) + 5000,
         comment: "my exercise comment: " + i,
+        when: date,
     })
     newdata = new Data({
-            glucose: glucose,
-            weight: weight,
-            insulin: insulin,
-            exercise: exercise
-        })
-        // console.log(data);
-    let res = Patient.updateOne({ _id: id }, {
-        $push: { data: newdata }
-    }).exec();
+        glucose: glucose,
+        weight: weight,
+        insulin: insulin,
+        exercise: exercise,
+        date: date,
+    })
+    data.push(newdata)
 }
 
-console.log("Data added created")
+console.log(data)
+Patient.updateOne({ _id: id }, { data: data }).exec();
+
+console.log("Data overwritten")

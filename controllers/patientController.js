@@ -8,11 +8,10 @@ require('../models')
 var green = "background-color:#9AD3A5";
 var red = "background-color:#E58783";
 var orange = "background-color:#F2CA95";
-var warning_colour = "#E58783"
+var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-// const PatientID = "6269533c9517b0335cd37f70"
-const PatientID = "626a5f9d01d14cde6a62412a"
+const PatientID = "626a6639ce600ec9408c8abe" //SEEDED PATIENTS ID: "626a6639ce600ec9408c8abe"
 var VISITED_LOGIN = false
 
 // utils

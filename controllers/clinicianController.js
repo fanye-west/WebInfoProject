@@ -6,10 +6,10 @@ const Value = require('../models/value');
 const Data = require('../models/data');
 require('../models')
 
-var warning_colour = "#E58783"
+var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "626959b6eeb43f65ef22fa63"
+const ClinicianID = "626a6639ce600ec9408c8abf" //SEEDED CLINICIAN: "626a6639ce600ec9408c8abf", manages patient "626a6639ce600ec9408c8abe"
 var VISITED_LOGIN = false
 
 //Utils
@@ -78,22 +78,9 @@ const getClinicianDash = async(req, res, next) => {
             if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
                 patientDataPackage["exercise_colour"] = warning_colour
             }
-
             patientsLatest.push(patientDataPackage)
-
-
-
         }
-
         clinicianData["patientData"] = patientsLatest
-        console.log(clinicianData)
-
-        // dashData = {
-        //         first_name: first_name,
-        //         last_name: last_name,
-        //         date: today,
-        //         patients_latest: patients_latest
-        //     }
         return res.render('clinicianDash', { layout: 'clinicianLayout', clinician: clinicianData });
     } catch (err) {
         return next(err)
