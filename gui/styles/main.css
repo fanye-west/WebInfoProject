@@ -200,15 +200,13 @@ body.white_background {
     grid-row: 2/3;
     width: 100%;
 }
-
 #clinician_table_search {
     display: flex;
     justify-content: space-between;
     margin-left: 40px;
     margin-right: 40px;
 }
-
-.search_bar {
+.search_bar{
     display: flex;
     align-items: center;
 }
@@ -759,7 +757,7 @@ iframe {
 
 .rounded_box_half_width {
     border-radius: 15px;
-    width: 350px;
+    width: 320px;
     height: 200px;
 }
 
@@ -999,10 +997,6 @@ a.image_link {
 
 }
 
-#manage_button {
-    width: 100px;
-}
-
 .small_button_position {
     display: flex;
 }
@@ -1151,7 +1145,6 @@ p.grey {
 
 /*layout rules for different screen sizes */
 
-
 @media only screen and (max-width: 500px) {
 
     /* Rules for when the iphone X is being used */
@@ -1194,14 +1187,10 @@ p.grey {
     #about_website_page_large_display_image {
         display: none;
     }
-
-
-
     .inner_block_text_column.margin_right {
         margin-left: 30px;
         margin-right: 30px;
     }
-
     h1 {
         font-size: 28px;
         margin-top: 0px;
@@ -1284,12 +1273,6 @@ p.grey {
         margin-left: 5%;
     }
 
-    .inner_block_text_column.centered_text {
-        /* Used to container text inside a flex box */
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
     .align_cancel_button {
         justify-content: center;
         text-align: center;
@@ -1353,12 +1336,6 @@ p.grey {
 
     .inner_block_text_column.margin_right {
         margin-right: 40px;
-    }
-
-    .inner_block_text_column.centered_text {
-        /* Used to container text inside a flex box */
-        margin-left: 10px;
-        margin-right: 10px;
     }
 
 
