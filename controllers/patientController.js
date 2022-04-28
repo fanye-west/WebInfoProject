@@ -89,13 +89,6 @@ const getPatientDataEntry = async(req, res, next) => {
         // Get patient data for today's date
         const patientData = await Patient.findById(PatientID).lean()
 
-
-
-        // var d = new Date();
-        // d.setDate(d.getDate() - 1);
-        // latest_data.date = d
-        // console.log(latest_data.date)
-
         let glucose_value = undefined
         let weight_value = undefined
         let insulin_value = undefined
@@ -105,6 +98,11 @@ const getPatientDataEntry = async(req, res, next) => {
         let weight_comment = undefined
         let insulin_comment = undefined
         let exercise_comment = undefined
+
+        let glucose_recorded = false
+        let weight_recorded = false
+        let insulin_recorded = false
+        let exercise_recorded = false
 
         if (patientData.data.length > 0) {
             let latest_data = patientData.data[patientData.data.length - 1];
@@ -118,6 +116,11 @@ const getPatientDataEntry = async(req, res, next) => {
                 weight_comment = latest_data.weight.comment
                 insulin_comment = latest_data.insulin.comment
                 exercise_comment = latest_data.exercise.comment
+
+                glucose_recorded = latest_data.glucose.is_recorded
+                weight_recorded = latest_data.weight.is_recorded
+                insulin_recorded = latest_data.insulin.is_recorded
+                exercise_recorded = latest_data.exercise.is_recorded
             }
         }
 
@@ -136,10 +139,10 @@ const getPatientDataEntry = async(req, res, next) => {
         let insulin_readonly = ""
         let exercise_readonly = ""
 
-        if (glucose_value == undefined && patientData.glucose_required) {
+        if (!glucose_recorded && patientData.glucose_required) {
             glucose_colour = red
             glucose_subheading = "You still need to fill this in for today"
-        } else if (glucose_value == undefined && !patientData.glucose_required) {
+        } else if (!glucose_recorded && !patientData.glucose_required) {
             glucose_colour = orange
             glucose_subheading = "Optional record"
         } else {
@@ -148,10 +151,10 @@ const getPatientDataEntry = async(req, res, next) => {
             glucose_readonly = "readonly"
         }
 
-        if (weight_value == undefined && patientData.weight_required) {
+        if (!weight_recorded && patientData.weight_required) {
             weight_colour = red
             weight_subheading = "You still need to fill this in for today"
-        } else if (weight_value == undefined && !patientData.weight_required) {
+        } else if (!weight_recorded && !patientData.weight_required) {
             weight_colour = orange
             weight_subheading = "Optional record"
         } else {
@@ -160,10 +163,10 @@ const getPatientDataEntry = async(req, res, next) => {
             weight_readonly = "readonly"
         }
 
-        if (insulin_value == undefined && patientData.insulin_required) {
+        if (!insulin_recorded && patientData.insulin_required) {
             insulin_colour = red
             insulin_subheading = "You still need to fill this in for today"
-        } else if (insulin_value == undefined && !patientData.insulin_required) {
+        } else if (!insulin_recorded && !patientData.insulin_required) {
             insulin_colour = orange
             insulin_subheading = "Optional record"
         } else {
@@ -172,10 +175,10 @@ const getPatientDataEntry = async(req, res, next) => {
             insulin_readonly = "readonly"
         }
 
-        if (exercise_value == undefined && patientData.exercise_required) {
+        if (!exercise_recorded && patientData.exercise_required) {
             exercise_colour = red
             exercise_subheading = "You still need to fill this in for today"
-        } else if (exercise_value == undefined && !patientData.exercise_required) {
+        } else if (!exercise_recorded && !patientData.exercise_required) {
             exercise_colour = orange
             exercise_subheading = "Optional record"
         } else {
