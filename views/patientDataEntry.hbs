@@ -25,7 +25,7 @@
                                 <div class="data_grid">
                                     <p class="data_comment_label">Add comments for blood glucose levels</p>
                                     <label for="blood_glucose_comment"></label>
-                                    <input class="data_comment" type="text" name="blood_glucose_comment" value="{{glucose_comment}}"></input>
+                                    <input class="data_comment" type="text" name="blood_glucose_comment" value="{{glucose_comment}}" {{glucose_readonly}}></input>
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                                 <div class="data_grid">
                                     <p class="data_comment_label">Add comments for weight</p>
                                     <label for="weight_comment"></label>
-                                    <input class="data_comment" type="text" name="weight_comment" value="{{weight_comment}}" ></input>
+                                    <input class="data_comment" type="text" name="weight_comment" value="{{weight_comment}}" {{weight_readonly}}></input>
                                     <div></div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                     <p class="data_comment_label">Add comments for insulin doses</p>
 
                                     <label for="insulin_dose_comment"></label>
-                                    <input class="data_comment" type="text" name="insulin_dose_comment" value="{{insulin_comment}}"></input>
+                                    <input class="data_comment" type="text" name="insulin_dose_comment" value="{{insulin_comment}}" {{insulin_readonly}}></input>
                                 </div>
                                 
                             </div>
@@ -89,7 +89,7 @@
                                     <p class="data_comment_label">Add comments for daily steps</p>
 
                                     <label for="daily_steps_comment"></label>
-                                    <input class="data_comment" type="text" name="daily_steps_comment" value="{{exercise_comment}}"></input>
+                                    <input class="data_comment" type="text" name="daily_steps_comment" value="{{exercise_comment}}" {{exercise_readonly}}></input>
                                 </div>
                             </div>
                         </div>
