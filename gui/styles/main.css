@@ -246,6 +246,7 @@ body.white_background {
 }
 
 .outer_block_text_column#cancel_button {
+    justify-content: center;
     align-items: flex-end;
 }
 
@@ -803,11 +804,12 @@ iframe {
 
 .data_entry {
     height: 50px;
-    width: 80%;
+    width: 75%;
     border: none;
     border-radius: 7px;
     font-size: 95%;
     margin-left: 15%;
+    padding-left: 5%;
 }
 
 .data_entry::placeholder {
@@ -827,6 +829,7 @@ iframe {
     border-radius: 7px;
     font-size: 90%;
     background-color: #B1CCE0;
+    padding-left: 5%;
 }
 
 .data_comment::placeholder {
@@ -1271,7 +1274,7 @@ p.grey {
     }
 
     .data_entry {
-        width: 88%;
+        width: 83%;
         margin-left: 5%;
     }
 
@@ -1280,7 +1283,7 @@ p.grey {
     }
 
     .data_comment {
-        width: 88%;
+        width: 83%;
         margin-left: 5%;
     }
 
