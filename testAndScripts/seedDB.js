@@ -35,7 +35,7 @@ mock_patient = {
 newPatient = new Patient(mock_patient)
 console.log(newPatient._id)
 
-// newPatient.save()
+newPatient.save()
 console.log("newPatient created")
 
 mock_clinician = {
@@ -50,45 +50,45 @@ mock_clinician = {
 }
 
 newClinician = new Clinician(mock_clinician)
-newClinician.save()
+    // newClinician.save()
 console.log("newClinician created")
 
 
 
 
-// var id = "6269533c9517b0335cd37f70"
-// var i;
-// for (i = 0; i < 10; i++) {
-//     glucose = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(10),
-//         comment: "my glucose comment: " + i,
-//     })
-//     weight = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(10) + 60,
-//         comment: "my weight comment: " + i,
-//     })
-//     insulin = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(3),
-//         comment: "my insulin comment: " + i,
-//     })
-//     exercise = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(10000) + 5000,
-//         comment: "my exercise comment: " + i,
-//     })
-//     newdata = new Data({
-//             glucose: glucose,
-//             weight: weight,
-//             insulin: insulin,
-//             exercise: exercise
-//         })
-//         // console.log(data);
-//     let res = Patient.updateOne({ _id: id }, {
-//         $push: { data: newdata }
-//     }).exec();
-// }
+var id = "6269533c9517b0335cd37f70"
+var i;
+for (i = 0; i < 10; i++) {
+    glucose = new Value({
+        is_recorded: true,
+        value: getRandomInt(10),
+        comment: "my glucose comment: " + i,
+    })
+    weight = new Value({
+        is_recorded: true,
+        value: getRandomInt(10) + 60,
+        comment: "my weight comment: " + i,
+    })
+    insulin = new Value({
+        is_recorded: true,
+        value: getRandomInt(3),
+        comment: "my insulin comment: " + i,
+    })
+    exercise = new Value({
+        is_recorded: true,
+        value: getRandomInt(10000) + 5000,
+        comment: "my exercise comment: " + i,
+    })
+    newdata = new Data({
+            glucose: glucose,
+            weight: weight,
+            insulin: insulin,
+            exercise: exercise
+        })
+        // console.log(data);
+    let res = Patient.updateOne({ _id: id }, {
+        $push: { data: newdata }
+    }).exec();
+}
 
-// console.log("Data added created")
+console.log("Data added created")

@@ -13,7 +13,7 @@
                                     <p class="data_entry_label">Blood Glucose Levels (mmol/L):</p>
 
                                     <label for="blood_glucose_value"></label>
-                                    <input class="data_entry" type="text" name="blood_glucose_value" value="{{glucose_value}}" style="{{glucose_colour}}"></input>
+                                    <input class="data_entry" type="text" name="blood_glucose_value" value="{{glucose_value}}" style="{{glucose_colour}}" {{glucose_readonly}}></input>
 
                                     {{!-- <p class="data_entry_label" id="subheading">You have already filled this in for today</p> --}}
                                     <p class="data_entry_label" id="subheading">{{glucose_subheading}}</p>
@@ -25,7 +25,7 @@
                                 <div class="data_grid">
                                     <p class="data_comment_label">Add comments for blood glucose levels</p>
                                     <label for="blood_glucose_comment"></label>
-                                    <input class="data_comment" type="text" name="blood_glucose_comment" value="{{glucose_comment}}"></input>
+                                    <input class="data_comment" type="text" name="blood_glucose_comment" value="{{glucose_comment}}" {{glucose_readonly}}></input>
                                 </div>
                             </div>
 
@@ -34,7 +34,7 @@
                                     <p class="data_entry_label">Weight (kg):</p>
 
                                     <label for="weight_value"></label>
-                                    <input class="data_entry" id="white" type="text" name="weight_value" value="{{weight_value}}" style="{{weight_colour}}"></input>
+                                    <input class="data_entry" id="white" type="text" name="weight_value" value="{{weight_value}}" style="{{weight_colour}}" {{weight_readonly}}></input>
                                     
                                     {{!-- <p class="data_entry_label" id="subheading">You still need to fill this in for today</p> --}}
                                     <p class="data_entry_label" id="subheading">{{weight_subheading}}</p>
@@ -45,7 +45,7 @@
                                 <div class="data_grid">
                                     <p class="data_comment_label">Add comments for weight</p>
                                     <label for="weight_comment"></label>
-                                    <input class="data_comment" type="text" name="weight_comment" value="{{weight_comment}}" ></input>
+                                    <input class="data_comment" type="text" name="weight_comment" value="{{weight_comment}}" {{weight_readonly}}></input>
                                     <div></div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                     <p class="data_entry_label">Number of Insulin Doses:</p>
 
                                     <label for="insulin_dose_value"></label>
-                                    <input class="data_entry" id="white" type="text" name="insulin_dose_value" value="{{insulin_value}}" style="{{insulin_colour}}"></input>
+                                    <input class="data_entry" id="white" type="text" name="insulin_dose_value" value="{{insulin_value}}" style="{{insulin_colour}}" {{insulin_readonly}}></input>
                                     
                                     {{!-- <p class="data_entry_label" id="subheading">Optional record</p> --}}
                                     <p class="data_entry_label" id="subheading">{{insulin_subheading}}</p>
@@ -67,7 +67,7 @@
                                     <p class="data_comment_label">Add comments for insulin doses</p>
 
                                     <label for="insulin_dose_comment"></label>
-                                    <input class="data_comment" type="text" name="insulin_dose_comment" value="{{insulin_comment}}"></input>
+                                    <input class="data_comment" type="text" name="insulin_dose_comment" value="{{insulin_comment}}" {{insulin_readonly}}></input>
                                 </div>
                                 
                             </div>
@@ -77,7 +77,7 @@
                                     <p class="data_entry_label">Daily Steps:</p>
 
                                     <label for="daily_steps_value"></label>
-                                    <input class="data_entry" id="white" type="text" name="daily_steps_value"  value="{{exercise_value}}" style="{{exercise_colour}}"></input>
+                                    <input class="data_entry" id="white" type="text" name="daily_steps_value"  value="{{exercise_value}}" style="{{exercise_colour}}" {{exercise_readonly}}></input>
 
                                     {{!-- <p class="data_entry_label" id="subheading">Optional record</p> --}}
                                     <p class="data_entry_label" id="subheading">{{exercise_subheading}}</p>
@@ -89,7 +89,7 @@
                                     <p class="data_comment_label">Add comments for daily steps</p>
 
                                     <label for="daily_steps_comment"></label>
-                                    <input class="data_comment" type="text" name="daily_steps_comment" value="{{exercise_comment}}"></input>
+                                    <input class="data_comment" type="text" name="daily_steps_comment" value="{{exercise_comment}}" {{exercise_readonly}}></input>
                                 </div>
                             </div>
                         </div>
