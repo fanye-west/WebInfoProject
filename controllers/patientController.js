@@ -11,7 +11,8 @@ var orange = "background-color:#F2CA95";
 var warning_colour = "#E58783"
 
 //Deliverable 2 Hardcoded values
-const PatientID = "6269533c9517b0335cd37f70"
+// const PatientID = "6269533c9517b0335cd37f70"
+const PatientID = "626a5f9d01d14cde6a62412a"
 var VISITED_LOGIN = false
 
 // utils
@@ -79,7 +80,8 @@ const getPatientDataEntry = async(req, res, next) => {
         // TODO Add DB call and actual HRB render here:
         // Get patient data for today's date
         const patientData = await Patient.findById(PatientID).lean()
-        let latest_data = patientData.data[patientData.data.length - 1];
+
+
 
         // var d = new Date();
         // d.setDate(d.getDate() - 1);
@@ -96,16 +98,19 @@ const getPatientDataEntry = async(req, res, next) => {
         let insulin_comment = undefined
         let exercise_comment = undefined
 
-        if (isToday(latest_data.date)) {
-            glucose_value = latest_data.glucose.value
-            weight_value = latest_data.weight.value
-            insulin_value = latest_data.insulin.value
-            exercise_value = latest_data.exercise.value
+        if (patientData.data.length > 0) {
+            let latest_data = patientData.data[patientData.data.length - 1];
+            if (isToday(latest_data.date)) {
+                glucose_value = latest_data.glucose.value
+                weight_value = latest_data.weight.value
+                insulin_value = latest_data.insulin.value
+                exercise_value = latest_data.exercise.value
 
-            glucose_comment = latest_data.glucose.comment
-            weight_comment = latest_data.weight.comment
-            insulin_comment = latest_data.insulin.comment
-            exercise_comment = latest_data.exercise.comment
+                glucose_comment = latest_data.glucose.comment
+                weight_comment = latest_data.weight.comment
+                insulin_comment = latest_data.insulin.comment
+                exercise_comment = latest_data.exercise.comment
+            }
         }
 
         let glucose_colour = green
@@ -235,26 +240,35 @@ const insertPatientData = async(req, res, next) => {
             //      Else, add data point (these are really the same actions...)
             //      Update DB as to not duplicate the day of data (one entry ber 24h UCT+10:00 block)
         const patientData = await Patient.findById(PatientID).lean()
-        let latest_data = patientData.data[patientData.data.length - 1];
+        let create_new_data_day = false;
+        if (patientData.data.length > 0) {
+            let latest_data = patientData.data[patientData.data.length - 1];
+            if (isToday(latest_data.date)) {
+                // console.log("isToday");
+                // Patient.updateOne({ _id: PatientID }, { data: newdata }).exec();
+                //Create new data objects
+                let newdata = patientData.data
+                newdata[newdata.length - 1].glucose.value = blood_glucose_value
+                newdata[newdata.length - 1].glucose.comment = blood_glucose_comment
 
-        if (isToday(latest_data.date)) {
-            // console.log("isToday");
-            // Patient.updateOne({ _id: PatientID }, { data: newdata }).exec();
-            //Create new data objects
-            let newdata = patientData.data
-            newdata[newdata.length - 1].glucose.value = blood_glucose_value
-            newdata[newdata.length - 1].glucose.comment = blood_glucose_comment
+                newdata[newdata.length - 1].weight.value = weight_value
+                newdata[newdata.length - 1].weight.comment = weight_comment
 
-            newdata[newdata.length - 1].weight.value = weight_value
-            newdata[newdata.length - 1].weight.comment = weight_comment
+                newdata[newdata.length - 1].insulin.value = insulin_dose_value
+                newdata[newdata.length - 1].insulin.comment = insulin_dose_comment
 
-            newdata[newdata.length - 1].insulin.value = insulin_dose_value
-            newdata[newdata.length - 1].insulin.comment = insulin_dose_comment
-
-            newdata[newdata.length - 1].exercise.value = daily_steps_value
-            newdata[newdata.length - 1].exercise.comment = daily_steps_comment
-            await Patient.updateOne({ _id: PatientID }, { data: newdata }, { upsert: true }).exec();
+                newdata[newdata.length - 1].exercise.value = daily_steps_value
+                newdata[newdata.length - 1].exercise.comment = daily_steps_comment
+                await Patient.updateOne({ _id: PatientID }, { data: newdata }, { upsert: true }).exec();
+            } else {
+                //Data exists but is not from today, create new day
+                create_new_data_day = true
+            }
         } else {
+            //No data exists, create new day
+            create_new_data_day = true
+        }
+        if (create_new_data_day) {
             //Create new data objects
             glucose = new Value({
                 is_recorded: true,

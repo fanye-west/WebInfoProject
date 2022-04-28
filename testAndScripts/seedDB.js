@@ -35,7 +35,7 @@ mock_patient = {
 newPatient = new Patient(mock_patient)
 console.log(newPatient._id)
 
-// newPatient.save()
+newPatient.save()
 console.log("newPatient created")
 
 mock_clinician = {
