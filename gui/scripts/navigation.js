@@ -24,3 +24,11 @@ function patientLoginRedirect() {
 function clinicianLoginRedirect() {
     window.location.href = '/user/clinician/loginRedirect';
 }
+
+function patientLogoutRedirect() {
+    window.location.href = '/user/patient/logoutRedirect';
+}
+
+function clinicianLogoutRedirect() {
+    window.location.href = '/user/clinician/logoutRedirect';
+}
