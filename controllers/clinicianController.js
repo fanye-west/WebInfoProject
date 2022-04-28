@@ -41,6 +41,16 @@ const clinicianLoginRedirect = async(req, res, next) => {
     }
 }
 
+const clinicianLogoutRedirect = async(req, res, next) => {
+    //Checks login for deliverable 2
+    try {
+        VISITED_LOGIN = false
+        return res.redirect('/')
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getClinicianDash = async(req, res, next) => {
     try {
         //Check login for deliverable 2
@@ -106,4 +116,5 @@ module.exports = {
     getClinicianDash,
     getClinicianLogin,
     clinicianLoginRedirect,
+    clinicianLogoutRedirect
 }

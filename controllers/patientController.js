@@ -44,6 +44,16 @@ const patientLoginRedirect = async(req, res, next) => {
     }
 }
 
+const patientLogoutRedirect = async(req, res, next) => {
+    //Checks logout for deliverable 2
+    try {
+        VISITED_LOGIN = false
+        return res.redirect('/')
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getPatientDash = async(req, res, next) => {
     try {
         //Check login for deliverable 2
@@ -310,6 +320,7 @@ const insertPatientData = async(req, res, next) => {
 module.exports = {
     getPatientLogin,
     patientLoginRedirect,
+    patientLogoutRedirect,
     getPatientDash,
     getPatientDataEntry,
     insertPatientData,

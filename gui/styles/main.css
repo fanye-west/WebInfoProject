@@ -990,8 +990,6 @@ a.image_link {
     font-size: 20px;
 }
 
-.data_button_heading.clinician_page_button {}
-
 .default_button.dark_blue.small_button {
     height: 25px;
     width: 100%;
@@ -1468,5 +1466,9 @@ p.grey {
         height: 60px;
         width: 60px;
         margin: 0px;
+    }
+
+    button {
+        cursor: pointer;
     }
 }
