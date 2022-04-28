@@ -1,82 +1,82 @@
 <!-- main body contents -->
 {{#with clinician}}
 <div class="main_page_body_under_navigation dashboard_page clinician_page">
-	<div class="clinician_dash_grid">
-		<div class="outer_block_text_column" id="doctor_dash_profile_box">
-			<div class="light_theme_colour_background four_corners centred_elements">
-				<div class="inner_block_text_column four_corners" id="inner_block_clinician_page">
-					<div class="profile_header">
-						<span>
-							<h3 class="centered_heading">Welcome, Dr. {{first_name}} {{last_name}}</h3>
-						</span>
-						<span> <button class="default_button dark_blue small_button">Manage</button></span>
-					</div>
+    <div class="clinician_dash_grid">
+        <div class="outer_block_text_column" id="doctor_dash_profile_box">
+            <div class="light_theme_colour_background four_corners centred_elements">
+                <div class="inner_block_text_column four_corners" id="inner_block_clinician_page">
+                    <div class="profile_header">
+                            <h3 class="centered_heading">Welcome, Dr. {{first_name}} {{last_name}}</h3>
+                        <span> <button class="default_button dark_blue small_button">Manage</button></span>
+                    </div>
 
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-		<div id="add_new_patient_button">
-			<button class="default_button faded_blue image_text_button" id="clinician_add_button">
-				<img src="../assets/icons/add_button.png" alt="+">
-				<span>
-					<h3 class="data_button_heading">Add New Patient</h3>
-				</span>
-			</button>
-		</div>
+        <div id="add_new_patient_button">
+            <button class="default_button faded_blue image_text_button" id="clinician_add_button">
+                <img src="../assets/icons/add_button.png" alt="+">
+                <span>
+                    <h3 class="data_button_heading">Add New Patient</h3>
+                </span>
+            </button>
+        </div>
 
-		<div id="comment_toggle_button">
-			<button class="default_button faded_blue image_text_button" id="clinician_comment_button">
-				<img src="../assets/icons/comment.png" alt="+">
-				<span>
-					<h3 class="data_button_heading clinician_page_button">View patient comments</h3>
-				</span>
-			</button>
-		</div>
+        <div id="comment_toggle_button">
+            <button class="default_button faded_blue image_text_button" id="clinician_comment_button">
+                <img src="../assets/icons/comment.png" alt="+">
+                <span>
+                    <h3 class="data_button_heading clinician_page_button">View patient comments</h3>
+                </span>
+            </button>
+        </div>
 
 
-		<div class="outer_block_text_column" id="clinician_table_header">
-			<div class="inner_block_text_column four_corners" id="clinician_table_search">
-				<div>
-					<h3 class="centered_heading">Your patients on {{dateFormat date "DD/MM/YY"}}: </h3>
-				</div>
-				<div class="search_bar">
-					<input type="search" id="site-search" name="q">
-					<button>Search</button>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="outer_block_text_column" id="clinician_table_header">
+            <div class="light_theme_colour_background four_corners centred_elements" id="bottom_box">
+                <div class="inner_block_text_column four_corners" id="clinician_table_search">
+                    <div>
+                        <h3 class="centered_heading">Your patients on {{dateFormat date "DD/MM/YY"}}: </h3>
+                    </div>
+                    <div class="search_bar">
+                        <input type="search" id="site-search" name="q">
+                        <button>Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="patient_dash_data_table">
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">Patient ID</th>
-					<th scope="col">Blood Glucose <br>(nmol/L)</th>
-					<th scope="col">Weight <br>(kg)</th>
-					<th scope="col">Insulin Doses</th>
-					<th scope="col">Steps</th>
-				</tr>
-			</thead>
+    <div class="patient_dash_data_table">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Blood Glucose <br>(nmol/L)</th>
+                    <th scope="col">Weight <br>(kg)</th>
+                    <th scope="col">Insulin Doses</th>
+                    <th scope="col">Steps</th>
+                </tr>
+            </thead>
 
-			<tbody>
-				{{#each patientData}}
-				<tr>
-					<td>{{first_name}} {{last_name}}</td>
-					<td bgcolor="{{glucose_colour}}">{{glucose_value}}</td>
+            <tbody>
+                {{#each patientData}}
+                <tr>
+                    <td>{{first_name}} {{last_name}}</td>
+                    <td bgcolor="{{glucose_colour}}">{{glucose_value}}</td>
                     <td bgcolor="{{weight_colour}}">{{weight_value}}</td>
                     <td bgcolor="{{insulin_colour}}">{{insulin_value}}</td>
                     <td bgcolor="{{exercise_colour}}">{{exercise_value}}</td>
-				</tr>
-				{{/each}}
-				
-
-			</tbody>
+                </tr>
+                {{/each}}
 
 
-		</table>
-	</div>
+            </tbody>
+
+
+        </table>
+    </div>
 
 </div>
 {{/with}}

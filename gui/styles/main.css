@@ -148,8 +148,8 @@ body.white_background {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     row-gap: 10px;
-    column-gap: 15%;
-    width: 90%;
+    column-gap: 5%;
+    width: 100%;
 }
 
 .data_entry_button_grid {
@@ -198,6 +198,21 @@ body.white_background {
 #clinician_table_header {
     grid-column: 1/2;
     grid-row: 2/3;
+    width: 100%;
+}
+#clinician_table_search {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.search_bar{
+    display: flex;
+    align-items: center;
+}
+
+#bottom_box {
+    margin-bottom: 20px;
 }
 
 .outer_block_text_column#patient_dash_your_profile_box {
@@ -843,8 +858,9 @@ iframe {
 }
 
 #doctor_dash_profile_box>.light_theme_colour_background.four_corners {
-    width: 90%;
+    width: 100%;
 }
+
 
 .light_theme_colour_background#video {
     display: flex;
