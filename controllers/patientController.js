@@ -57,7 +57,6 @@ const getPatientDash = async(req, res, next) => {
     try {
         //Check login for deliverable 2
         if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
-        // console.log(req.params.userId);
         const patientData = await Patient.findById(PatientID).lean()
         patientData.data = patientData.data.reverse(); //Display newest to oldest
         let i;
@@ -241,34 +240,39 @@ const insertPatientData = async(req, res, next) => {
         let weight_comment = req.body.weight_comment
         let insulin_dose_comment = req.body.insulin_dose_comment
         let daily_steps_comment = req.body.daily_steps_comment
-            //Check current day's data from db, merge in new data where reuired
-            // IF current day not in DB:
-            //      Create new data object (as below)
-            // ELSE current day in DB
-            //      If data exists, overwrite that data point
-            //      Else, add data point (these are really the same actions...)
-            //      Update DB as to not duplicate the day of data (one entry ber 24h UCT+10:00 block)
+
         const patientData = await Patient.findById(PatientID).lean()
         let create_new_data_day = false;
+
         if (patientData.data.length > 0) {
             let latest_data = patientData.data[patientData.data.length - 1];
             if (isToday(latest_data.date)) {
-                // console.log("isToday");
-                // Patient.updateOne({ _id: PatientID }, { data: newdata }).exec();
                 //Create new data objects
                 let newdata = patientData.data
-                newdata[newdata.length - 1].glucose.value = blood_glucose_value
+                if (!isNaN(blood_glucose_value)) {
+                    newdata[newdata.length - 1].glucose.value = blood_glucose_value
+                    newdata[newdata.length - 1].glucose.is_recorded = true
+                }
                 newdata[newdata.length - 1].glucose.comment = blood_glucose_comment
 
-                newdata[newdata.length - 1].weight.value = weight_value
+                if (!isNaN(weight_value)) {
+                    newdata[newdata.length - 1].weight.value = weight_value
+                    newdata[newdata.length - 1].weight.is_recorded = true
+                }
                 newdata[newdata.length - 1].weight.comment = weight_comment
 
-                newdata[newdata.length - 1].insulin.value = insulin_dose_value
+                if (!isNaN(insulin_dose_value)) {
+                    newdata[newdata.length - 1].insulin.value = insulin_dose_value
+                    newdata[newdata.length - 1].insulin.is_recorded = true
+                }
                 newdata[newdata.length - 1].insulin.comment = insulin_dose_comment
 
-                newdata[newdata.length - 1].exercise.value = daily_steps_value
-                newdata[newdata.length - 1].exercise.comment = daily_steps_comment
-                await Patient.updateOne({ _id: PatientID }, { data: newdata }, { upsert: true }).exec();
+                if (!isNaN(daily_steps_value)) {
+                    newdata[newdata.length - 1].exercise.value = daily_steps_value
+                    newdata[newdata.length - 1].exercise.is_recorded = true
+                }
+                await Patient.updateOne({ _id: PatientID }, { data: newdata }).exec();
+                return res.redirect('/user/patient')
             } else {
                 //Data exists but is not from today, create new day
                 create_new_data_day = true
@@ -277,28 +281,61 @@ const insertPatientData = async(req, res, next) => {
             //No data exists, create new day
             create_new_data_day = true
         }
+
         if (create_new_data_day) {
-            //Create new data objects
-            glucose = new Value({
-                is_recorded: true,
-                value: blood_glucose_value,
-                comment: blood_glucose_comment,
-            })
-            weight = new Value({
-                is_recorded: true,
-                value: weight_value,
-                comment: weight_comment,
-            })
-            insulin = new Value({
-                is_recorded: true,
-                value: insulin_dose_value,
-                comment: insulin_dose_comment,
-            })
-            exercise = new Value({
-                is_recorded: true,
-                value: daily_steps_value,
-                comment: daily_steps_comment,
-            })
+            //Create new data objects, based on whether or not a value was provided
+            if (isNaN(blood_glucose_value)) {
+                glucose = new Value({
+                    is_recorded: false,
+                    value: undefined,
+                    comment: blood_glucose_comment,
+                })
+            } else {
+                glucose = new Value({
+                    is_recorded: true,
+                    value: blood_glucose_value,
+                    comment: blood_glucose_comment,
+                })
+            }
+            if (isNaN(weight_value)) {
+                weight = new Value({
+                    is_recorded: false,
+                    value: undefined,
+                    comment: weight_comment,
+                })
+            } else {
+                weight = new Value({
+                    is_recorded: true,
+                    value: weight_value,
+                    comment: weight_comment,
+                })
+            }
+            if (isNaN(insulin_dose_value)) {
+                insulin = new Value({
+                    is_recorded: false,
+                    value: undefined,
+                    comment: insulin_dose_comment,
+                })
+            } else {
+                insulin = new Value({
+                    is_recorded: true,
+                    value: insulin_dose_value,
+                    comment: insulin_dose_comment,
+                })
+            }
+            if (isNaN(daily_steps_value)) {
+                exercise = new Value({
+                    is_recorded: false,
+                    value: undefined,
+                    comment: daily_steps_comment,
+                })
+            } else {
+                exercise = new Value({
+                    is_recorded: true,
+                    value: daily_steps_value,
+                    comment: daily_steps_comment,
+                })
+            }
             newdata = new Data({
                 glucose: glucose,
                 weight: weight,
@@ -309,7 +346,6 @@ const insertPatientData = async(req, res, next) => {
                 $push: { data: newdata }
             }, { upsert: true }).exec();
         }
-
         return res.redirect('/user/patient')
     } catch (err) {
         return next(err)
