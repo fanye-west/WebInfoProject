@@ -205,6 +205,7 @@ body.white_background {
     justify-content: space-between;
     margin-left: 40px;
     margin-right: 40px;
+    column-gap: 20px;
 }
 .search_bar{
     display: flex;
@@ -913,6 +914,11 @@ iframe {
     color: #FFFFFF;
 }
 
+.default_button#data_button{
+    height: 40px;
+    border-radius: 50px;
+}
+
 .default_button.dark_blue_white_boarder {
     background-color: #0062A8;
     border: 2px solid #EAF6FF;
@@ -1026,27 +1032,6 @@ a.image_link {
     width: 100%;
     height: 50%;
 }
-
-.data_button {
-    align-items: right;
-    height: 50px;
-    width: 50%;
-    font-size: 12px;
-    border-radius: 10px;
-    font-size: 14pt;
-}
-
-.data_button#submit {
-    background-color: #0062A8;
-    color: #FFFFFF;
-}
-
-.data_button#cancel {
-    background-color: #A2A8B1;
-    color: #FFFFFF;
-    float: right;
-}
-
 
 /* icons */
 
@@ -1288,28 +1273,6 @@ p.grey {
         justify-content: center;
         justify-items: center;
         align-items: center;
-    }
-
-    .data_button {
-        height: 50%;
-        width: 80%;
-        font-size: 12px;
-        border-radius: 10px;
-        font-size: 7pt;
-        font-weight: bold;
-    }
-
-    .data_button#submit {
-        background-color: #0062A8;
-        color: #FFFFFF;
-    }
-
-    .data_button#cancel {
-        background-color: #808080;
-        color: #FFFFFF;
-        float: none;
-        position: relative;
-        top: 25px;
     }
 }
 
