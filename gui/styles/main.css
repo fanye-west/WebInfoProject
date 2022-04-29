@@ -847,6 +847,7 @@ iframe {
 
 .light_theme_colour_background#data_entry_page {
     border-radius: 15px 15px 15px 15px;
+    height: fit-content;
 }
 
 .light_theme_colour_background.four_corners {
@@ -916,7 +917,6 @@ iframe {
 
 .default_button#data_button{
     height: 40px;
-    border-radius: 50px;
 }
 
 .default_button.dark_blue_white_boarder {
