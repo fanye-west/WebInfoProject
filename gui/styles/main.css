@@ -210,7 +210,6 @@ body.white_background {
 .search_bar{
     display: flex;
     align-items: center;
-    column-gap: 5px;
 }
 
 #bottom_box {
