@@ -1,7 +1,6 @@
 //Functions for site navigation 
 
 function hamburgerExpander() {
-    console.log("EXPANDING");
     document.getElementById("navigation_hamburger_clicked_modal").style.display = "inline";
 }
 
@@ -31,4 +30,29 @@ function patientLogoutRedirect() {
 
 function clinicianLogoutRedirect() {
     window.location.href = '/user/clinician/logoutRedirect';
+}
+
+function toggleClincianCommentsView() {
+    console.log(window.location.href, window.location.pathname);
+    if (window.location.pathname == '/user/clinician') {
+        window.location.href = '/user/clinician/comments';
+    } else {
+        window.location.href = '/user/clinician';
+    }
+}
+
+function hideLeaderboardModal() {
+    let modal = document.getElementById("patient_leaderboard_modal");
+    modal.style.display = "none";
+}
+
+function showLeaderboardModal() {
+    document.getElementById("navigation_hamburger_clicked_modal").style.display = "none";
+    //Toggle state of leaderboard modal
+    let modal = document.getElementById("patient_leaderboard_modal");
+    if (modal.style.display == "inline") {
+        modal.style.display = "none"
+    } else {
+        modal.style.display = "inline"
+    }
 }
