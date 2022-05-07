@@ -843,6 +843,12 @@ iframe {
     align-items: flex-start;
 }
 
+.light_theme_colour_background.four_corners.align_upper.withmargins {
+    margin: 15px;
+    width: 90%;
+    height: 90%;
+}
+
 #doctor_dash_profile_box>.light_theme_colour_background.four_corners {
     width: 100%;
 }
@@ -1370,4 +1376,30 @@ p.grey {
     button {
         cursor: pointer;
     }
+}
+
+
+/* /////////////////////// MODALS /////////////////////// */
+
+.leaderboard_modal {
+    /* Hidden by default */
+    display: none;
+    position: fixed;
+    z-index: 10;
+    background-color: #0062a8;
+    /* background-color: #00ff15; */
+    left: 0px;
+    min-width: 300px;
+    max-width: 600px;
+    min-height: 300px;
+    border-radius: 0px 15px 15px 0px;
+    top: 15%;
+}
+
+.leaderboard_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
 }

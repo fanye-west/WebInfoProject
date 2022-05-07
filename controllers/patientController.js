@@ -73,8 +73,15 @@ const getPatientDash = async(req, res, next) => {
             if (patientData.data[i].exercise.value < patientData.exercise_bounds[0] || patientData.data[i].exercise.value > patientData.exercise_bounds[1]) {
                 patientData.data[i]["exercise_colour"] = warning_colour
             }
-
         }
+        leaderboard = [
+            { position: 1, name: "test testlong", engagement_rate: "99%" },
+            { position: 2, name: "test srt", engagement_rate: "99%" },
+            { position: 3, name: "longertest test", engagement_rate: "99%" },
+            { position: 4, name: "test test", engagement_rate: "99%" },
+            { position: 5, name: "test test", engagement_rate: "99%" }
+        ]
+        patientData["leaderboard"] = leaderboard
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
