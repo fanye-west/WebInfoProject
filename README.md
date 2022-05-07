@@ -65,7 +65,7 @@ README.md
 
 Tutorials missed are listed below:
 - Aditya Ajit: 0
-- Dash Park
+- Dash Park: 0
 - Evie Hadlow: 0
 - Fane Ye: 0
 - Grant Holtes: 0

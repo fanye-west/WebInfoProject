@@ -9,7 +9,7 @@ require('../models')
 var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "626a6639ce600ec9408c8abf" //SEEDED CLINICIAN: "626a6639ce600ec9408c8abf", manages patient "626a6639ce600ec9408c8abe"
+const ClinicianID = "6275ca17e6f40fa90c688bc5" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
 var VISITED_LOGIN = false
 
 //Utils
