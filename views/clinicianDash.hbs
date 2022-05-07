@@ -16,7 +16,7 @@
 
         <div id="add_new_patient_button">
             <button class="default_button faded_blue image_text_button" id="clinician_add_button">
-                <img src="../assets/icons/add_button.png" alt="+">
+                <img src="/assets/icons/add_button.png" alt="+">
                 <span>
                     <h3 class="data_button_heading">Add New Patient</h3>
                 </span>
@@ -24,10 +24,10 @@
         </div>
 
         <div id="comment_toggle_button">
-            <button class="default_button faded_blue image_text_button" id="clinician_comment_button">
-                <img src="../assets/icons/comment.png" alt="+">
+            <button class="default_button faded_blue image_text_button" id="clinician_comment_button" onclick="toggleClincianCommentsView()">
+                <img src="/assets/icons/comment.png" alt="+">
                 <span>
-                    <h3 class="data_button_heading clinician_page_button">View patient comments</h3>
+                    <h3 class="data_button_heading clinician_page_button">{{view_button_text}}</h3>
                 </span>
             </button>
         </div>
@@ -63,11 +63,21 @@
             <tbody>
                 {{#each patientData}}
                 <tr>
-                    <td>{{first_name}} {{last_name}}</td>
-                    <td bgcolor="{{glucose_colour}}">{{glucose_value}}</td>
-                    <td bgcolor="{{weight_colour}}">{{weight_value}}</td>
-                    <td bgcolor="{{insulin_colour}}">{{insulin_value}}</td>
-                    <td bgcolor="{{exercise_colour}}">{{exercise_value}}</td>
+                    <td>
+                        <a href="{{patient_link}}">{{first_name}} {{last_name}}</a>
+                    </td>
+                    <td bgcolor="{{glucose_colour}}">
+                        <a class="no_underline_link" href="{{patient_link}}">{{glucose_value}}</a>
+                    </td>
+                    <td bgcolor="{{weight_colour}}">
+                        <a class="no_underline_link" href="{{patient_link}}">{{weight_value}}</a>
+                    </td>
+                    <td bgcolor="{{insulin_colour}}">
+                        <a class="no_underline_link" href="{{patient_link}}">{{insulin_value}}</a>
+                    </td>
+                    <td bgcolor="{{exercise_colour}}">
+                        <a class="no_underline_link" href="{{patient_link}}">{{exercise_value}}</a>
+                    </td>
                 </tr>
                 {{/each}}
 
