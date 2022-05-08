@@ -73,11 +73,10 @@ for (p = 0; p < patient_IDs.length; p++) {
         })
         data.push(newdata)
     }
-    console.log(data)
     Patient.updateOne({ _id: id }, { data: data }).exec();
     LeaderboardEntry.updateOne({ patient_id: id }, {
         patient_id: id,
-        engagement_rate: 100,
+        engagement_rate: getRandomInt(30) + 70,
         username: patient_first_names[p][0] + patient_last_names[p],
     }, { upsert: true }).exec();
 }
