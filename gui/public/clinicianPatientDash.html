@@ -1,0 +1,250 @@
+@@ -1,248 +0,0 @@
+<!-- 
+################################################################
+THIS PAGE SHOULD BE REMOVED AND ALL FUTURE DEVELPMENT COMPLETED ON Layouts/PatientDash.hbs
+################################################################ -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <script src="../scripts/navigation.js"></script>
+</head>
+
+<body class="light_theme_colour_background">
+    <header class="navigation">
+        <!-- Navigation bar -->
+        <div class="row_flex_spaced">
+            <div class="login_row_flex_header">
+                <div class="nav_icon">
+                    <button class="icon_button">
+                        <img class="icon" src="../assets/icons/logo_sml.png">
+                    </button>
+                </div>
+                <h1 class="navigation_title">Diabetes at Home</h1>
+            </div>
+            <div class="login_row_flex_header" id="navigation_buttons">
+                <a href="../index.html" class="image_link"><button class="home_button dark_blue_white_boarder"><img
+                            class="icon" src="../assets/icons/home.png"></button></a>
+                <a href="../index.html"><button class="default_button dark_blue_white_boarder">Logout</button></a>
+            </div>
+            <div class="nav_icon" id="navigation_hamburger">
+                <button class="icon_button" onclick="hamburgerExpander()">
+                    <img class="icon" src="../assets/icons/hamburger_menu_icon.png">
+                </button>
+            </div>
+        </div>
+        <!-- Expanded hamburger modal -->
+        <div class="navigation_hamburger_expanded" id="navigation_hamburger_clicked_modal">
+            <div class="row_flex_spaced">
+                <div class="nav_icon">
+                    <button class="icon_button">
+                        <img class="icon" src="../assets/icons/logo_sml.png">
+                    </button>
+                </div>
+                <div class="nav_icon" id="navigation_hamburger">
+                    <button class="icon_button" onclick="hamburgerHider()">
+                        <img class="icon" src="../assets/icons/hamburger_menu_icon.png">
+                    </button>
+                </div>
+            </div>
+            <div class="navigation_hamburger_button_list">
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Home</button></a>
+                </div>
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main body contents -->
+    <div class="main_page_body_under_navigation dashboard_page">
+        <div class="clinician_patient_grid">
+            <div class="outer_block_text_column" id="doctor_patient_profile_box">
+                <div class="light_theme_colour_background four_corners centred_elements">
+                    <div class="inner_block_text_column four_corners" id="inner_block_clinician_page">
+                        <div class="profile_header">
+                            <h3 class="centered_heading">Patient: John Doe</h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="outer_block_text_column" id="doctor_patient_notes">
+                <div class="light_theme_colour_background four_corners align_upper">
+                    <div class="inner_block_text_column four_corners">
+                        <div class="profile_header">
+                            <h3 class="centered_heading">Patient Notes</h3>
+                            <span> <button class="default_button dark_blue small_button">View and add
+                                    data</button></span>
+                        </div>
+
+                        <div id="patient_dash_doctor_message_box">
+                            <p id="patient_dash_doctor_message_text">
+                                John needs to be watched carefully as his family
+                                has a history of type 2 diabetes and other problems</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="outer_block_text_column" id="doctor_dash_ranges">
+                <div class="light_theme_colour_background four_corners align_upper">
+                    <div class="inner_block_text_column four_corners">
+                        <div class="profile_header">
+                            <h3 class="centered_heading">Your set ranges</h3>
+                            <span> <button class="default_button dark_blue small_button">Submit</button></span>
+                        </div>
+                        <ul class="patient_dash_list">
+                            <li class="list_elements">
+
+                                <span class="range_selector_checkbox">
+                                    <input type="checkbox" id="blood_glucose_checkbox" name="blood_glucose">
+                                    <b> Blood Glucose (nmol/L):</b></span>
+                                <span class="ranges_data_box entry_form">
+                                    <span><input class="ranges_input" type="text"></span>
+                                    <span><input class="ranges_input" type="text"></span>
+                                </span>
+                            </li>
+
+                            <li class="list_elements">
+                                <span class="range_selector_checkbox">
+                                    <input type="checkbox" id="weight_checkbox" name="weight">
+                                    <b> Weight (kg):</b></span>
+                                <span class="ranges_data_box entry_form">
+                                    <span><input class="ranges_input" type="text"></span>
+                                    <span><input class="ranges_input" type="text"></span>
+                                </span>
+                            </li>
+
+                            <li class="list_elements">
+                                <span class="range_selector_checkbox">
+                                    <input type="checkbox" id="insulin_checkbox" name="insulin">
+                                    <b> Insulin Doses:</b></span>
+                                <span class="ranges_data_box entry_form">
+                                    <span><input class="ranges_input" type="text"></span>
+                                    <span><input class="ranges_input" type="text"></span>
+                                </span>
+                            </li>
+
+                            <li class="list_elements">
+                                <span class="range_selector_checkbox">
+                                    <input type="checkbox" id="steps_checkbox" name="steps">
+                                    <b> Steps:</b></span>
+                                <span class="ranges_data_box entry_form">
+                                    <span><input class="ranges_input" type="text"></span>
+                                    <span><input class="ranges_input" type="text"></span>
+                                </span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="outer_block_text_column" id="doctor_patient_message">
+                <div class="light_theme_colour_background four_corners align_upper">
+                    <div class="inner_block_text_column four_corners">
+                        <div class="profile_header">
+                            <h3 class="centered_heading">Send John a support message</h3>
+                            <span> <button class="default_button dark_blue small_button">Submit</button></span>
+                        </div>
+                        <div id="patient_dash_doctor_message_box">
+                            <p id="patient_dash_doctor_message_text">
+                                testmessage</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="patient_dash_data_table table_font_size">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Blood Glucose <br>(nmol/L)</th>
+                        <th scope="col">Weight <br>(kg)</th>
+                        <th scope="col">Insulin Doses</th>
+                        <th scope="col">Steps</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>13/3/22</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>13/3/22</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>13/3/22</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>13/3/22</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>13/3/22</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+                    <tr>
+                        <td>13/3/22</td>
+                        <td>4.4</td>
+                        <td>69</td>
+                        <td>2</td>
+                        <td>1700</td>
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+        </div>
+
+
+
+</body>
+
+
+
+
+
+
+</html>

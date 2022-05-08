@@ -133,6 +133,17 @@ body.white_background {
     row-gap: 20px;
 }
 
+.clinician_patient_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    grid-template-rows: auto;
+}
+
+
 .patient_data_grid {
     width: 100%;
     height: 75%;
@@ -181,12 +192,39 @@ body.white_background {
     justify-content: flex-start;
 }
 
-#add_new_patient_button {
+#doctor_patient_profile_box {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: flex-start;
+    /* height: 70%; */
+}
+
+#doctor_patient_notes {
     grid-column: 2/3;
     grid-row: 1/2;
     display: flex;
+    justify-content: flex-start;
+    /* height: 70%; */
+
+}
+
+
+#doctor_patient_message {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
     justify-content: flex-end;
 }
+
+#doctor_dash_ranges {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
 
 #comment_toggle_button {
     grid-column: 2/3;
@@ -558,6 +596,22 @@ ul.patient_dash_list {
     display: flex;
     justify-content: center;
     column-gap: 10px;
+}
+
+.ranges_data_box.entry_form>span {
+    border-style: none;
+}
+    
+
+.ranges_input {
+    width: 100%;
+}
+
+.range_selector_checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
 }
 
 .ranges_data_element {
