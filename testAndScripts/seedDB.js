@@ -2,6 +2,7 @@ const Patient = require('../models/patient');
 const Clinician = require('../models/clinician');
 const Value = require('../models/value');
 const Data = require('../models/data');
+const LeaderboardEntry = require('../models/leaderboardentry.js');
 require('../models')
 
 function getRandomInt(max) {
@@ -78,12 +79,20 @@ for (p = 0; p < patient_first_names.length; p++) {
             weight: weight,
             insulin: insulin,
             exercise: exercise,
-            date: date,
+            num_required: 2,
+            num_required_provided: 2,
+            date: date
         })
         data.push(newdata)
     }
     newPatient.data = data
     newPatient.save() //Add to DB
+
+    LeaderboardEntry.updateOne({ patient_id: patientID }, {
+        patient_id: patientID,
+        engagement_rate: 100,
+        username: newPatient.user_name
+    }, { upsert: true }).exec();
 }
 
 console.log("new patients created: ", ClinicianPatientIDs)

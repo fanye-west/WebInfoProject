@@ -3,6 +3,7 @@ const res = require('express/lib/response');
 const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
+const LeaderboardEntry = require('../models/leaderboardentry.js');
 require('../models')
 
 var green = "background-color:#9AD3A5";
@@ -281,8 +282,14 @@ const insertPatientData = async(req, res, next) => {
                     newdata[newdata.length - 1].exercise.value = daily_steps_value
                     newdata[newdata.length - 1].exercise.is_recorded = true
                 }
+                newdata[newdata.length - 1].exercise.comment = daily_steps_comment
+
+                num_required = patientData.glucose_required + patientData.weight_required + patientData.insulin_required + patientData.exercise_required;
+                num_required_provided = (patientData.glucose_required && !isNaN(blood_glucose_value)) + (patientData.weight_required && !isNaN(weight_value)) + (patientData.insulin_required && !isNaN(insulin_dose_value)) + (patientData.exercise_required && !isNaN(daily_steps_value));
+                newdata[newdata.length - 1].num_required = num_required
+                newdata[newdata.length - 1].num_required_provided = num_required_provided
+
                 await Patient.updateOne({ _id: PatientID }, { data: newdata }).exec();
-                return res.redirect('/user/patient')
             } else {
                 //Data exists but is not from today, create new day
                 create_new_data_day = true
@@ -346,16 +353,45 @@ const insertPatientData = async(req, res, next) => {
                     comment: daily_steps_comment,
                 })
             }
+            num_required = patientData.glucose_required + patientData.weight_required + patientData.insulin_required + patientData.exercise_required;
+            num_required_provided = (patientData.glucose_required && !isNaN(blood_glucose_value)) + (patientData.weight_required && !isNaN(weight_value)) + (patientData.insulin_required && !isNaN(insulin_dose_value)) + (patientData.exercise_required && !isNaN(daily_steps_value));
             newdata = new Data({
                 glucose: glucose,
                 weight: weight,
                 insulin: insulin,
-                exercise: exercise
+                exercise: exercise,
+                num_required: num_required,
+                num_required_provided: num_required_provided
             })
             await Patient.updateOne({ _id: PatientID }, {
                 $push: { data: newdata }
             }, { upsert: true }).exec();
         }
+        //Update engagement rate: "Engagement rate is the percentage of data entries 
+        //that were carried out as requested by the patient’s clinician."
+        //1) count number of missed records in days where at least 1 data point was provided
+        let total_required = 0;
+        let total_required_provided = 0;
+        for (let i = 0; i < patientData.data.length; i++) {
+            total_required = total_required + patientData.data[i].num_required;
+            total_required_provided = total_required_provided + patientData.data[i].num_required_provided;
+        }
+        //2) count number of missed days
+        let first_day = patientData.data[0].date;
+        let today = new Date();
+        let numdays = Math.ceil((today - first_day) / (1000 * 3600 * 24))
+        let missed_days = numdays - patientData.data.length;
+        num_required = patientData.glucose_required + patientData.weight_required + patientData.insulin_required + patientData.exercise_required;
+        total_required = total_required + (missed_days * num_required); //Extrapolate based on today's required time series
+        console.log(total_required, total_required_provided, numdays, missed_days, missed_days * num_required);
+        //Update engagement_rate
+        engagement_rate_calculated = 100.0 * total_required_provided / total_required;
+        LeaderboardEntry.updateOne({ patient_id: PatientID }, {
+            patient_id: PatientID,
+            engagement_rate: engagement_rate_calculated,
+            username: patientData.user_name
+        }, { upsert: true }).exec();
+
         return res.redirect('/user/patient')
     } catch (err) {
         return next(err)

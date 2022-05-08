@@ -6,6 +6,8 @@ const dataSchema = new mongoose.Schema({
     weight: valueSchema,
     insulin: valueSchema,
     exercise: valueSchema,
+    num_required: Number,
+    num_required_provided: Number,
     date: { type: Date, default: Date.now }
 })
 
