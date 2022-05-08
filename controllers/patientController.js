@@ -75,14 +75,15 @@ const getPatientDash = async(req, res, next) => {
                 patientData.data[i]["exercise_colour"] = warning_colour
             }
         }
-        leaderboard = [
-            { position: 1, name: "test testlong", engagement_rate: "99%" },
-            { position: 2, name: "test srt", engagement_rate: "99%" },
-            { position: 3, name: "longertest test", engagement_rate: "99%" },
-            { position: 4, name: "test test", engagement_rate: "99%" },
-            { position: 5, name: "test test", engagement_rate: "99%" }
-        ]
-        patientData["leaderboard"] = leaderboard
+        //Get leaderboard
+        console.log("leaderboard")
+        const leaderboardData = await LeaderboardEntry.find().sort({ engagement_rate: -1 }).limit(5).lean();
+        leaderboard = []
+        for (i = 0; i < 5; i++) {
+            leaderboard.push({ position: i + 1, name: leaderboardData[i].username, engagement_rate: leaderboardData[i].engagement_rate })
+        }
+        patientData["leaderboard"] = leaderboard;
+        //Render page
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
         return next(err)
