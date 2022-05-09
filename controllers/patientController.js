@@ -81,7 +81,7 @@ const getPatientDash = async(req, res, next) => {
         const leaderboardData = await LeaderboardEntry.find().sort({ engagement_rate: -1 }).limit(5).lean();
         leaderboard = []
         for (i = 0; i < 5; i++) {
-            leaderboard.push({ position: i + 1, name: leaderboardData[i].username, engagement_rate: leaderboardData[i].engagement_rate })
+            leaderboard.push({ position: i + 1, name: leaderboardData[i].username, engagement_rate: Math.round(leaderboardData[i].engagement_rate) + "%" })
         }
         patientData["leaderboard"] = leaderboard;
         //Render page
@@ -385,7 +385,6 @@ const insertPatientData = async(req, res, next) => {
         let missed_days = numdays - patientData.data.length;
         num_required = patientData.glucose_required + patientData.weight_required + patientData.insulin_required + patientData.exercise_required;
         total_required = total_required + (missed_days * num_required); //Extrapolate based on today's required time series
-        console.log(total_required, total_required_provided, numdays, missed_days, missed_days * num_required);
         //Update engagement_rate
         engagement_rate_calculated = 100.0 * total_required_provided / total_required;
         LeaderboardEntry.updateOne({ patient_id: PatientID }, {
