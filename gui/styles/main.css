@@ -470,6 +470,14 @@ table {
     margin-right: auto;
     text-align: center;
 }
+#clinician_notes_table thead tr th:nth-child(1) {
+    width: 100px;
+}
+#clinician_notes_table thead tr th:nth-child(2) {
+    width: 400px;
+}
+
+
 
 thead {
     background: #0062a8;
@@ -924,10 +932,30 @@ iframe {
     width: 100%;
 }
 
+#note_page {
+    width: 80%;
+    height: 90%;
+    flex-direction: column;
+    align-content: flex-start;
+    padding-left:100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.notes_table {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+#patient_note_heading {
+    
+}
+
 .light_theme_colour_background#video {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .dark_theme_colour_background {

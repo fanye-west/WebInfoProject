@@ -1,0 +1,131 @@
+@@ -1,248 +0,0 @@
+<!-- 
+################################################################
+THIS PAGE SHOULD BE REMOVED AND ALL FUTURE DEVELPMENT COMPLETED ON Layouts/PatientDash.hbs
+################################################################ -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <script src="../scripts/navigation.js"></script>
+</head>
+
+<body class="light_theme_colour_background">
+    <header class="navigation">
+        <!-- Navigation bar -->
+        <div class="row_flex_spaced">
+            <div class="login_row_flex_header">
+                <div class="nav_icon">
+                    <button class="icon_button">
+                        <img class="icon" src="../assets/icons/logo_sml.png">
+                    </button>
+                </div>
+                <h1 class="navigation_title">Diabetes at Home</h1>
+            </div>
+            <div class="login_row_flex_header" id="navigation_buttons">
+                <a href="../index.html" class="image_link"><button class="home_button dark_blue_white_boarder"><img
+                            class="icon" src="../assets/icons/home.png"></button></a>
+                <a href="../index.html"><button class="default_button dark_blue_white_boarder">Logout</button></a>
+            </div>
+            <div class="nav_icon" id="navigation_hamburger">
+                <button class="icon_button" onclick="hamburgerExpander()">
+                    <img class="icon" src="../assets/icons/hamburger_menu_icon.png">
+                </button>
+            </div>
+        </div>
+        <!-- Expanded hamburger modal -->
+        <div class="navigation_hamburger_expanded" id="navigation_hamburger_clicked_modal">
+            <div class="row_flex_spaced">
+                <div class="nav_icon">
+                    <button class="icon_button">
+                        <img class="icon" src="../assets/icons/logo_sml.png">
+                    </button>
+                </div>
+                <div class="nav_icon" id="navigation_hamburger">
+                    <button class="icon_button" onclick="hamburgerHider()">
+                        <img class="icon" src="../assets/icons/hamburger_menu_icon.png">
+                    </button>
+                </div>
+            </div>
+            <div class="navigation_hamburger_button_list">
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Home</button></a>
+                </div>
+                <div class="button_margin_wrapper">
+                    <a href="../index.html"><button class="default_button dark_blue_white_boarder">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main body contents -->
+    <div class="main_page_body_under_navigation">
+        <div class="light_theme_colour_background four_corners" id="note_page">
+            <h1>Patient Notes</h1>
+
+            <div class="add_note_form">
+                <h3>Add new note:</h3>
+
+            </div>
+
+            <div class="notes_table">
+                <h3>Past Notes:</h3>
+                <table id="clinician_notes_table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Time</th>
+                            <th scope="col">Note</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>13/3/22</td>
+                            <td>4.4</td>
+
+                        </tr>
+                        <tr>
+                            <td>13/3/22</td>
+                            <td>4.4</td>
+
+                        </tr>
+                        <tr>
+                            <td>13/3/22</td>
+                            <td>4.4</td>
+ 
+                        </tr>
+                        <tr>
+                            <td>13/3/22</td>
+                            <td>4.4</td>
+
+                        </tr>
+                      
+
+                    </tbody>
+
+
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+</body>
+
+
+
+
+
+
+</html>
