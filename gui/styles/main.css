@@ -143,7 +143,6 @@ body.white_background {
     grid-template-rows: auto;
 }
 
-
 .patient_data_grid {
     width: 100%;
     height: 75%;
@@ -222,9 +221,7 @@ body.white_background {
     display: flex;
     justify-content: flex-start;
     /* height: 70%; */
-
 }
-
 
 #doctor_patient_message {
     grid-column: 1/2;
@@ -239,8 +236,6 @@ body.white_background {
     display: flex;
     justify-content: flex-end;
 }
-
-
 
 #comment_toggle_button {
     grid-column: 2/3;
@@ -486,14 +481,14 @@ table {
     margin-right: auto;
     text-align: center;
 }
+
 #clinician_notes_table thead tr th:nth-child(1) {
     width: 100px;
 }
+
 #clinician_notes_table thead tr th:nth-child(2) {
     width: 400px;
 }
-
-
 
 thead {
     background: #0062a8;
@@ -625,7 +620,6 @@ ul.patient_dash_list {
 .ranges_data_box.entry_form>span {
     border-style: none;
 }
-    
 
 .ranges_input {
     width: 100%;
@@ -635,7 +629,6 @@ ul.patient_dash_list {
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
 
 .ranges_data_element {
@@ -783,7 +776,7 @@ iframe {
     min-width: none;
 }
 
-.basic_column.wide{
+.basic_column.wide {
     max-width: none;
 }
 
@@ -793,7 +786,7 @@ iframe {
     margin: 1.5rem;
 }
 
-.center_text_column.narrow{
+.center_text_column.narrow {
     padding: 2px;
 }
 
@@ -815,9 +808,10 @@ iframe {
     padding: 1rem;
 }
 
-.input_field.wide{
+.input_field.wide {
     height: 80px;
 }
+
 
 /* text boxes */
 
@@ -834,7 +828,7 @@ iframe {
     height: 200px;
 }
 
-.rounded_box_half_width.wide{
+.rounded_box_half_width.wide {
     width: 45%;
     height: 85%;
     background-color: #EAF6FF;
@@ -957,7 +951,7 @@ iframe {
     height: 90%;
     flex-direction: column;
     align-content: flex-start;
-    padding-left:100px;
+    padding-left: 100px;
     padding-right: 100px;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -969,9 +963,7 @@ iframe {
     row-gap: 15px;
 }
 
-#patient_note_heading {
-    
-}
+#patient_note_heading {}
 
 .light_theme_colour_background#video {
     display: flex;
@@ -1075,6 +1067,7 @@ iframe {
 .icon_button {
     border: none;
     background-color: transparent;
+    color: white;
     padding: 0px;
 }
 
@@ -1193,6 +1186,13 @@ h3 {
     font-size: 23px;
     margin-bottom: 0px;
     font-weight: bold;
+}
+
+h3.white {
+    font-size: 23px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    color: white;
 }
 
 p {
@@ -1500,22 +1500,32 @@ p.grey {
 
 /* /////////////////////// MODALS /////////////////////// */
 
+.leaderboard_layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
 .leaderboard_modal {
     /* Hidden by default */
     display: none;
     position: fixed;
     z-index: 10;
     background-color: #0062a8;
-    /* background-color: #00ff15; */
-    left: 0px;
+    width: 30%;
     min-width: 300px;
-    max-width: 600px;
-    min-height: 300px;
-    border-radius: 0px 15px 15px 0px;
+    max-width: 450px;
+    border-radius: 15px 15px 15px 15px;
     top: 15%;
+    box-shadow: 5px 5px #003d69;
+    box-shadow: 5px 5px rgba(0, 62, 105, 0.5);
 }
 
 .leaderboard_row {
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

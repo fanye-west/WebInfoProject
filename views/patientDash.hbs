@@ -8,8 +8,8 @@
                     <!-- <h3>Your Profile</h3> -->
                     <ul class="patient_dash_list">
                         <li class="list_elements profile_header">
-                             <h2 class="top_heading">Your Profile</h2>
-                            <div class="small_button_position"> <button class="default_button dark_blue small_button">Change Password</button></span>
+                            <h2 class="top_heading">Your Profile</h2>
+                            <div class="small_button_position"> <button class="default_button dark_blue small_button">Change Password</button></div>
                         </li>
                         <li class="list_elements">
                             <span> <b>Name:</b></span>
@@ -33,10 +33,15 @@
                                 {{!-- <img id="badge_icon" src="../assets/icons/silver_medal.png" alt="silver medal"
                                     width="20" height="27"> --}}
                             </span>
+                            
                         </li>
-                        <!-- <li style="float:right;">
-							<button class="change_password_button">Change Password</button>
-						</li> -->
+
+                        <li class="list_elements">
+                            <span> </span>
+                            <span>
+                                <div class="small_button_position"> <button class="default_button dark_blue small_button" onclick="showLeaderboardModal()">View Leaderboard</button> </div>
+                            </span>
+                        </li>        
                     </ul>
                 </div>
             </div>
@@ -133,28 +138,27 @@
     </div>
 </div>
 
-<div class="leaderboard_modal" id="patient_leaderboard_modal">
-    <div class="inner_block_text_column four_corners">
-        <button class="default_button dark_blue" type="button" onclick="hideLeaderboardModal()">
-            <div class="leaderboard_row">
-                <h3>Leaderboard</h3>
-                <h3>╳</h3>
+<div class="leaderboard_layout">
+    <div class="leaderboard_modal" id="patient_leaderboard_modal">
+        <div class="leaderboard_row">
+                <h3 class="white">Leaderboard</h3>
+                <button class="icon_button" type="button" onclick="hideLeaderboardModal()">
+                    <h3>╳</h3>
+                </button>
             </div>
-        </button>
-    </div>
-    <div class="light_theme_colour_background four_corners align_upper withmargins">
-        <div class="inner_block_text_column four_corners">
-            <b>Well done to the top 5 users!</b>
-            <br>
-            {{#each leaderboard}}
-            <div class="leaderboard_row">
-                <div class="leaderboard_item">{{position}}</div>
-                <div class="leaderboard_item">{{name}}</div>
-                <div class="leaderboard_item">{{engagement_rate}}</div>
+        <div class="light_theme_colour_background four_corners align_upper withmargins">
+            <div class="inner_block_text_column four_corners">
+                <b>Well done to the top 5 users!</b>
+                <br>
+                {{#each leaderboard}}
+                <div class="leaderboard_row">
+                    <div class="leaderboard_item">{{position}}</div>
+                    <div class="leaderboard_item">{{name}}</div>
+                    <div class="leaderboard_item">{{engagement_rate}}</div>
+                </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
     </div>
 </div>
-
 {{/with}}
