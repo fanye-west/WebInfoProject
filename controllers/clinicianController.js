@@ -25,6 +25,30 @@ function isMissing(data) {
     return data == "" || data == undefined
 }
 
+function boolToChecked(bool) {
+    if (bool) {
+        return "checked";
+    } else {
+        return "";
+    }
+}
+
+function checkedToBool(checked) {
+    if (checked == "on") {
+        return true;
+    }
+    return false;
+}
+
+function isValidBounds(lower, upper) {
+    //Check that inputs are numbers
+    if (isNaN(lower)) { return false; }
+    if (isNaN(upper)) { return false; }
+    //Check that lower <= upper
+    if (lower > upper) { return false; }
+    return true;
+}
+
 // Main functions
 
 const getClinicianLogin = async(req, res, next) => {
@@ -142,23 +166,95 @@ const getClinicianPatientDash = async(req, res, next) => {
     try {
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         let patient_id = req.query.id;
+        let error = req.query.error;
         message = "Stand in message: "
             //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         if (clinicianData.patients.includes(patient_id)) {
             patientData = await Patient.findById(patient_id).lean()
-            console.log(patientData)
-            message = message + "Patient is managed by Clinician. Patient: " + patientData.first_name
+                //format required time series data
+            patientData.glucose_checked = boolToChecked(patientData.glucose_required);
+            patientData.weight_checked = boolToChecked(patientData.weight_required);
+            patientData.insulin_checked = boolToChecked(patientData.insulin_required);
+            patientData.exercise_checked = boolToChecked(patientData.exercise_required);
+            // format note
+            patientData.latest_patient_note = "";
+            if (patientData.notes.length > 0) {
+                patientData.latest_patient_note = patientData.notes[-1].text;
+            }
+            //format warning colours
+            for (i = 0; i < patientData.data.length; i++) {
+                if (patientData.data[i].glucose.value < patientData.glucose_bounds[0] || patientData.data[i].glucose.value > patientData.glucose_bounds[1]) {
+                    patientData.data[i]["glucose_colour"] = warning_colour;
+                }
+                if (patientData.data[i].weight.value < patientData.weight_bounds[0] || patientData.data[i].weight.value > patientData.weight_bounds[1]) {
+                    patientData.data[i]["weight_colour"] = warning_colour;
+                }
+                if (patientData.data[i].insulin.value < patientData.insulin_bounds[0] || patientData.data[i].insulin.value > patientData.insulin_bounds[1]) {
+                    patientData.data[i]["insulin_colour"] = warning_colour;
+                }
+                if (patientData.data[i].exercise.value < patientData.exercise_bounds[0] || patientData.data[i].exercise.value > patientData.exercise_bounds[1]) {
+                    patientData.data[i]["exercise_colour"] = warning_colour;
+                }
+            }
+            //format Errors
+            if (error == "invalidbounds") { patientData.updatePatientDataSeriesErrorMessage = "Invalid bounds provided"; }
+            patientData.idqueryparam = "?id=" + patient_id;
+            return res.render('clinicianPatientDash', { layout: 'clinicianLayout', patient: patientData });
         } else {
             message = message + "Patient is NOT managed by Clinician. Patient ID: " + patient_id
+            return res.send(message)
         }
-        return res.send(message)
     } catch (err) {
         return next(err)
     }
 }
 
+//Post endpoints
+const updatePatientSupportMessage = async(req, res, next) => {
+    //Check that patient belongs to clinician
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
+    let patient_id = req.query.id;
+    if (clinicianData.patients.includes(patient_id)) {
+        let message = req.body.support_message;
+        Patient.updateOne({ _id: patient_id }, {
+            $push: { messages: message }
+        }).exec();
+    }
+    return res.redirect("/user/clinician/patientdetails?id=" + patient_id)
+}
 
+const updatePatientDataSeries = async(req, res, next) => {
+    //Check that patient belongs to clinician
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
+    let patient_id = req.query.id;
+    let error = "none";
+    if (clinicianData.patients.includes(patient_id)) {
+        let update_fields = {
+            glucose_required: checkedToBool(req.body.glucose_required),
+            weight_required: checkedToBool(req.body.weight_required),
+            insulin_required: checkedToBool(req.body.insulin_required),
+            exercise_required: checkedToBool(req.body.exercise_required),
+
+        };
+
+        let glucose_bounds = [parseFloat(req.body.glucose_bounds_lower), parseFloat(req.body.glucose_bounds_upper)]
+        let weight_bounds = [parseFloat(req.body.weight_bounds_lower), parseFloat(req.body.weight_bounds_upper)]
+        let insulin_bounds = [parseFloat(req.body.insulin_bounds_lower), parseFloat(req.body.insulin_bounds_upper)]
+        let exercise_bounds = [parseFloat(req.body.exercise_bounds_lower), parseFloat(req.body.exercise_bounds_upper)]
+
+        //Data Validation
+
+        if (isValidBounds(glucose_bounds[0], glucose_bounds[1])) { update_fields.glucose_bounds = glucose_bounds; } else { error = "invalidbounds"; }
+        if (isValidBounds(weight_bounds[0], weight_bounds[1])) { update_fields.weight_bounds = weight_bounds; } else { error = "invalidbounds"; }
+        if (isValidBounds(insulin_bounds[0], insulin_bounds[1])) { update_fields.insulin_bounds = insulin_bounds; } else { error = "invalidbounds"; }
+        if (isValidBounds(exercise_bounds[0], exercise_bounds[1])) { update_fields.exercise_bounds = exercise_bounds; } else { error = "invalidbounds"; }
+
+        //Update patient
+        Patient.updateOne({ _id: patient_id }, update_fields).exec();
+    }
+    return res.redirect("/user/clinician/patientdetails?id=" + patient_id + "&error=" + error)
+}
 
 module.exports = {
     getClinicianDash,
@@ -166,5 +262,7 @@ module.exports = {
     clinicianLoginRedirect,
     clinicianLogoutRedirect,
     getClinicianDashWithComments,
-    getClinicianPatientDash
+    getClinicianPatientDash,
+    updatePatientSupportMessage,
+    updatePatientDataSeries
 }

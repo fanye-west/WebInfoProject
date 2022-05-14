@@ -1,0 +1,34 @@
+<div class="main_page_body_under_navigation" id="patient_data_entry">
+    <div class="outer_block_text_column" id="patient_data_entry_box">
+        <div class="light_theme_colour_background" id="data_entry_page">
+
+            <h2 class="data_entry_heading">Add a new patient</h2>
+
+            <div class="data_entry_format_grid">
+                <div class="patient_entry_grid">
+                    <div class="patient_entry_minor_grid">
+
+                        <!--> Need to add 2 row per grid then add section per individual bi<-->
+
+                    </div>
+
+                    <label for="new_patient_bio"></label>
+                    <input class="data_comment" id ="new_patient" type="text" name="new_patient_bio"></input>
+
+                </div>
+
+                <div class="data_entry_button_grid">
+                    <div class="outer_block_text_column" id="cancel_button">
+                        {{!-- Note that type="button" is required as the default behavior for a button is to submit the form, not what we want! --}}
+                        <button class="default_button grey" id="data_button" type="button"  onclick="patientRedirectHomeNoAction()">Cancel</button>
+                    </div>
+                    
+                    <div class="outer_block_text_column" id="submit_button">
+                        <input type="submit" value="Submit" class="default_button dark_blue" id="data_button">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

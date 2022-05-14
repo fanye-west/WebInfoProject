@@ -1,0 +1,140 @@
+<!-- main body contents -->
+{{#with patient}}
+<div class="main_page_body_under_navigation dashboard_page">
+	<div class="clinician_patient_grid">
+		<div class="outer_block_text_column" id="doctor_patient_profile_box">
+			<div class="light_theme_colour_background four_corners centred_elements">
+				<div class="inner_block_text_column four_corners" id="inner_block_clinician_page">
+					<div class="profile_header">
+						<h3 class="centered_heading">Patient: {{first_name}} {{last_name}}</h3>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="outer_block_text_column" id="doctor_patient_notes">
+			<div class="light_theme_colour_background four_corners align_upper">
+				<div class="inner_block_text_column four_corners">
+					<div class="profile_header">
+						<h3 class="centered_heading">Patient Notes</h3>
+						<span> <button class="default_button dark_blue small_button">View and add
+								data</button></span>
+					</div>
+
+					<div id="patient_dash_doctor_message_box">
+						<p id="patient_dash_doctor_message_text">
+							{{latest_patient_note}}</p>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="outer_block_text_column" id="doctor_dash_ranges">
+			<div class="light_theme_colour_background four_corners align_upper">
+				<div class="inner_block_text_column four_corners">
+					<form action='/user/clinician/updatePatientDataSeries{{idqueryparam}}'' method='post'>
+						<div class="profile_header">
+							<h3 class="centered_heading">{{first_name}}'s required data series and safe bounds</h3>
+							<span> <input type="submit" value="Submit"
+									class="default_button dark_blue small_button"></span>
+						</div>
+						<ul class="patient_dash_list">
+							<li class="list_elements">
+
+								<span class="range_selector_checkbox">
+									<input type="checkbox" id="blood_glucose_checkbox" name="glucose_required" {{glucose_checked}}>
+									<b> Blood Glucose (nmol/L):</b></span>
+								<span class="ranges_data_box entry_form">
+									<span><input class="ranges_input" type="text" name="glucose_bounds_lower" value="{{glucose_bounds.[0]}}"></span>
+									<span><input class="ranges_input" type="text" name="glucose_bounds_upper" value="{{glucose_bounds.[1]}}"></span>
+								</span>
+							</li>
+
+							<li class="list_elements">
+								<span class="range_selector_checkbox">
+									<input type="checkbox" id="weight_checkbox" name="weight_required" {{weight_checked}}>
+									<b> Weight (kg):</b></span>
+								<span class="ranges_data_box entry_form">
+									<span><input class="ranges_input" type="text" name="weight_bounds_lower" value="{{weight_bounds.[0]}}"></span>
+									<span><input class="ranges_input" type="text" name="weight_bounds_upper" value="{{weight_bounds.[1]}}"></span>
+								</span>
+							</li>
+
+							<li class="list_elements">
+								<span class="range_selector_checkbox">
+									<input type="checkbox" id="insulin_checkbox" name="insulin_required" {{insulin_checked}}>
+									<b> Insulin Doses:</b></span>
+								<span class="ranges_data_box entry_form">
+									<span><input class="ranges_input" type="text" name="insulin_bounds_lower" value="{{insulin_bounds.[0]}}"></span>
+									<span><input class="ranges_input" type="text" name="insulin_bounds_upper" value="{{insulin_bounds.[1]}}"></span>
+								</span>
+							</li>
+
+							<li class="list_elements">
+								<span class="range_selector_checkbox">
+									<input type="checkbox" id="steps_checkbox" name="exercise_required" {{exercise_checked}}>
+									<b> Steps:</b></span>
+								<span class="ranges_data_box entry_form">
+									<span><input class="ranges_input" type="text" name="exercise_bounds_lower" value="{{exercise_bounds.[0]}}"></span>
+									<span><input class="ranges_input" type="text" name="exercise_bounds_upper" value="{{exercise_bounds.[1]}}"></span>
+								</span>
+							</li>
+							
+							<li class="list_elements">
+								<span></span>
+								<span><b class="error">{{updatePatientDataSeriesErrorMessage}}</b></span>
+							</li>
+							
+
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="outer_block_text_column" id="doctor_patient_message">
+			<div class="light_theme_colour_background four_corners align_upper">
+				<div class="inner_block_text_column four_corners">
+					<form action='/user/clinician/updatePatientSupportMessage{{idqueryparam}}' method='post'>
+						<div class="profile_header">
+							<h3 class="centered_heading">Send {{first_name}} a support message</h3>
+							<span> <button type="submit" class="default_button dark_blue small_button">Submit</button></span>
+						</div>
+						<textarea class="input_field" type="text" name="support_message"></textarea>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="patient_dash_data_table table_font_size">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">Blood Glucose <br>(nmol/L)</th>
+					<th scope="col">Weight <br>(kg)</th>
+					<th scope="col">Insulin Doses</th>
+					<th scope="col">Steps</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{{#each data}}
+                <tr>
+                    <td>{{dateFormat date "DD/MM"}}</td>
+                    <td bgcolor="{{glucose_colour}}">{{glucose.value}}</td>
+                    <td bgcolor="{{weight_colour}}">{{weight.value}}</td>
+                    <td bgcolor="{{insulin_colour}}">{{insulin.value}}</td>
+                    <td bgcolor="{{exercise_colour}}">{{exercise.value}}</td>
+                </tr>
+                {{/each}}
+			</tbody>
+		</table>
+	</div>
+</div>
+{{/with}}
