@@ -172,6 +172,17 @@ body.white_background {
     align-items: center;
 }
 
+.data_entry_button_grid.add_note_buttons {
+
+
+
+}
+.add_note_form {
+    height: 200px;
+
+}
+
+
 .data_grid {
     width: 100%;
     display: grid;
@@ -847,6 +858,11 @@ iframe {
     background-color: #FFFFFF;
 }
 
+#white_background {
+    background-color: #FFFFFF;
+    height: 100%;
+}
+
 #patient_dash_doctor_message_text {
     padding: 10px;
     margin: 10px;
@@ -892,6 +908,16 @@ iframe {
     padding-left: 5%;
 }
 
+.data_comment.white {
+    background-color: #FFFFFF;
+    margin: 0px 0px 0px 0px;
+    padding-left: 0px;
+    width: 100%;
+    padding-left: 20px;
+    
+
+}
+
 .data_comment::placeholder {
     padding-left: 10px;
     color: black;
@@ -928,6 +954,10 @@ iframe {
     height: 90%;
 }
 
+#white_backgroun {
+    background-color: ;
+}
+
 #doctor_dash_profile_box>.light_theme_colour_background.four_corners {
     width: 100%;
 }
@@ -942,6 +972,11 @@ iframe {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+.add_note_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 .notes_table {
     display: flex;
@@ -950,7 +985,8 @@ iframe {
 }
 
 #patient_note_heading {
-    
+    width: 100%;
+
 }
 
 .light_theme_colour_background#video {
