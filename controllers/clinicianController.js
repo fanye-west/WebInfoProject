@@ -250,7 +250,6 @@ const updatePatientDataSeries = async(req, res, next) => {
         if (isValidBounds(insulin_bounds[0], insulin_bounds[1])) { update_fields.insulin_bounds = insulin_bounds; } else { error = "invalidbounds"; }
         if (isValidBounds(exercise_bounds[0], exercise_bounds[1])) { update_fields.exercise_bounds = exercise_bounds; } else { error = "invalidbounds"; }
 
-        console.log(patient_id, update_fields);
         //Update patient
         Patient.updateOne({ _id: patient_id }, update_fields).exec();
     }
