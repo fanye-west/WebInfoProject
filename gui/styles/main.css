@@ -1213,6 +1213,10 @@ p.grey {
     color: #3C3E41;
 }
 
+.error {
+    color: #fc6f67;
+}
+
 .navigation_title {
     color: #FFFFFF;
 }

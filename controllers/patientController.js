@@ -82,7 +82,8 @@ const getPatientDash = async(req, res, next) => {
         for (i = 0; i < 5; i++) {
             leaderboard.push({ position: i + 1, name: leaderboardData[i].username, engagement_rate: Math.round(leaderboardData[i].engagement_rate) + "%" })
         }
-        patientData["leaderboard"] = leaderboard;
+        patientData.leaderboard = leaderboard;
+        patientData.message = patientData.messages[patientData.messages.length - 1];
         //Render page
         return res.render('patientDash', { layout: 'patientLayout', patient: patientData });
     } catch (err) {
