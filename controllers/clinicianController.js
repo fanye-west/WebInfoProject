@@ -230,6 +230,15 @@ const getClinicianPatientNotes = async(req, res, next) => {
     }
 }
 
+const getClinicianAddPatient = async(req, res, next) => {
+    try {
+        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout' });
+    } catch (err) {
+        return next(err)
+    }
+
+}
+
 //Post endpoints
 const updatePatientSupportMessage = async(req, res, next) => {
     //Check that patient belongs to clinician
@@ -298,6 +307,7 @@ module.exports = {
     getClinicianDashWithComments,
     getClinicianPatientDash,
     getClinicianPatientNotes,
+    getClinicianAddPatient,
     updatePatientSupportMessage,
     updatePatientDataSeries,
     updatePatientNotes
