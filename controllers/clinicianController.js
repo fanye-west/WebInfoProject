@@ -9,7 +9,7 @@ require('../models')
 var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "6275ca17e6f40fa90c688bc5" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
+const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
 var VISITED_LOGIN = false
 
 //Utils
@@ -167,8 +167,7 @@ const getClinicianPatientDash = async(req, res, next) => {
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         let patient_id = req.query.id;
         let error = req.query.error;
-        message = "Stand in message: "
-            //Check that patient is managed by clinician
+        //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         if (clinicianData.patients.includes(patient_id)) {
             patientData = await Patient.findById(patient_id).lean()
@@ -202,8 +201,25 @@ const getClinicianPatientDash = async(req, res, next) => {
             patientData.idqueryparam = "?id=" + patient_id;
             return res.render('clinicianPatientDash', { layout: 'clinicianLayout', patient: patientData });
         } else {
-            message = message + "Patient is NOT managed by Clinician. Patient ID: " + patient_id
-            return res.send(message)
+            return res.redirect("/user/clinician/")
+        }
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const getClinicianPatientNotes = async(req, res, next) => {
+    try {
+        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let patient_id = req.query.id;
+        console.log(patient_id)
+            //Check that patient is managed by clinician
+        const clinicianData = await Clinician.findById(ClinicianID).lean()
+        if (clinicianData.patients.includes(patient_id)) {
+            patientData = await Patient.findById(patient_id).lean()
+            return res.render('clinicianAddNotes', { layout: 'clinicianLayout', patient: patientData });
+        } else {
+            return res.redirect("/user/clinician/")
         }
     } catch (err) {
         return next(err)
@@ -251,7 +267,7 @@ const updatePatientDataSeries = async(req, res, next) => {
         if (isValidBounds(exercise_bounds[0], exercise_bounds[1])) { update_fields.exercise_bounds = exercise_bounds; } else { error = "invalidbounds"; }
 
         //Update patient
-        Patient.updateOne({ _id: patient_id }, update_fields).exec();
+        await Patient.updateOne({ _id: patient_id }, update_fields).exec();
     }
     return res.redirect("/user/clinician/patientdetails?id=" + patient_id + "&error=" + error)
 }
@@ -264,5 +280,6 @@ module.exports = {
     getClinicianDashWithComments,
     getClinicianPatientDash,
     updatePatientSupportMessage,
-    updatePatientDataSeries
+    updatePatientDataSeries,
+    getClinicianPatientNotes
 }

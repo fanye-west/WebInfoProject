@@ -5,6 +5,7 @@ const controller = require('../controllers/clinicianController');
 router.get("/", controller.getClinicianDash);
 router.get("/comments", controller.getClinicianDashWithComments);
 router.get("/patientdetails", controller.getClinicianPatientDash)
+router.get("/notes", controller.getClinicianPatientNotes)
 
 router.get("/login", controller.getClinicianLogin);
 router.get("/loginRedirect", controller.clinicianLoginRedirect);
