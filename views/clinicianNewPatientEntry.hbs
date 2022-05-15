@@ -4,7 +4,7 @@
 
             <h2 class="data_entry_heading">Add a new patient</h2>
 
-            <form action='/user/patient/insertPatient' method='post'>
+            <form action='/user/patient/insertNewPatient' method='post'>
                 <div class="data_entry_format_grid">
                     <div class="patient_entry_grid">
                         
@@ -15,7 +15,7 @@
                                     <p class="data_entry_label">Given Name</p>
 
                                     <label for="given_name"></label>
-                                    <input class="data_entry" type="text" name="given_name"></input>
+                                    <input class="data_entry" type="text" name="first_name"></input>
                                 </div>
                             </div>
 
@@ -24,7 +24,7 @@
                                     <p class="data_entry_label">Family Name</p>
 
                                     <label for="family_name"></label>
-                                    <input class="data_entry" type="text" name="family_name"></input>
+                                    <input class="data_entry" type="text" name="last_name"></input>
                                 </div>
                             </div>
 
@@ -33,7 +33,7 @@
                                     <p class="data_entry_label">Date of Birth</p>
 
                                     <label for="dob"></label>
-                                    <input class="data_entry" type="text" name="dob"></input>
+                                    <input class="data_entry" type="date" name="dob"></input>
                                 </div>
                             </div>
                             
@@ -42,7 +42,7 @@
                                     <p class="data_entry_label">Email Address</p>
 
                                     <label for="email_address"></label>
-                                    <input class="data_entry" type="text" name="email_address"></input>
+                                    <input class="data_entry" type="text" name="email"></input>
                                 </div>
                             </div>
 
@@ -68,7 +68,7 @@
                         </div>
 
                         <label for="new_patient_bio">Bio</label>
-                        <input class="data_comment" id ="new_patient" type="text" name="new_patient_bio"></input>
+                        <input class="data_comment" id ="new_patient" type="text" name="bio"></input>
 
                     </div>
 

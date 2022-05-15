@@ -267,6 +267,24 @@ const updatePatientNotes = async(req, res, next) => {
     return res.redirect("/user/clinician/notes?id=" + patient_id)
 }
 
+const updatePatientList = async(req, res, next) => {
+    //Create new patient
+    let newPatientData = {};
+    newPatientData.first_name = req.body.first_name;
+    newPatientData.last_name = req.body.last_name;
+    newPatientData.username = req.body.username;
+    newPatientData.bio = req.body.bio;
+    //Add passwork with bcrypt TODO
+    newPatientData.password = req.body.password;
+    newPatientData.email = req.body.email;
+    newPatientData.dob = new Date(req.body.dob);
+    await Patient.updateOne({ _id: patient_id }, {
+        $push: { notes: note }
+    }).exec();
+
+    return res.redirect("/user/clinician/")
+}
+
 const updatePatientDataSeries = async(req, res, next) => {
     //Check that patient belongs to clinician
     const clinicianData = await Clinician.findById(ClinicianID).lean()
@@ -310,5 +328,6 @@ module.exports = {
     getClinicianAddPatient,
     updatePatientSupportMessage,
     updatePatientDataSeries,
-    updatePatientNotes
+    updatePatientNotes,
+    updatePatientList
 }
