@@ -1002,6 +1002,7 @@ iframe {
 /* Buttons */
 
 .default_button {
+    z-index: 5;
     font-size: 12px;
     font-weight: bold;
     border: none;

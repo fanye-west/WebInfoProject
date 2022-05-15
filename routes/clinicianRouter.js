@@ -12,6 +12,7 @@ router.get("/loginRedirect", controller.clinicianLoginRedirect);
 router.get("/logoutRedirect", controller.clinicianLogoutRedirect)
 
 router.post("/updatePatientSupportMessage", controller.updatePatientSupportMessage)
+router.post("/insertNote", controller.updatePatientNotes)
 router.post("/updatePatientDataSeries", controller.updatePatientDataSeries)
 
 module.exports = router;

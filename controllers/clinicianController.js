@@ -4,6 +4,7 @@ const Clinician = require('../models/clinician');
 const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
+const Note = require('../models/note');
 require('../models')
 
 var warning_colour = "#FAC8C5"
@@ -92,7 +93,6 @@ const getClinicianDash = async(req, res, next) => {
         for (i = 0; i < clinicianData.patients.length; i++) {
             patientID = clinicianData.patients[i]
             patientData = await Patient.findById(patientID).lean()
-
             patientDataPackage = {
                 first_name: patientData.first_name,
                 last_name: patientData.last_name,
@@ -166,7 +166,8 @@ const getClinicianPatientDash = async(req, res, next) => {
     try {
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         let patient_id = req.query.id;
-        let error = req.query.error;
+        let error;
+        error = req.query.error;
         //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         if (clinicianData.patients.includes(patient_id)) {
@@ -179,9 +180,10 @@ const getClinicianPatientDash = async(req, res, next) => {
             // format note
             patientData.latest_patient_note = "";
             if (patientData.notes.length > 0) {
-                patientData.latest_patient_note = patientData.notes[-1].text;
+                patientData.latest_patient_note = patientData.notes[patientData.notes.length - 1].text;
             }
             //format warning colours
+            patientData.data = patientData.data.reverse(); //Display newest to oldest
             for (i = 0; i < patientData.data.length; i++) {
                 if (patientData.data[i].glucose.value < patientData.glucose_bounds[0] || patientData.data[i].glucose.value > patientData.glucose_bounds[1]) {
                     patientData.data[i]["glucose_colour"] = warning_colour;
@@ -212,11 +214,13 @@ const getClinicianPatientNotes = async(req, res, next) => {
     try {
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         let patient_id = req.query.id;
-        console.log(patient_id)
-            //Check that patient is managed by clinician
+        //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         if (clinicianData.patients.includes(patient_id)) {
             patientData = await Patient.findById(patient_id).lean()
+            patientData.idqueryparam = "?id=" + patient_id;
+            patientData.patient_id = patient_id;
+            patientData.notes = patientData.notes.reverse(); //Display newest to oldest
             return res.render('clinicianAddNotes', { layout: 'clinicianLayout', patient: patientData });
         } else {
             return res.redirect("/user/clinician/")
@@ -238,6 +242,20 @@ const updatePatientSupportMessage = async(req, res, next) => {
         }).exec();
     }
     return res.redirect("/user/clinician/patientdetails?id=" + patient_id)
+}
+
+const updatePatientNotes = async(req, res, next) => {
+    //Check that patient belongs to clinician
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
+    let patient_id = req.query.id;
+    if (clinicianData.patients.includes(patient_id)) {
+        let text = req.body.new_note;
+        let note = new Note({ text: text });
+        await Patient.updateOne({ _id: patient_id }, {
+            $push: { notes: note }
+        }).exec();
+    }
+    return res.redirect("/user/clinician/notes?id=" + patient_id)
 }
 
 const updatePatientDataSeries = async(req, res, next) => {
@@ -279,7 +297,8 @@ module.exports = {
     clinicianLogoutRedirect,
     getClinicianDashWithComments,
     getClinicianPatientDash,
+    getClinicianPatientNotes,
     updatePatientSupportMessage,
     updatePatientDataSeries,
-    getClinicianPatientNotes
+    updatePatientNotes
 }

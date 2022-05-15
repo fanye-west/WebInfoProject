@@ -12,7 +12,7 @@ var orange = "background-color:#F2CA95";
 var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-const PatientID = "6275ca17e6f40fa90c6882b4" //SEEDED PATIENTS ID: "6275ca17e6f40fa90c6882b4"
+const PatientID = "628085734fe82f14cb55d00e" //SEEDED PATIENTS ID: "6275ca17e6f40fa90c6882b4"
 var VISITED_LOGIN = false
 
 // utils

@@ -1,16 +1,17 @@
+{{#with patient}}
 <div class="main_page_body_under_navigation">
         <div class="light_theme_colour_background four_corners" id="note_page">
-            <h1 id="patient_note_heading">Patient Notes</h1>
+            <h1 id="patient_note_heading">{{first_name}}'s Patient Notes</h1>
 
             <div class="add_note_form">
                 <h3>Add new note:</h3>
 
-                <form class="add_note_form"method="post">
-                    <textarea class="data_comment white" name="add_note" id="add_note" cols="30" rows="10"></textarea>
+                <form class="add_note_form" method="post" action="/user/clinician/insertNote{{idqueryparam}}">
+                    <textarea class="data_comment white" name="new_note" id="add_note" cols="30" rows="10"></textarea>
                     <div class="data_entry_button_grid add_note_buttons">
                         <div class="outer_block_text_column" id="cancel_button">
                             <button class="default_button grey" id="data_button" type="button"
-                                onclick="patientRedirectHomeNoAction()">Cancel</button>
+                                onclick="clinicianPatientDashRedirect('{{patient_id}}')">Cancel</button>
                         </div>
 
                         <div class="outer_block_text_column" id="submit_button">
@@ -36,28 +37,12 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>13/3/22</td>
-                        <td>4.4</td>
-
+					{{#each notes}}
+					<tr>
+                        <td>{{dateFormat date "DD/MM"}}</td>
+                        <td>{{text}}</td>
                     </tr>
-                    <tr>
-                        <td>13/3/22</td>
-                        <td>4.4</td>
-
-                    </tr>
-                    <tr>
-                        <td>13/3/22</td>
-                        <td>4.4</td>
-
-                    </tr>
-                    <tr>
-                        <td>13/3/22</td>
-                        <td>4.4</td>
-
-                    </tr>
-
-
+					{{/each}}
                 </tbody>
 
 
@@ -66,4 +51,5 @@
 
 
     </div>
-
+</div>
+{{/with}}
