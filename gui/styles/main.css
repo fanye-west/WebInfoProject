@@ -154,10 +154,12 @@ body.white_background {
 }
 
 .patient_entry_grid {
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: grid;
     grid-template-rows: 3fr 1fr;
+    justify-self: center; 
+    row-gap: 30px;
 }
 
 .patient_entry_minor_grid {
@@ -167,6 +169,7 @@ body.white_background {
     grid-template-rows: repeat(3 1fr);
     grid-template-columns: repeat(2, 1fr);
     column-gap: 5%;
+    row-gap: 30px;
 }
 
 .clinician_dash_grid {
@@ -199,17 +202,15 @@ body.white_background {
     grid-template-rows: 1/3 1/3 1/3;
 }
 
-.data_grid#new_patient {
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-}
-
 .data_entry_format_grid {
     width: 100%;
     height: 95%;
     display: grid;
     grid-template-rows: 9fr 2fr;
+}
+
+.data_entry_format_grid#new_patient {
+    row-gap: 30px;
 }
 
 #doctor_dash_profile_box {
@@ -897,6 +898,7 @@ iframe {
     font-size: 95%;
     margin-left: 15%;
     padding-left: 5%;
+    outline: none;
 }
 
 .data_entry::placeholder {
@@ -916,6 +918,18 @@ iframe {
     border-radius: 7px;
     font-size: 90%;
     background-color: #B1CCE0;
+    padding-left: 5%;
+    outline: none;
+}
+
+.patient_new_input{
+    height: 50px;
+    width: 95%;
+    border: none;
+    border-radius: 7px;
+    font-size: 90%;
+    background-color: #B1CCE0;
+    outline: none;
     padding-left: 5%;
 }
 
@@ -1254,6 +1268,11 @@ p.grey {
 
 .data_comment_label {
     line-height: 10px;
+}
+
+.patient_info_label {
+    line-height: 10px;
+    font-weight: bold;
 }
 
 .data_entry_label#subheading {
