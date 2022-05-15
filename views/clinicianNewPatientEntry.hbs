@@ -4,31 +4,71 @@
 
             <h2 class="data_entry_heading">Add a new patient</h2>
 
-            <div class="data_entry_format_grid">
-                <div class="patient_entry_grid">
-                    <div class="patient_entry_minor_grid">
+            <form action='/user/patient/insertPatient' method='post'>
+                <div class="data_entry_format_grid">
+                    <div class="patient_entry_grid">
+                        <div class="patient_entry_minor_grid">
+                            <div class="data_grid" id="new_patient">
+                                <p class="data_entry_label">Given Name</p>
 
-                        <!--> Need to add 2 row per grid then add section per individual bi<-->
+                                <label for="given_name"></label>
+                                <input class="data_entry" type="text" name="given_name"></input>
+                            </div>
+
+                            <div class="data_grid" id="new_patient">
+                                <p class="data_entry_label">Family Name</p>
+
+                                <label for="family_name"></label>
+                                <input class="data_entry" type="text" name="family_name"></input>
+                            </div>
+
+                            <div class="data_grid" id="new_patient">
+                                <p class="data_entry_label">Date of Birth</p>
+
+                                <label for="dob"></label>
+                                <input class="data_entry" type="text" name="dob"></input>
+                            </div>
+
+                            <div class="data_grid" id="new_patient">
+                                <p class="data_entry_label">Email Address</p>
+
+                                <label for="email_address"></label>
+                                <input class="data_entry" type="text" name="email_address"></input>
+                            </div>
+
+                            <div class="data_grid" id="new_patient">
+                                <p class="data_entry_label">Username</p>
+
+                                <label for="username"></label>
+                                <input class="data_entry" type="text" name="username"></input>
+                            </div>
+
+                            <div class="data_grid" id="new_patient">
+                                <p class="data_entry_label">Password</p>
+
+                                <label for="password"></label>
+                                <input class="data_entry" type="text" name="password"></input>
+                            </div>                        
+                        </div>
+
+                        <label for="new_patient_bio">Bio</label>
+                        <input class="data_comment" id ="new_patient" type="text" name="new_patient_bio"></input>
 
                     </div>
 
-                    <label for="new_patient_bio"></label>
-                    <input class="data_comment" id ="new_patient" type="text" name="new_patient_bio"></input>
-
-                </div>
-
-                <div class="data_entry_button_grid">
-                    <div class="outer_block_text_column" id="cancel_button">
-                        {{!-- Note that type="button" is required as the default behavior for a button is to submit the form, not what we want! --}}
-                        <button class="default_button grey" id="data_button" type="button"  onclick="patientRedirectHomeNoAction()">Cancel</button>
+                    <div class="data_entry_button_grid">
+                        <div class="outer_block_text_column" id="cancel_button">
+                            {{!-- Note that type="button" is required as the default behavior for a button is to submit the form, not what we want! --}}
+                            <button class="default_button grey" id="data_button" type="button"  onclick="patientRedirectHomeNoAction()">Cancel</button>
+                        </div>
+                        
+                        <div class="outer_block_text_column" id="submit_button">
+                            <input type="submit" value="Submit" class="default_button dark_blue" id="data_button">
+                        </div>
                     </div>
-                    
-                    <div class="outer_block_text_column" id="submit_button">
-                        <input type="submit" value="Submit" class="default_button dark_blue" id="data_button">
-                    </div>
-                </div>
-            </div>
-
+                </div> 
+            </form>
+            
         </div>
     </div>
 </div>
