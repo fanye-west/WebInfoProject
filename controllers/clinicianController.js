@@ -4,12 +4,13 @@ const Clinician = require('../models/clinician');
 const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
+const Note = require('../models/note');
 require('../models')
 
 var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "6275ca17e6f40fa90c688bc5" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
+const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
 var VISITED_LOGIN = false
 
 //Utils
@@ -92,15 +93,21 @@ const getClinicianDash = async(req, res, next) => {
         for (i = 0; i < clinicianData.patients.length; i++) {
             patientID = clinicianData.patients[i]
             patientData = await Patient.findById(patientID).lean()
-
             patientDataPackage = {
                 first_name: patientData.first_name,
                 last_name: patientData.last_name,
-                patient_link: "/user/clinician/patientdetails?" + "id=" + patientID,
-                glucose_value: patientData.data[patientData.data.length - 1].glucose.value,
-                weight_value: patientData.data[patientData.data.length - 1].weight.value,
-                insulin_value: patientData.data[patientData.data.length - 1].insulin.value,
-                exercise_value: patientData.data[patientData.data.length - 1].exercise.value,
+                patient_link: "/user/clinician/patientdetails?" + "id=" + patientID
+            }
+            if (patientData.data.length > 0) {
+                patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.value
+                patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.value
+                patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.value
+                patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.value
+            } else {
+                patientDataPackage.glucose_value = undefined
+                patientDataPackage.weight_value = undefined
+                patientDataPackage.insulin_value = undefined
+                patientDataPackage.exercise_value = undefined
             }
 
             if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
@@ -166,9 +173,9 @@ const getClinicianPatientDash = async(req, res, next) => {
     try {
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         let patient_id = req.query.id;
-        let error = req.query.error;
-        message = "Stand in message: "
-            //Check that patient is managed by clinician
+        let error;
+        error = req.query.error;
+        //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         if (clinicianData.patients.includes(patient_id)) {
             patientData = await Patient.findById(patient_id).lean()
@@ -180,9 +187,10 @@ const getClinicianPatientDash = async(req, res, next) => {
             // format note
             patientData.latest_patient_note = "";
             if (patientData.notes.length > 0) {
-                patientData.latest_patient_note = patientData.notes[-1].text;
+                patientData.latest_patient_note = patientData.notes[patientData.notes.length - 1].text;
             }
             //format warning colours
+            patientData.data = patientData.data.reverse(); //Display newest to oldest
             for (i = 0; i < patientData.data.length; i++) {
                 if (patientData.data[i].glucose.value < patientData.glucose_bounds[0] || patientData.data[i].glucose.value > patientData.glucose_bounds[1]) {
                     patientData.data[i]["glucose_colour"] = warning_colour;
@@ -202,12 +210,41 @@ const getClinicianPatientDash = async(req, res, next) => {
             patientData.idqueryparam = "?id=" + patient_id;
             return res.render('clinicianPatientDash', { layout: 'clinicianLayout', patient: patientData });
         } else {
-            message = message + "Patient is NOT managed by Clinician. Patient ID: " + patient_id
-            return res.send(message)
+            return res.redirect("/user/clinician/")
         }
     } catch (err) {
         return next(err)
     }
+}
+
+const getClinicianPatientNotes = async(req, res, next) => {
+    try {
+        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let patient_id = req.query.id;
+        //Check that patient is managed by clinician
+        const clinicianData = await Clinician.findById(ClinicianID).lean()
+        if (clinicianData.patients.includes(patient_id)) {
+            patientData = await Patient.findById(patient_id).lean()
+            patientData.idqueryparam = "?id=" + patient_id;
+            patientData.patient_id = patient_id;
+            patientData.notes = patientData.notes.reverse(); //Display newest to oldest
+            return res.render('clinicianAddNotes', { layout: 'clinicianLayout', patient: patientData });
+        } else {
+            return res.redirect("/user/clinician/")
+        }
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const getClinicianAddPatient = async(req, res, next) => {
+    try {
+        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout' });
+    } catch (err) {
+        return next(err)
+    }
+
 }
 
 //Post endpoints
@@ -222,6 +259,46 @@ const updatePatientSupportMessage = async(req, res, next) => {
         }).exec();
     }
     return res.redirect("/user/clinician/patientdetails?id=" + patient_id)
+}
+
+const updatePatientNotes = async(req, res, next) => {
+    //Check that patient belongs to clinician
+    let patient_id = req.query.id;
+    if (clinicianData.patients.includes(patient_id)) {
+        let text = req.body.new_note;
+        let note = new Note({ text: text });
+        await Patient.updateOne({ _id: patient_id }, {
+            $push: { notes: note }
+        }).exec();
+    }
+    return res.redirect("/user/clinician/notes?id=" + patient_id)
+}
+
+const updatePatientList = async(req, res, next) => {
+    if (req.body.first_name == "" || req.body.last_name == "" || req.body.username == "" || req.body.password == "" || req.body.email == "" || req.body.dob == "") {
+        //Missing required data, return to home
+        return res.redirect("/user/clinician/");
+    }
+    //Create new patient
+    let newPatientData = {};
+    newPatientData.first_name = req.body.first_name;
+    newPatientData.last_name = req.body.last_name;
+    newPatientData.username = req.body.username;
+    newPatientData.bio = req.body.bio;
+    //Add passwork with bcrypt TODO
+    newPatientData.password = req.body.password;
+    newPatientData.email = req.body.email;
+    newPatientData.dob = new Date(req.body.dob);
+    //Create new patient
+    newPatient = Patient(newPatientData);
+    patient_id = newPatient._id.toString();
+    //Update database
+    newPatient.save();
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
+    await Clinician.updateOne({ _id: ClinicianID }, {
+        $push: { patients: patient_id }
+    }).exec();
+    return res.redirect("/user/clinician/")
 }
 
 const updatePatientDataSeries = async(req, res, next) => {
@@ -251,7 +328,7 @@ const updatePatientDataSeries = async(req, res, next) => {
         if (isValidBounds(exercise_bounds[0], exercise_bounds[1])) { update_fields.exercise_bounds = exercise_bounds; } else { error = "invalidbounds"; }
 
         //Update patient
-        Patient.updateOne({ _id: patient_id }, update_fields).exec();
+        await Patient.updateOne({ _id: patient_id }, update_fields).exec();
     }
     return res.redirect("/user/clinician/patientdetails?id=" + patient_id + "&error=" + error)
 }
@@ -263,6 +340,10 @@ module.exports = {
     clinicianLogoutRedirect,
     getClinicianDashWithComments,
     getClinicianPatientDash,
+    getClinicianPatientNotes,
+    getClinicianAddPatient,
     updatePatientSupportMessage,
-    updatePatientDataSeries
+    updatePatientDataSeries,
+    updatePatientNotes,
+    updatePatientList
 }

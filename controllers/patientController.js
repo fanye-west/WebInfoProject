@@ -4,6 +4,7 @@ const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
 const LeaderboardEntry = require('../models/leaderboardentry.js');
+const { type } = require('express/lib/response');
 require('../models')
 
 var green = "background-color:#9AD3A5";
@@ -12,7 +13,7 @@ var orange = "background-color:#F2CA95";
 var warning_colour = "#FAC8C5"
 
 //Deliverable 2 Hardcoded values
-const PatientID = "6275ca17e6f40fa90c6882b4" //SEEDED PATIENTS ID: "6275ca17e6f40fa90c6882b4"
+const PatientID = "628085734fe82f14cb55d00e" //SEEDED PATIENTS ID: "6275ca17e6f40fa90c6882b4"
 var VISITED_LOGIN = false
 
 // utils
@@ -256,6 +257,7 @@ const insertPatientData = async(req, res, next) => {
 
         const patientData = await Patient.findById(PatientID).lean()
         let create_new_data_day = false;
+        let empty_form = false;
 
         if (patientData.data.length > 0) {
             let latest_data = patientData.data[patientData.data.length - 1];
@@ -300,8 +302,8 @@ const insertPatientData = async(req, res, next) => {
             //No data exists, create new day
             create_new_data_day = true
         }
-
-        if (create_new_data_day) {
+        empty_form = (isNaN(blood_glucose_value) && isNaN(weight_value) && isNaN(insulin_dose_value) && isNaN(daily_steps_value) && blood_glucose_comment == "" && weight_comment == "" && insulin_dose_comment == "" && daily_steps_comment == "")
+        if (create_new_data_day && !empty_form) {
             //Create new data objects, based on whether or not a value was provided
             if (isNaN(blood_glucose_value)) {
                 glucose = new Value({
