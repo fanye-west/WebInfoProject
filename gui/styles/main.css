@@ -257,6 +257,11 @@ body.white_background {
     justify-content: flex-end;
 }
 
+#add_new_patient_button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
 #clinician_table_header {
     grid-column: 1/2;
     grid-row: 2/3;
@@ -1168,7 +1173,7 @@ a.no_underline_link {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
-    width: 70%;
+    width: 450px;
     height: 80%;
 }
 
