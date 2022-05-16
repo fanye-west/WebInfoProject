@@ -4,7 +4,7 @@
 
             <h2 class="data_entry_heading">Add a new patient</h2>
 
-            <form action='/user/patient/insertPatient' method='post'>
+            <form action='/user/clinician/insertNewPatient' method='post'>
                 <div class="data_entry_format_grid" id="new_patient">
                     <div class="patient_entry_grid">
                         
@@ -15,7 +15,7 @@
                                     <p class="patient_info_label">Given Name</p>
 
                                     <label for="given_name"></label>
-                                    <input class="patient_new_input" type="text" name="given_name"></input>
+                                    <input class="patient_new_input" type="text" name="first_name"></input>
                                 </div>
                             </div>
 
@@ -24,7 +24,7 @@
                                     <p class="patient_info_label">Family Name</p>
 
                                     <label for="family_name"></label>
-                                    <input class="patient_new_input" type="text" name="family_name"></input>
+                                    <input class="patient_new_input" type="text" name="last_name"></input>
                                 </div>
                             </div>
 
@@ -33,7 +33,7 @@
                                     <p class="patient_info_label">Date of Birth</p>
 
                                     <label for="dob"></label>
-                                    <input class="patient_new_input" type="text" name="dob"></input>
+                                    <input class="patient_new_input" type="date" name="dob"></input>
                                 </div>
                             </div>
                             
@@ -42,7 +42,7 @@
                                     <p class="patient_info_label">Email Address</p>
 
                                     <label for="email_address"></label>
-                                    <input class="patient_new_input" type="text" name="email_address"></input>
+                                    <input class="patient_new_input" type="text" name="email"></input>
                                 </div>
                             </div>
 
@@ -82,7 +82,7 @@
                     <div class="data_entry_button_grid">
                         <div class="outer_block_text_column" id="cancel_button">
                             {{!-- Note that type="button" is required as the default behavior for a button is to submit the form, not what we want! --}}
-                            <button class="default_button grey" id="data_button" type="button"  onclick="patientRedirectHomeNoAction()">Cancel</button>
+                            <button class="default_button grey" id="data_button" type="button"  onclick="clinicianRedirectHome()">Cancel</button>
                         </div>
                         
                         <div class="outer_block_text_column" id="submit_button">

@@ -96,11 +96,18 @@ const getClinicianDash = async(req, res, next) => {
             patientDataPackage = {
                 first_name: patientData.first_name,
                 last_name: patientData.last_name,
-                patient_link: "/user/clinician/patientdetails?" + "id=" + patientID,
-                glucose_value: patientData.data[patientData.data.length - 1].glucose.value,
-                weight_value: patientData.data[patientData.data.length - 1].weight.value,
-                insulin_value: patientData.data[patientData.data.length - 1].insulin.value,
-                exercise_value: patientData.data[patientData.data.length - 1].exercise.value,
+                patient_link: "/user/clinician/patientdetails?" + "id=" + patientID
+            }
+            if (patientData.data.length > 0) {
+                patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.value
+                patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.value
+                patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.value
+                patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.value
+            } else {
+                patientDataPackage.glucose_value = undefined
+                patientDataPackage.weight_value = undefined
+                patientDataPackage.insulin_value = undefined
+                patientDataPackage.exercise_value = undefined
             }
 
             if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
@@ -232,6 +239,7 @@ const getClinicianPatientNotes = async(req, res, next) => {
 
 const getClinicianAddPatient = async(req, res, next) => {
     try {
+        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout' });
     } catch (err) {
         return next(err)
@@ -255,7 +263,6 @@ const updatePatientSupportMessage = async(req, res, next) => {
 
 const updatePatientNotes = async(req, res, next) => {
     //Check that patient belongs to clinician
-    const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
         let text = req.body.new_note;
@@ -268,6 +275,10 @@ const updatePatientNotes = async(req, res, next) => {
 }
 
 const updatePatientList = async(req, res, next) => {
+    if (req.body.first_name == "" || req.body.last_name == "" || req.body.username == "" || req.body.password == "" || req.body.email == "" || req.body.dob == "") {
+        //Missing required data, return to home
+        return res.redirect("/user/clinician/");
+    }
     //Create new patient
     let newPatientData = {};
     newPatientData.first_name = req.body.first_name;
@@ -278,10 +289,15 @@ const updatePatientList = async(req, res, next) => {
     newPatientData.password = req.body.password;
     newPatientData.email = req.body.email;
     newPatientData.dob = new Date(req.body.dob);
-    await Patient.updateOne({ _id: patient_id }, {
-        $push: { notes: note }
+    //Create new patient
+    newPatient = Patient(newPatientData);
+    patient_id = newPatient._id.toString();
+    //Update database
+    newPatient.save();
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
+    await Clinician.updateOne({ _id: ClinicianID }, {
+        $push: { patients: patient_id }
     }).exec();
-
     return res.redirect("/user/clinician/")
 }
 

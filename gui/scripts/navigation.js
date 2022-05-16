@@ -32,6 +32,10 @@ function clinicianLogoutRedirect() {
     window.location.href = '/user/clinician/logoutRedirect';
 }
 
+function clinicianRedirectHome() {
+    window.location.href = '/user/clinician';
+}
+
 function clinicianPatientDashRedirect(patientID) {
     window.location.href = '/user/clinician/patientdetails?id=' + patientID;
 }
