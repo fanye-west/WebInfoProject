@@ -158,7 +158,7 @@ body.white_background {
     height: 100%;
     display: grid;
     grid-template-rows: 3fr 1fr;
-    justify-self: center; 
+    justify-self: center;
     row-gap: 30px;
 }
 
@@ -922,7 +922,7 @@ iframe {
     outline: none;
 }
 
-.patient_new_input{
+.patient_new_input {
     height: 50px;
     width: 95%;
     border: none;
@@ -1064,6 +1064,10 @@ iframe {
 }
 
 .default_button#data_button {
+    height: 40px;
+}
+
+.default_button.data_button {
     height: 40px;
 }
 
@@ -1254,6 +1258,11 @@ p.grey {
     margin-top: 8px;
     margin-bottom: 8px;
     color: #3C3E41;
+}
+
+.error {
+    color: #c00000;
+    text-align: center;
 }
 
 .navigation_title {

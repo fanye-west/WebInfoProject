@@ -13,7 +13,7 @@
                                     <p class="data_entry_label">Blood Glucose Levels (mmol/L):</p>
 
                                     <label for="blood_glucose_value"></label>
-                                    <input class="data_entry" type="text" name="blood_glucose_value" value="{{glucose_value}}" style="{{glucose_colour}}" {{glucose_readonly}}></input>
+                                    <input class="data_entry" type="text" id="blood_glucose_value" name="blood_glucose_value" value="{{glucose_value}}" style="{{glucose_colour}}" {{glucose_readonly}} oninput="checkPatientDataEntry()"></input>
 
                                     {{!-- <p class="data_entry_label" id="subheading">You have already filled this in for today</p> --}}
                                     <p class="data_entry_label" id="subheading">{{glucose_subheading}}</p>
@@ -34,7 +34,7 @@
                                     <p class="data_entry_label">Weight (kg):</p>
 
                                     <label for="weight_value"></label>
-                                    <input class="data_entry" id="white" type="text" name="weight_value" value="{{weight_value}}" style="{{weight_colour}}" {{weight_readonly}}></input>
+                                    <input class="data_entry" type="text" id="weight_value" name="weight_value" value="{{weight_value}}" style="{{weight_colour}}" {{weight_readonly}} oninput="checkPatientDataEntry()"></input>
                                     
                                     {{!-- <p class="data_entry_label" id="subheading">You still need to fill this in for today</p> --}}
                                     <p class="data_entry_label" id="subheading">{{weight_subheading}}</p>
@@ -55,7 +55,7 @@
                                     <p class="data_entry_label">Number of Insulin Doses:</p>
 
                                     <label for="insulin_dose_value"></label>
-                                    <input class="data_entry" id="white" type="text" name="insulin_dose_value" value="{{insulin_value}}" style="{{insulin_colour}}" {{insulin_readonly}}></input>
+                                    <input class="data_entry" type="text" id="insulin_dose_value" name="insulin_dose_value" value="{{insulin_value}}" style="{{insulin_colour}}" {{insulin_readonly}} oninput="checkPatientDataEntry()"></input>
                                     
                                     {{!-- <p class="data_entry_label" id="subheading">Optional record</p> --}}
                                     <p class="data_entry_label" id="subheading">{{insulin_subheading}}</p>
@@ -77,7 +77,7 @@
                                     <p class="data_entry_label">Daily Steps:</p>
 
                                     <label for="daily_steps_value"></label>
-                                    <input class="data_entry" id="white" type="text" name="daily_steps_value"  value="{{exercise_value}}" style="{{exercise_colour}}" {{exercise_readonly}}></input>
+                                    <input class="data_entry" type="text" id="daily_steps_value" name="daily_steps_value" value="{{exercise_value}}" style="{{exercise_colour}}" {{exercise_readonly}} oninput="checkPatientDataEntry()"></input>
 
                                     {{!-- <p class="data_entry_label" id="subheading">Optional record</p> --}}
                                     <p class="data_entry_label" id="subheading">{{exercise_subheading}}</p>
@@ -97,13 +97,14 @@
                         <div class="data_entry_button_grid">
                             <div class="outer_block_text_column" id="cancel_button">
                                 {{!-- Note that type="button" is required as the default behavior for a button is to submit the form, not what we want! --}}
-                                <button class="default_button grey" id="data_button" type="button"  onclick="patientRedirectHomeNoAction()">Cancel</button>
+                                <button class="default_button grey data_button" id="patient_cancel_data_button" type="button"  onclick="patientRedirectHomeNoAction()">Cancel</button>
                             </div>
                             
                             <div class="outer_block_text_column" id="submit_button">
-                                <input type="submit" value="Submit" class="default_button dark_blue" id="data_button">
+                                <input type="submit" value="Submit" class="default_button grey data_button" id="patient_submit_data_button" disabled>
                             </div>
                         </div>
+                        <b class="error" id="patient_error_message">No new data provided</b>
                     </div>
                 </form>
             </div>
