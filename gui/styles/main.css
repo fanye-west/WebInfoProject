@@ -184,10 +184,10 @@ body.white_background {
 .data_entry_button_grid {
     display: grid;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3%;
-    align-items: center;
+    align-items: start;
 }
 
 .data_entry_button_grid.add_note_buttons {}
@@ -204,9 +204,9 @@ body.white_background {
 
 .data_entry_format_grid {
     width: 100%;
-    height: 95%;
+    height: fit-content;
     display: grid;
-    grid-template-rows: 9fr 2fr;
+    grid-template-rows: 15fr 2fr 1fr;
 }
 
 .data_entry_format_grid#new_patient {
@@ -1268,6 +1268,7 @@ p.grey {
 .error {
     color: #c00000;
     text-align: center;
+    align-items: start;
 }
 
 .navigation_title {
