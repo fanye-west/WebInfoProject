@@ -190,8 +190,6 @@ body.white_background {
     align-items: start;
 }
 
-.data_entry_button_grid.add_note_buttons {}
-
 .add_note_form {
     height: 200px;
 }
