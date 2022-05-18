@@ -60,6 +60,8 @@ const getPatientDash = async(req, res, next) => {
         //Check login for deliverable 2
         if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
         const patientData = await Patient.findById(PatientID).lean()
+        const patientLeaderboardData = await LeaderboardEntry.find({ patient_id: PatientID }).lean()
+        let patientLeaderboardDataFiltered = patientLeaderboardData[0]
         patientData.data = patientData.data.reverse(); //Display newest to oldest
         let i;
         for (i = 0; i < patientData.data.length; i++) {
@@ -77,6 +79,20 @@ const getPatientDash = async(req, res, next) => {
             }
         }
         //Get leaderboard
+        //Get user badge
+        let user_engagement_rate = patientLeaderboardDataFiltered.engagement_rate;
+        let badge_icon = "../assets/icons/bronze.png"
+        if (user_engagement_rate < 50) {
+            badge_icon = "../assets/icons/bronze.png"
+        } else if (user_engagement_rate > 80) {
+            badge_icon = "../assets/icons/gold.png"
+        } else {
+            badge_icon = "../assets/icons/silver_medal.png"
+        }
+        patientData.badge_icon = badge_icon;
+        patientData.user_engagement_rate = Math.round(user_engagement_rate) + "%"
+        console.log(user_engagement_rate)
+
         //Get the top 5 items as ranked by engagement_rate without filtering
         const leaderboardData = await LeaderboardEntry.find().sort({ engagement_rate: -1 }).limit(5).lean();
         leaderboard = []
