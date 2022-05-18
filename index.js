@@ -5,6 +5,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const exphbs = require('express-handlebars') // include handlebars
+const flash = require('express-flash')
+const session = require('express-session')
 
 require('./models')
 
@@ -15,10 +17,36 @@ const port = 3000;
 //Ensure static files are available
 app.use(express.static(__dirname + '/gui'));
 
+app.use(flash())
+
 //Use body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
+
+// Track authenticated users through login sessions
+app.use(
+    session({
+        // The secret used to sign session cookies (ADD ENV VAR)
+        secret: process.env.SESSION_SECRET || 'keyboard cat',
+        name: 'demo', // The cookie name (CHANGE THIS)
+        saveUninitialized: false,
+        resave: false,
+        cookie: {
+            sameSite: 'strict',
+            httpOnly: true,
+            secure: app.get('env') === 'production'
+        },
+    })
+)
+
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1); // Trust first proxy
+}
+// Initialise Passport.js
+const passport = require('./config/passport')
+app.use(passport.authenticate('session'))
+    // Load authentication router
 
 //Define route files 
 var indexRouter = require('./routes/indexRouter');

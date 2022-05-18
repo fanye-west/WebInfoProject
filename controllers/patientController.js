@@ -58,7 +58,7 @@ const patientLogoutRedirect = async(req, res, next) => {
 const getPatientDash = async(req, res, next) => {
     try {
         //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
+        // if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
         const patientData = await Patient.findById(PatientID).lean()
         const patientLeaderboardData = await LeaderboardEntry.find({ patient_id: PatientID }).lean()
         let patientLeaderboardDataFiltered = patientLeaderboardData[0]
@@ -91,7 +91,6 @@ const getPatientDash = async(req, res, next) => {
         }
         patientData.badge_icon = badge_icon;
         patientData.user_engagement_rate = Math.round(user_engagement_rate) + "%"
-        console.log(user_engagement_rate)
 
         //Get the top 5 items as ranked by engagement_rate without filtering
         const leaderboardData = await LeaderboardEntry.find().sort({ engagement_rate: -1 }).limit(5).lean();
@@ -111,7 +110,7 @@ const getPatientDash = async(req, res, next) => {
 const getPatientDataEntry = async(req, res, next) => {
     try {
         //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
+        // if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
         // TODO Add DB call and actual HRB render here:
         // Get patient data for today's date
         const patientData = await Patient.findById(PatientID).lean()
@@ -258,7 +257,6 @@ const insertPatientData = async(req, res, next) => {
     // 		steps_comment: Free text comment for steps
     //Test with $ curl -X POST http://127.0.0.1:3000/user/patient/addpatientdata
     try {
-        const requestData = req.body;
         //Check data 
         //Numerical
         let blood_glucose_value = parseFloat(req.body.blood_glucose_value)
