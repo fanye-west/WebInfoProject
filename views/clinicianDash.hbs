@@ -26,7 +26,7 @@
         </div>
 
         <div id="comment_toggle_button">
-            <button class="default_button faded_blue image_text_button" id="clinician_comment_button" onclick="toggleClincianCommentsView()">
+            <button class="default_button faded_blue image_text_button" id="clinician_comment_button" onclick="toggleClincianCommentsView('{{searchterm}}')">
                 <img src="/assets/icons/comment.png" alt="+">
                 <span>
                     <h3 class="data_button_heading clinician_page_button">{{view_button_text}}</h3>
@@ -45,6 +45,7 @@
                         <div class="search_bar">
                             <input type="search" id="site-search" name="name">
                             <button class="default_button dark_blue small_button" >Search</button>
+                            <button class="default_button grey small_button" onclick="clearClinicianDashSearch()">Clear</button>
                         </div>
                     </form>
                     

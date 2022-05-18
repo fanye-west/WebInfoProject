@@ -90,7 +90,7 @@ const getClinicianDash = async(req, res, next) => {
         let i
         let patientDataPackage
         let patientData
-        
+
         if (typeof(req.query.name) === 'undefined' || req.query.name === "") {
             // Display all patients if none are searched for
             for (i = 0; i < clinicianData.patients.length; i++) {
@@ -127,20 +127,20 @@ const getClinicianDash = async(req, res, next) => {
                 }
                 patientsLatest.push(patientDataPackage)
             }
-        
+
         } else {
             // Otherwise, find and display the patients searched for
             for (i = 0; i < clinicianData.patients.length; i++) {
                 patientID = clinicianData.patients[i]
                 patientData = await Patient.findById(patientID).lean()
-                let names = req.query.name.split(' ')
+                let names = req.query.name.toLowerCase().split(' ')
                 let first_name = names[0]
                 let last_name
                 if (names.length > 1) {
                     last_name = names[1]
                 }
-                if (patientData.first_name == first_name && patientData.last_name == last_name || patientData.first_name == first_name) {
-                        patientDataPackage = {
+                if (patientData.first_name.toLowerCase() == first_name && patientData.last_name.toLowerCase() == last_name || patientData.first_name.toLowerCase() == first_name) {
+                    patientDataPackage = {
                         first_name: patientData.first_name,
                         last_name: patientData.last_name,
                         patient_link: "/user/clinician/patientdetails?" + "id=" + patientID
@@ -172,6 +172,7 @@ const getClinicianDash = async(req, res, next) => {
                     patientsLatest.push(patientDataPackage)
                 }
             }
+            clinicianData.searchterm = req.query.name;
         }
         clinicianData["patientData"] = patientsLatest
         clinicianData["view_button_text"] = "View patient comments"
@@ -212,13 +213,13 @@ const getClinicianDashWithComments = async(req, res, next) => {
             for (i = 0; i < clinicianData.patients.length; i++) {
                 patientID = clinicianData.patients[i]
                 patientData = await Patient.findById(patientID).lean()
-                let names = req.query.name.split(' ')
+                let names = req.query.name.toLowerCase().split(' ')
                 let first_name = names[0]
                 let last_name
                 if (names.length > 1) {
                     last_name = names[1]
                 }
-                if (patientData.first_name == first_name && patientData.last_name == last_name || patientData.first_name == first_name) {
+                if (patientData.first_name.toLowerCase() == first_name && patientData.last_name.toLowerCase() == last_name || patientData.first_name.toLowerCase() == first_name) {
                     patientID = clinicianData.patients[i]
                     patientData = await Patient.findById(patientID).lean()
 
@@ -234,6 +235,7 @@ const getClinicianDashWithComments = async(req, res, next) => {
                     patientsLatest.push(patientDataPackage)
                 }
             }
+            clinicianData.searchterm = req.query.name;
         }
         clinicianData["patientData"] = patientsLatest
         clinicianData["view_button_text"] = "View patient data"
