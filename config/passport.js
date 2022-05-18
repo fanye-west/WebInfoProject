@@ -1,36 +1,40 @@
 const passport = require('passport')
+const Patient = require('../models/patient')
 const LocalStrategy = require('passport-local').Strategy
     // Hardcode user for now
-const USER = { id: 123, username: 'a', password: 'a', secret: 'info30005' }
     // Serialize information to be stored in session/cookie
 passport.serializeUser((user, done) => {
         // Use id to serialize user
-        done(undefined, user.id)
+        done(undefined, user._id)
     })
     // When a request comes in, deserialize/expand the serialized information
     // back to what it was (expand from id to full user)
 passport.deserializeUser((userId, done) => {
-        // Run database query here to retrieve user information
-        // For now, just return the hardcoded user
-        if (userId === USER.id) {
-            done(undefined, USER)
-        } else {
-            done(new Error('Bad User'), undefined)
-        }
+        Patient.findById(userId, { password: 0 }, (err, user) => {
+            if (err) {
+                return done(err, undefined)
+            }
+            return done(undefined, user)
+        })
     })
     // Define local authentication strategy for Passport
     // http://www.passportjs.org/docs/downloads/html/#strategies
 passport.use(
     new LocalStrategy((username, password, done) => {
-        // Check if user exists and password matches the hash in the database
-        // For now, just match the hardcoded user
-        if (username !== USER.username || password !== USER.password) {
-            return done(undefined, false, {
-                message: 'Incorrect username/password',
+        Patient.findOne({ username: 'user_name' }, {}, {}, (err, user) => {
+            if (err)
+                return done(undefined, false, { message: 'unknown error' })
+            if (!user)
+                return done(undefined, false, { message: 'username' })
+            user.verifyPassword(password, (err, valid) => {
+                if (err)
+                    return done(undefined, false, { message: 'unknown' })
+                if (!valid)
+                    return done(undefined, false, { message: 'password' })
+                return done(undefined, user)
             })
-        }
-        // If credentials match, return user in callback
-        return done(undefined, USER)
+        })
     })
 )
+
 module.exports = passport

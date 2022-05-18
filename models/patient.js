@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const dataSchema = require('../models/data').schema
 const noteSchema = require('../models/note').schema
+const bcrypt = require('bcryptjs')
 
 const patientSchema = new mongoose.Schema({
     first_name: String,
@@ -25,6 +26,30 @@ const patientSchema = new mongoose.Schema({
     exercise_required: Boolean
 })
 
+patientSchema.methods.verifyPassword = function(password, callback) {
+    bcrypt.compare(password, this.password, (err, valid) => {
+        console.log(password, '\n', this.password)
+        callback(err, valid)
+    })
+}
+
+// Hash password before saving
+patientSchema.pre('save', function save(next) {
+    const patient = this
+        // Go to next if password field has not been modified 
+    if (!patient.isModified('password')) {
+        return next()
+    }
+    // Automatically generate salt, and calculate hash
+    bcrypt.hash(patient.password, 10, (err, hash) => {
+        if (err) {
+            return next(err)
+        }
+        // Replace password with hash
+        patient.password = hash
+        next()
+    })
+})
 const Patient = mongoose.model('Patient', patientSchema)
 
 module.exports = Patient
