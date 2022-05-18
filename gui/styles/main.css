@@ -1130,6 +1130,12 @@ iframe {
     padding: 0px;
 }
 
+.icon_button#modal_cancel{
+    padding-right: 5%;
+    padding-top: 3%;
+    color: #EAF6FF;
+}
+
 .button_margin_wrapper {
     margin-left: 5px;
     margin-right: 5px;
@@ -1304,6 +1310,11 @@ p.grey {
     white-space: nowrap;
 }
 
+.leaderboard_heading {
+    color: #EAF6FF;
+    padding-top: 3%;
+    padding-left: 5%;
+}
 
 /*layout rules for different screen sizes */
 
@@ -1571,9 +1582,9 @@ p.grey {
     background-color: #0062a8;
     /* background-color: #00ff15; */
     left: 0px;
-    min-width: 300px;
+    /* min-width: 300px; */
     max-width: 600px;
-    min-height: 300px;
+    /* min-height: 300px; */
     border-radius: 0px 15px 15px 0px;
     top: 15%;
 }
