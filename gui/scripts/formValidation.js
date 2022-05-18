@@ -10,7 +10,7 @@ function checkPatientDataEntry() {
     for (i = 0; i < ids_to_check.length; i++) {
         id = ids_to_check[i];
         //Check that the data is preset
-        if (!document.getElementById(id).value == "" && !document.getElementById(id).readOnly) {
+        if (!document.getElementById(id).value.trim().length == 0 && !document.getElementById(id).readOnly) {
             //Check that the data is valid
             n = Number(document.getElementById(id).value);
             if (!isNaN(n)) {
@@ -43,10 +43,9 @@ function checkPatientDataEntry() {
 function checkClinicianNoteEntry() {
     let valid_submission = false;
     //Check current state of the form    
-    if (!document.getElementById('add_note').value == "") {
+    if (!document.getElementById('add_note').value.trim().length == 0) {
         valid_submission = true
     }
-
     //Update visual appearance and functionality of the form
     let button = document.getElementById("submit_new_note_button");
     if (valid_submission) {

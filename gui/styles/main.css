@@ -31,7 +31,7 @@ body.white_background {
 /* Div to form the nav bar */
 
 .navigation {
-    z-index: 2;
+    z-index: 9;
     position: fixed;
     left: 0;
     right: 0;
@@ -41,7 +41,7 @@ body.white_background {
 }
 
 .navigation_hamburger_expanded {
-    z-index: 3;
+    z-index: 20;
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -260,6 +260,7 @@ body.white_background {
     display: flex;
     justify-content: flex-end;
 }
+
 #clinician_table_header {
     grid-column: 1/2;
     grid-row: 2/3;
@@ -1128,7 +1129,7 @@ iframe {
     padding: 0px;
 }
 
-.icon_button#modal_cancel{
+.icon_button#modal_cancel {
     padding-right: 5%;
     padding-top: 3%;
     color: #EAF6FF;
@@ -1313,6 +1314,7 @@ p.grey {
     padding-top: 3%;
     padding-left: 5%;
 }
+
 
 /*layout rules for different screen sizes */
 
