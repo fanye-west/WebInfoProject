@@ -6,7 +6,7 @@ function checkPatientDataEntry() {
     let id;
     let n;
     let error_field = document.getElementById("patient_error_message")
-    error_field.innerText = ""
+    error_field.innerText = " "
     for (i = 0; i < ids_to_check.length; i++) {
         id = ids_to_check[i];
         //Check that the data is preset
@@ -15,7 +15,7 @@ function checkPatientDataEntry() {
             n = Number(document.getElementById(id).value);
             if (!isNaN(n)) {
                 valid_submission = true
-                error_field.innerText = ""
+                error_field.innerText = " "
             } else {
                 error_field.innerText = "Please enter numbers only for data records";
             }
@@ -34,5 +34,24 @@ function checkPatientDataEntry() {
             error_field.innerText = "No new data added"
         }
 
+    }
+}
+
+
+function checkClinicianNoteEntry() {
+    let valid_submission = false;
+    //Check current state of the form    
+    if (!document.getElementById('add_note').value == "") {
+        valid_submission = true
+    }
+
+    //Update visual appearance and functionality of the form
+    let button = document.getElementById("submit_new_note_button");
+    if (valid_submission) {
+        button.style.backgroundColor = "#0062A8";
+        button.disabled = false;
+    } else {
+        button.style.backgroundColor = "#808080";
+        button.disabled = true;
     }
 }

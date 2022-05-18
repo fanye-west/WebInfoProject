@@ -250,7 +250,7 @@ const getClinicianAddPatient = async(req, res, next) => {
 //Post endpoints
 const updatePatientSupportMessage = async(req, res, next) => {
     //Check that patient belongs to clinician
-    const clinicianData = await Clinician.findById(ClinicianID).lean()
+
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
         let message = req.body.support_message;
@@ -263,6 +263,7 @@ const updatePatientSupportMessage = async(req, res, next) => {
 
 const updatePatientNotes = async(req, res, next) => {
     //Check that patient belongs to clinician
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
         let text = req.body.new_note;
@@ -283,7 +284,7 @@ const updatePatientList = async(req, res, next) => {
     let newPatientData = {};
     newPatientData.first_name = req.body.first_name;
     newPatientData.last_name = req.body.last_name;
-    newPatientData.username = req.body.username;
+    newPatientData.user_name = req.body.username;
     newPatientData.bio = req.body.bio;
     //Add passwork with bcrypt TODO
     newPatientData.password = req.body.password;
