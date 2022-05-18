@@ -91,9 +91,7 @@ const getPatientDash = async(req, res, next) => {
         }
         patientData.badge_icon = badge_icon;
         patientData.user_engagement_rate = Math.round(user_engagement_rate) + "%"
-        console.log(user_engagement_rate)
-
-        //Get the top 5 items as ranked by engagement_rate without filtering
+            //Get the top 5 items as ranked by engagement_rate without filtering
         const leaderboardData = await LeaderboardEntry.find().sort({ engagement_rate: -1 }).limit(5).lean();
         leaderboard = []
         for (i = 0; i < 5; i++) {
