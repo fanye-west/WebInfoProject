@@ -103,9 +103,9 @@
 					<form action='/user/clinician/updatePatientSupportMessage{{idqueryparam}}' method='post'>
 						<div class="profile_header">
 							<h3 class="centered_heading">Send {{first_name}} a support message</h3>
-							<span> <button type="submit" class="default_button dark_blue small_button">Submit</button></span>
+							<span> <button type="submit" id="support_message_button" class="default_button grey small_button" disabled>Submit</button></span>
 						</div>
-						<textarea class="input_field" type="text" name="support_message"></textarea>
+						<textarea class="input_field" type="text" name="support_message" id="support_message" oninput="checkClinicianMessageEntry()"></textarea>
 					</form>
 				</div>
 

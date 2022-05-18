@@ -15,7 +15,7 @@
                                     <p class="patient_info_label">Given Name</p>
 
                                     <label for="given_name"></label>
-                                    <input class="patient_new_input" type="text" name="first_name"></input>
+                                    <input class="patient_new_input" type="text" name="first_name" id="first_name" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
 
@@ -24,7 +24,7 @@
                                     <p class="patient_info_label">Family Name</p>
 
                                     <label for="family_name"></label>
-                                    <input class="patient_new_input" type="text" name="last_name"></input>
+                                    <input class="patient_new_input" type="text" name="last_name" id="last_name" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
 
@@ -33,7 +33,7 @@
                                     <p class="patient_info_label">Date of Birth</p>
 
                                     <label for="dob"></label>
-                                    <input class="patient_new_input" type="date" name="dob"></input>
+                                    <input class="patient_new_input" type="date" name="dob" id="dob" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
                             
@@ -42,7 +42,7 @@
                                     <p class="patient_info_label">Email Address</p>
 
                                     <label for="email_address"></label>
-                                    <input class="patient_new_input" type="text" name="email" pattern="\S+@\S+" title="Must be a valid email address"></input>
+                                    <input class="patient_new_input" type="text" name="email" id="email" pattern="\S+@\S+" title="Must be a valid email address" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
 
@@ -52,7 +52,7 @@
                                     <p class="patient_info_label">Username</p>
 
                                     <label for="username"></label>
-                                    <input class="patient_new_input" type="text" name="username"></input>
+                                    <input class="patient_new_input" type="text" name="username" id="username" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
 
@@ -62,7 +62,7 @@
                                     <p class="patient_info_label">Password</p>
 
                                     <label for="password"></label>
-                                    <input class="patient_new_input" type="text" name="password" pattern="\S{8,}" title="Must be at least 8 characters"></input>
+                                    <input class="patient_new_input" type="text" name="password" id="password" pattern="\S{8,}" title="Must be at least 8 characters" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>      
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                 <p class="patient_info_label">Bio</p>
 
                                 <label for="new_patient_bio"></label>
-                                <input class="patient_new_input" id ="new_patient" type="text" name="new_patient_bio"></input>
+                                <input class="patient_new_input" id ="new_patient_bio" type="text" name="new_patient_bio" oninput="checkClinicianNewPatientEntry()"></input>
                             </div>      
                         </div>
 
@@ -82,11 +82,11 @@
                     <div class="data_entry_button_grid">
                         <div class="outer_block_text_column" id="cancel_button">
                             {{!-- Note that type="button" is required as the default behavior for a button is to submit the form, not what we want! --}}
-                            <button class="default_button grey" id="data_button" type="button"  onclick="clinicianRedirectHome()">Cancel</button>
+                            <button class="default_button grey data_butto" id="data_button" type="button"  onclick="clinicianRedirectHome()">Cancel</button>
                         </div>
                         
                         <div class="outer_block_text_column" id="submit_button">
-                            <input type="submit" value="Submit" class="default_button dark_blue" id="data_button">
+                            <input type="submit" value="Submit" class="default_button grey data_button" id="new_patient_data_button" disabled>
                         </div>
                     </div>
                 </div> 

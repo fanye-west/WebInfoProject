@@ -250,7 +250,7 @@ const getClinicianAddPatient = async(req, res, next) => {
 //Post endpoints
 const updatePatientSupportMessage = async(req, res, next) => {
     //Check that patient belongs to clinician
-
+    const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
         let message = req.body.support_message;

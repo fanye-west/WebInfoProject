@@ -56,3 +56,48 @@ function checkClinicianNoteEntry() {
         button.disabled = true;
     }
 }
+
+function checkClinicianMessageEntry() {
+    let valid_submission = false;
+    //Check current state of the form    
+    if (!document.getElementById('support_message').value.trim().length == 0) {
+        valid_submission = true
+    }
+    //Update visual appearance and functionality of the form
+    let button = document.getElementById("support_message_button");
+    if (valid_submission) {
+        button.style.backgroundColor = "#0062A8";
+        button.disabled = false;
+    } else {
+        button.style.backgroundColor = "#808080";
+        button.disabled = true;
+    }
+}
+
+function checkClinicianNewPatientEntry() {
+    let valid_submission = true;
+    //Check current state of the form - has at least one submission that was not pre-filled been filled in?
+    let ids_to_check = ['first_name', 'last_name', 'email', 'username', 'password', 'new_patient_bio']
+    let i;
+    let id;
+    for (i = 0; i < ids_to_check.length; i++) {
+        id = ids_to_check[i];
+        //Check that the data is preset
+        if (document.getElementById(id).value.trim().length == 0) {
+            valid_submission = false
+        }
+    }
+    //Check dob
+    if (!document.getElementById("dob").value) {
+        valid_submission = false
+    }
+    //Update visual appearance and functionality of the form
+    let button = document.getElementById("new_patient_data_button");
+    if (valid_submission) {
+        button.style.backgroundColor = "#0062A8";
+        button.disabled = false;
+    } else {
+        button.style.backgroundColor = "#808080";
+        button.disabled = true;
+    }
+}
