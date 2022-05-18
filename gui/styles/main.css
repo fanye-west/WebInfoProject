@@ -184,13 +184,11 @@ body.white_background {
 .data_entry_button_grid {
     display: grid;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3%;
-    align-items: center;
+    align-items: start;
 }
-
-.data_entry_button_grid.add_note_buttons {}
 
 .add_note_form {
     height: 200px;
@@ -204,9 +202,9 @@ body.white_background {
 
 .data_entry_format_grid {
     width: 100%;
-    height: 95%;
+    height: fit-content;
     display: grid;
-    grid-template-rows: 9fr 2fr;
+    grid-template-rows: 15fr 2fr 1fr;
 }
 
 .data_entry_format_grid#new_patient {
@@ -1130,6 +1128,12 @@ iframe {
     padding: 0px;
 }
 
+.icon_button#modal_cancel{
+    padding-right: 5%;
+    padding-top: 3%;
+    color: #EAF6FF;
+}
+
 .button_margin_wrapper {
     margin-left: 5px;
     margin-right: 5px;
@@ -1268,6 +1272,7 @@ p.grey {
 .error {
     color: #c00000;
     text-align: center;
+    align-items: start;
 }
 
 .navigation_title {
@@ -1303,6 +1308,11 @@ p.grey {
     white-space: nowrap;
 }
 
+.leaderboard_heading {
+    color: #EAF6FF;
+    padding-top: 3%;
+    padding-left: 5%;
+}
 
 /*layout rules for different screen sizes */
 
@@ -1570,9 +1580,9 @@ p.grey {
     background-color: #0062a8;
     /* background-color: #00ff15; */
     left: 0px;
-    min-width: 300px;
+    /* min-width: 300px; */
     max-width: 600px;
-    min-height: 300px;
+    /* min-height: 300px; */
     border-radius: 0px 15px 15px 0px;
     top: 15%;
 }

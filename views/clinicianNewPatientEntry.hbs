@@ -42,7 +42,7 @@
                                     <p class="patient_info_label">Email Address</p>
 
                                     <label for="email_address"></label>
-                                    <input class="patient_new_input" type="text" name="email"></input>
+                                    <input class="patient_new_input" type="text" name="email" pattern="\S+@\S+" title="Must be a valid email address"></input>
                                 </div>
                             </div>
 
@@ -62,7 +62,7 @@
                                     <p class="patient_info_label">Password</p>
 
                                     <label for="password"></label>
-                                    <input class="patient_new_input" type="text" name="password"></input>
+                                    <input class="patient_new_input" type="text" name="password" pattern="\S{8,}" title="Must be at least 8 characters"></input>
                                 </div>      
                             </div>
                         </div>

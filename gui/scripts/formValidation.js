@@ -17,7 +17,9 @@ function checkPatientDataEntry() {
                 valid_submission = true
                 error_field.innerText = " "
             } else {
+                valid_submission = false
                 error_field.innerText = "Please enter numbers only for data records";
+                break
             }
         }
     }
