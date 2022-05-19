@@ -432,7 +432,7 @@ const insertPatientData = async(req, res, next) => {
 const insertPatientPassword = async(req, res, next) => {
     let PatientID = req.user._id.toString();
     let newPassword = req.body.newpassword1;
-    let newPasswordConfirm = req.body.newpassword1;
+    let newPasswordConfirm = req.body.newpassword2;
     if (newPassword == newPasswordConfirm) {
         const patient = await Patient.findById(PatientID);
         patient.password = newPassword;

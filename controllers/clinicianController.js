@@ -88,7 +88,6 @@ const getClinicianDash = async(req, res, next) => {
         let i
         let patientDataPackage
         let patientData
-
         if (typeof(req.query.name) === 'undefined' || req.query.name === "") {
             // Display all patients if none are searched for
             for (i = 0; i < clinicianData.patients.length; i++) {
@@ -160,7 +159,6 @@ const getClinicianDash = async(req, res, next) => {
 
                 patientsLatest.push(patientDataPackage)
             }
-
         } else {
             // Otherwise, find and display the patients searched for
             for (i = 0; i < clinicianData.patients.length; i++) {
@@ -383,6 +381,18 @@ const getClinicianAddPatient = async(req, res, next) => {
 
 }
 
+const getClinicianPasswordChange = async(req, res, next) => {
+    try {
+        let functions = {
+            redirect: "clinicianRedirectHome()",
+            post: "/user/clinician/changePassword"
+        }
+        return res.render('changePassword', { layout: 'clinicianLayout', functions: functions });
+    } catch (err) {
+        return next(err)
+    }
+}
+
 //Post endpoints
 const updatePatientSupportMessage = async(req, res, next) => {
     //Check that patient belongs to clinician
@@ -531,17 +541,32 @@ const updatePatientDataSeries = async(req, res, next) => {
     return res.redirect("/user/clinician/patientdetails?id=" + patient_id + "&error=" + error)
 }
 
+const insertClinicianPassword = async(req, res, next) => {
+    let ClinicianID = req.user._id.toString();
+    let newPassword = req.body.newpassword1;
+    let newPasswordConfirm = req.body.newpassword2;
+    if (newPassword == newPasswordConfirm) {
+        const clinician = await Clinician.findById(ClinicianID);
+        clinician.password = newPassword;
+        clinician.save(); //Using .save() allows bcrypt to work and save the hashed password
+        return res.redirect('/user/clinician');
+    } else {
+        return res.render('changePassword', { layout: 'clinicianLayout' });
+    }
+}
+
 module.exports = {
     getClinicianDash,
     getClinicianLogin,
-    //clinicianLoginRedirect,
     clinicianLogoutRedirect,
     getClinicianDashWithComments,
     getClinicianPatientDash,
     getClinicianPatientNotes,
     getClinicianAddPatient,
+    getClinicianPasswordChange,
     updatePatientSupportMessage,
     updatePatientDataSeries,
     updatePatientNotes,
-    updatePatientList
+    updatePatientList,
+    insertClinicianPassword,
 }

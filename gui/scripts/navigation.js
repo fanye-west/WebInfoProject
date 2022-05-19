@@ -44,6 +44,10 @@ function clinicianPatientDashRedirect(patientID) {
     window.location.href = '/user/clinician/patientdetails?id=' + patientID;
 }
 
+function clinicianChangePasswordRedirect() {
+    window.location.href = '/user/clinician/password';
+}
+
 function toggleClincianCommentsView(name) {
     let searchquery = ""
     if (!name == "") {
