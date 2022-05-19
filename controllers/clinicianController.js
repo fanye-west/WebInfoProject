@@ -13,8 +13,8 @@ var warning_colour = "#FAC8C5"
 var required_symbol = "❗"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
-var VISITED_LOGIN = false
+// const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
+// var VISITED_LOGIN = false
 
 //Utils
 function isToday(date) {
@@ -85,8 +85,7 @@ const clinicianLogoutRedirect = async(req, res, next) => {
 
 const getClinicianDash = async(req, res, next) => {
     try {
-        //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
         patientsLatest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
@@ -217,8 +216,7 @@ const getClinicianDash = async(req, res, next) => {
 
 const getClinicianDashWithComments = async(req, res, next) => {
     try {
-        //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
         patientsLatest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
@@ -280,7 +278,7 @@ const getClinicianDashWithComments = async(req, res, next) => {
 
 const getClinicianPatientDash = async(req, res, next) => {
     try {
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         let patient_id = req.query.id;
         let error;
         error = req.query.error;
@@ -328,7 +326,7 @@ const getClinicianPatientDash = async(req, res, next) => {
 
 const getClinicianPatientNotes = async(req, res, next) => {
     try {
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         let patient_id = req.query.id;
         //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
@@ -348,7 +346,6 @@ const getClinicianPatientNotes = async(req, res, next) => {
 
 const getClinicianAddPatient = async(req, res, next) => {
     try {
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout' });
     } catch (err) {
         return next(err)
@@ -359,6 +356,7 @@ const getClinicianAddPatient = async(req, res, next) => {
 //Post endpoints
 const updatePatientSupportMessage = async(req, res, next) => {
     //Check that patient belongs to clinician
+    let ClinicianID = req.user._id.toString();
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
@@ -372,6 +370,7 @@ const updatePatientSupportMessage = async(req, res, next) => {
 
 const updatePatientNotes = async(req, res, next) => {
     //Check that patient belongs to clinician
+    let ClinicianID = req.user._id.toString();
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
@@ -385,6 +384,7 @@ const updatePatientNotes = async(req, res, next) => {
 }
 
 const updatePatientList = async(req, res, next) => {
+    let ClinicianID = req.user._id.toString();
     if (req.body.first_name == "" || req.body.last_name == "" || req.body.username == "" || req.body.password == "" || req.body.email == "" || req.body.dob == "") {
         //Missing required data, return to home
         return res.redirect("/user/clinician/");
@@ -421,6 +421,7 @@ const updatePatientList = async(req, res, next) => {
 
 const updatePatientDataSeries = async(req, res, next) => {
     //Check that patient belongs to clinician
+    let ClinicianID = req.user._id.toString();
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     let error = "none";
