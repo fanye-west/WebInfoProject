@@ -12,12 +12,10 @@ require('./models')
 
 //Constants
 const app = express();
-const port = 3000;
 
 //Ensure static files are available
 app.use(express.static(__dirname + '/gui'));
-
-app.use(flash())
+app.use(flash()) // use flash
 
 //Use body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,7 +27,7 @@ app.use(
     session({
         // The secret used to sign session cookies (ADD ENV VAR)
         secret: process.env.SESSION_SECRET || 'keyboard cat',
-        name: 'demo', // The cookie name (CHANGE THIS)
+        name: 'info30005', // The cookie name (CHANGE THIS)
         saveUninitialized: false,
         resave: false,
         cookie: {
@@ -43,10 +41,10 @@ app.use(
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1); // Trust first proxy
 }
+
 // Initialise Passport.js
 const passport = require('./config/passport')
 app.use(passport.authenticate('session'))
-    // Load authentication router
 
 //Define route files 
 var indexRouter = require('./routes/indexRouter');

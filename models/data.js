@@ -1,3 +1,5 @@
+/* schema for data entered by a patient */
+
 const mongoose = require('mongoose')
 const valueSchema = require('../models/value').schema
 

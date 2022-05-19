@@ -3,10 +3,10 @@ const passport = require('passport')
 const router = express.Router();
 const controller = require('../controllers/patientController');
 
-// Authentication middleware
+// checks if a user is logged in to stop them from accessing pages that are only meant for logged in users
 const isAuthenticated = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        return res.redirect('/user/patient/login')
+        return res.redirect('/user/patient/login') // if not logged in, redirects the user to the login page 
     }
     return next()
 }

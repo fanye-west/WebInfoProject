@@ -1,22 +1,25 @@
+// importing passport and local strategy
 const passport = require('passport')
-const { off } = require('process')
+const LocalStrategy = require('passport-local').Strategy
+
+// getting the user and clinician models
 const Clinician = require('../models/clinician')
 const Patient = require('../models/patient')
-const LocalStrategy = require('passport-local').Strategy
-    // Hardcode user for now
-    // Serialize information to be stored in session/cookie
+
+// Serialize information to be stored in session/cookie
 passport.serializeUser((user, done) => {
-        // Use id to serialize user
-        done(undefined, user._id)
-    })
-    // When a request comes in, deserialize/expand the serialized information
-    // back to what it was (expand from id to full user)
+    // Use id to serialize user
+    done(undefined, user._id)
+})
+
+// When a request comes in, deserialize/expand the serialized information
+// back to what it was (expand from id to full user)
 passport.deserializeUser((userId, done) => {
     Patient.findById(userId, { password: 0 }, (err, user) => {
         if (err) {
             return done(err, undefined)
         }
-        if (user == null) {
+        if (user == null) { // if user not found in the patient table, search the clinician table
             Clinician.findById(userId, { password: 0 }, (err, user) => {
                 if (err) {
                     return done(err, undefined)
@@ -29,12 +32,7 @@ passport.deserializeUser((userId, done) => {
     })
 })
 
-// Clinician.findById(userId, { password: 0 }, (err, user) => {
-//     if (err)
-//         return done(err, undefined)
-// })
-
-
+// Defining the local strategy to find a given user in the patient table
 passport.use('patient-local',
     new LocalStrategy((username, password, done) => {
         Patient.findOne({ user_name: username }, {}, {}, (err, user) => {
@@ -57,6 +55,7 @@ passport.use('patient-local',
         })
     }))
 
+// Defining the local strategy to find a given user in the clinician table
 passport.use('clinician-local',
     new LocalStrategy((username, password, done) => {
         Clinician.findOne({ user_name: username }, {}, {}, (err, user) => {
