@@ -9,7 +9,10 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-patient_first_names = ["Pat", "Matt", "Jess", "Anna", "Anh", "Aditya", "Dash", "Evie", "Fane", "Grant", "Tanay"]
+//Clear Tables
+Patient.deleteMany({})
+
+patient_first_names = ["Jenny", "Anthony", "Scott", "Pauline", "Jarad", "Matt", "James", "George", "Rod", "Helen", "Sammy"]
 patient_last_names = ["Holmes", "Brown", "Smith", "McPherson", "Nguyen", "Ajit", "Park", "Hadlow", "Ye", "Holtes", "Khandelwal"]
 
 var p, i, id;
@@ -98,64 +101,18 @@ for (p = 0; p < patient_first_names.length; p++) {
 console.log("new patients created: ", ClinicianPatientIDs)
 
 mock_clinician = {
-    first_name: "Jane",
-    last_name: "Doe",
-    user_name: "JDoe87",
-    password: "gduwygdwuywdgqyuqdwgdwquywdgqyu",
-    email: "JDoe@hotmail.com",
-    dob: "7/2/1987",
+    first_name: "Thora",
+    last_name: "Tunison",
+    user_name: "TTunison",
+    password: "password",
+    email: "TT80@hotmail.com",
+    dob: "1/12/1980",
     bio: "Just a simple made up doctor, trying their best",
     patients: ClinicianPatientIDs
 }
 
 newClinician = new Clinician(mock_clinician)
 newClinician.save()
-console.log("newClinician created")
+console.log("new clinician")
 id = newClinician._id.toString()
 console.log("Created new clincian, id: " + id.toString())
-
-// var id = "626a6639ce600ec9408c8abe"
-// var date
-// var N = 15
-// var data = []
-// for (i = 0; i < N; i++) {
-//     date = new Date();
-//     date.setDate(date.getDate() - (N - i))
-//     glucose = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(10),
-//         comment: "my glucose comment: " + i,
-//         when: date,
-//     })
-//     weight = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(10) + 60,
-//         comment: "my weight comment: " + i,
-//         when: date,
-//     })
-//     insulin = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(3),
-//         comment: "my insulin comment: " + i,
-//         when: date,
-//     })
-//     exercise = new Value({
-//         is_recorded: true,
-//         value: getRandomInt(10000) + 5000,
-//         comment: "my exercise comment: " + i,
-//         when: date,
-//     })
-//     newdata = new Data({
-//         glucose: glucose,
-//         weight: weight,
-//         insulin: insulin,
-//         exercise: exercise,
-//         date: date,
-//     })
-//     data.push(newdata)
-// }
-
-// console.log(data)
-// Patient.updateOne({ _id: id }, { data: data }).exec();
-
-console.log("Data overwritten")

@@ -85,6 +85,7 @@ function checkClinicianNewPatientEntry() {
         //Check that the data is preset
         if (document.getElementById(id).value.trim().length == 0) {
             valid_submission = false
+            break
         }
     }
     //Check dob
@@ -93,6 +94,38 @@ function checkClinicianNewPatientEntry() {
     }
     //Update visual appearance and functionality of the form
     let button = document.getElementById("new_patient_data_button");
+    if (valid_submission) {
+        button.style.backgroundColor = "#0062A8";
+        button.disabled = false;
+    } else {
+        button.style.backgroundColor = "#808080";
+        button.disabled = true;
+    }
+}
+
+function checkPatientNewPassword() {
+    let valid_submission = true;
+    //Check current state of the form - has at least one submission that was not pre-filled been filled in?
+    let ids_to_check = ['newpassword1', 'newpassword2']
+    let i;
+    let id;
+    for (i = 0; i < ids_to_check.length; i++) {
+        id = ids_to_check[i];
+        //Check that the data is preset
+        console.log(document.getElementById(id).value)
+        if (document.getElementById(id).value.trim().length == 0) {
+            valid_submission = false
+            console.log("Empty", id)
+            break
+        }
+    }
+    //Check that entries match
+    if (document.getElementById("newpassword1").value != document.getElementById("newpassword2").value) {
+        valid_submission = false
+        console.log("Mismatched")
+    }
+    //Update visual appearance and functionality of the form
+    let button = document.getElementById("password_submit_button");
     if (valid_submission) {
         button.style.backgroundColor = "#0062A8";
         button.disabled = false;

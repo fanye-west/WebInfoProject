@@ -5,6 +5,7 @@ const Value = require('../models/value');
 const Data = require('../models/data');
 const LeaderboardEntry = require('../models/leaderboardentry.js');
 const { type } = require('express/lib/response');
+const { copyFileSync } = require('fs');
 require('../models')
 
 var green = "background-color:#9AD3A5";
@@ -12,9 +13,6 @@ var red = "background-color:#E58783";
 var orange = "background-color:#F2CA95";
 var warning_colour = "#FAC8C5"
 
-//Deliverable 2 Hardcoded values
-const PatientID = "62860268f7f26a53daaac436" //SEEDED PATIENTS ID: "6275ca17e6f40fa90c6882b4"
-var VISITED_LOGIN = false
 
 // utils
 function isToday(date) {
@@ -58,10 +56,9 @@ const patientLogoutRedirect = async(req, res, next) => {
 const getPatientDash = async(req, res, next) => {
     try {
         //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
+        // if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
+        let PatientID = req.user._id.toString();
         const patientData = await Patient.findById(PatientID).lean()
-        const patientLeaderboardData = await LeaderboardEntry.find({ patient_id: PatientID }).lean()
-        let patientLeaderboardDataFiltered = patientLeaderboardData[0]
         patientData.data = patientData.data.reverse(); //Display newest to oldest
         let i;
         for (i = 0; i < patientData.data.length; i++) {
@@ -80,18 +77,28 @@ const getPatientDash = async(req, res, next) => {
         }
         //Get leaderboard
         //Get user badge
-        let user_engagement_rate = patientLeaderboardDataFiltered.engagement_rate;
-        let badge_icon = "../assets/icons/bronze.png"
-        if (user_engagement_rate < 50) {
-            badge_icon = "../assets/icons/bronze.png"
-        } else if (user_engagement_rate > 80) {
-            badge_icon = "../assets/icons/gold.png"
+        const patientLeaderboardData = await LeaderboardEntry.find({ patient_id: PatientID }).lean();
+        if (patientLeaderboardData.length > 0) {
+            let patientLeaderboardDataSingle = patientLeaderboardData[0]
+            let user_engagement_rate = patientLeaderboardDataSingle.engagement_rate;
+            let badge_icon = ""
+            if (user_engagement_rate > 80) {
+                badge_icon = "/assets/icons/bronze.png"
+            }
+            if (user_engagement_rate > 85) {
+                badge_icon = "/assets/icons/silver_medal.png"
+            }
+            if (user_engagement_rate > 90) {
+                badge_icon = "/assets/icons/gold.png"
+            }
+            patientData.badge_icon = badge_icon;
+            patientData.user_engagement_rate = Math.round(user_engagement_rate) + "%"
         } else {
-            badge_icon = "../assets/icons/silver_medal.png"
+            patientData.badge_icon = "";
+            patientData.user_engagement_rate = "NA%"
         }
-        patientData.badge_icon = badge_icon;
-        patientData.user_engagement_rate = Math.round(user_engagement_rate) + "%"
-            //Get the top 5 items as ranked by engagement_rate without filtering
+
+        //Get the top 5 items as ranked by engagement_rate without filtering
         const leaderboardData = await LeaderboardEntry.find().sort({ engagement_rate: -1 }).limit(5).lean();
         leaderboard = []
         for (i = 0; i < 5; i++) {
@@ -108,10 +115,7 @@ const getPatientDash = async(req, res, next) => {
 
 const getPatientDataEntry = async(req, res, next) => {
     try {
-        //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
-        // TODO Add DB call and actual HRB render here:
-        // Get patient data for today's date
+        let PatientID = req.user._id.toString();
         const patientData = await Patient.findById(PatientID).lean()
 
         let glucose_value = undefined
@@ -241,6 +245,12 @@ const getPatientDataEntry = async(req, res, next) => {
     }
 }
 
+const getPatientPasswordChange = async(req, res, next) => {
+    return res.render('changePassword', { layout: 'patientLayout' });
+}
+
+
+//Post
 const insertPatientData = async(req, res, next) => {
     //Expects data from a form with the following fields:
     // REQUIRED
@@ -256,9 +266,9 @@ const insertPatientData = async(req, res, next) => {
     // 		steps_comment: Free text comment for steps
     //Test with $ curl -X POST http://127.0.0.1:3000/user/patient/addpatientdata
     try {
-        const requestData = req.body;
         //Check data 
         //Numerical
+        let PatientID = req.user._id.toString();
         let blood_glucose_value = parseFloat(req.body.blood_glucose_value)
         let weight_value = parseFloat(req.body.weight_value)
         let insulin_dose_value = parseFloat(req.body.insulin_dose_value)
@@ -268,11 +278,9 @@ const insertPatientData = async(req, res, next) => {
         let weight_comment = req.body.weight_comment
         let insulin_dose_comment = req.body.insulin_dose_comment
         let daily_steps_comment = req.body.daily_steps_comment
-
         const patientData = await Patient.findById(PatientID).lean()
         let create_new_data_day = false;
         let empty_form = false;
-
         if (patientData.data.length > 0) {
             let latest_data = patientData.data[patientData.data.length - 1];
             if (isToday(latest_data.date)) {
@@ -388,30 +396,46 @@ const insertPatientData = async(req, res, next) => {
         //Update engagement rate: "Engagement rate is the percentage of data entries 
         //that were carried out as requested by the patient’s clinician."
         //1) count number of missed records in days where at least 1 data point was provided
+        const patientDataUpdated = await Patient.findById(PatientID).lean()
         let total_required = 0;
         let total_required_provided = 0;
-        for (let i = 0; i < patientData.data.length; i++) {
-            total_required = total_required + patientData.data[i].num_required;
-            total_required_provided = total_required_provided + patientData.data[i].num_required_provided;
+        for (let i = 0; i < patientDataUpdated.data.length; i++) {
+            total_required = total_required + patientDataUpdated.data[i].num_required;
+            total_required_provided = total_required_provided + patientDataUpdated.data[i].num_required_provided;
         }
         //2) count number of missed days
-        let first_day = patientData.data[0].date;
+        let first_day = patientDataUpdated.data[0].date;
         let today = new Date();
         let numdays = Math.ceil((today - first_day) / (1000 * 3600 * 24))
-        let missed_days = numdays - patientData.data.length;
-        num_required = patientData.glucose_required + patientData.weight_required + patientData.insulin_required + patientData.exercise_required;
+        let missed_days = numdays - patientDataUpdated.data.length;
+        num_required = patientDataUpdated.glucose_required + patientDataUpdated.weight_required + patientDataUpdated.insulin_required + patientDataUpdated.exercise_required;
         total_required = total_required + (missed_days * num_required); //Extrapolate based on today's required time series
         //Update engagement_rate
         engagement_rate_calculated = 100.0 * total_required_provided / total_required;
+        if (isNaN(engagement_rate_calculated)) {
+            engagement_rate_calculated = 0; //Divide by zero error
+        }
         LeaderboardEntry.updateOne({ patient_id: PatientID }, {
             patient_id: PatientID,
             engagement_rate: engagement_rate_calculated,
-            username: patientData.user_name
+            username: patientDataUpdated.user_name
         }, { upsert: true }).exec();
-
         return res.redirect('/user/patient')
     } catch (err) {
         return next(err)
+    }
+}
+
+const insertPatientPassword = async(req, res, next) => {
+    let PatientID = req.user._id.toString();
+    let newPassword = req.body.newpassword1;
+    let newPasswordConfirm = req.body.newpassword1;
+    console.log(PatientID, newPassword);
+    if (newPassword == newPasswordConfirm) {
+        await Patient.updateOne({ _id: PatientID }, { password: newPassword }, { upsert: true }).exec();
+        return res.redirect('/user/patient');
+    } else {
+        return res.render('changePassword', { layout: 'patientLayout' });
     }
 }
 
@@ -421,5 +445,7 @@ module.exports = {
     patientLogoutRedirect,
     getPatientDash,
     getPatientDataEntry,
+    getPatientPasswordChange,
     insertPatientData,
+    insertPatientPassword,
 }

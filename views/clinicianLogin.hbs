@@ -1,21 +1,24 @@
-<div class ="main_page_body_under_navigation" >
+<!--Patient Login Box-->
+	<div class ="main_page_body_under_navigation" >
 	<div class ="rounded_box_half_width long">
 		<div class="basic_column">
 			<div class="center_text_column" id=> 
-					<h1>Clinician Login</h1>
+				<h1>Clinician Login</h1>
 			</div>
-			<!--Username input field-->
-			<div class="left_text_column">
+			<form method="post" action="/user/clinician/login">
+				<!--Username input field-->
+				<div class="left_text_column">
 					<h2>Username</h2>
-			</div>
-			<input class="input_field" type="text" id="username" placeholder="">
-			<!--Password input field-->
-			<div class="left_text_column">
-				<h2>Password</h2>
-			</div>
-			<input class="input_field" type="password" id="password" placeholder="">
-			<!--Login Button-->
-			<button class="default_button dark_blue_centered" onclick="clinicianLoginRedirect()">Login</button>
+				</div>
+				<input class="input_field" type="text" id="username" name="username" placeholder="">
+				<!--Password input field-->
+				<div class="left_text_column">
+					<h2>Password</h2>
+				</div>
+				<input class="input_field" type="password" id="password" name="password" placeholder="">
+				<!--Login Button-->
+				<button class="default_button dark_blue_centered" type="submit">Login</button>
+			</form>
 		</div>
 	</div>
 </div>

@@ -5,14 +5,15 @@ const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
 const Note = require('../models/note');
+const LeaderboardEntry = require('../models/leaderboardentry.js');
+const passport = require('../config/passport')
+const express = require('express')
+const router = express.Router()
+
 require('../models')
 
 var warning_colour = "#FAC8C5"
 var required_symbol = "❗"
-
-//Deliverable 2 Hardcoded values
-const ClinicianID = "6286049f990540b00e0ce98d" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
-var VISITED_LOGIN = false
 
 //Utils
 function isToday(date) {
@@ -64,12 +65,13 @@ const getClinicianLogin = async(req, res, next) => {
 
 const clinicianLoginRedirect = async(req, res, next) => {
     //Checks login for deliverable 2
-    try {
-        VISITED_LOGIN = true
-        return res.redirect('/user/clinician')
-    } catch (err) {
-        return next(err)
-    }
+    router.post('/login',
+        passport.authenticate('clinician-local', {
+            successRedirect: '/user/clinician/',
+            failureRedirect: '/user/clinician/login',
+            failureFlash: true
+        })
+    )
 }
 
 const clinicianLogoutRedirect = async(req, res, next) => {
@@ -84,8 +86,7 @@ const clinicianLogoutRedirect = async(req, res, next) => {
 
 const getClinicianDash = async(req, res, next) => {
     try {
-        //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
         patientsLatest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
@@ -129,7 +130,7 @@ const getClinicianDash = async(req, res, next) => {
                 }
 
                 //Highlight required attributes, ignoring if undefined
-                if (patientData.glucose_required ) {
+                if (patientData.glucose_required) {
                     let val = String(patientDataPackage.glucose_value)
                     if (val == 'undefined') {
                         patientDataPackage.glucose_value = required_symbol;
@@ -236,8 +237,7 @@ const getClinicianDash = async(req, res, next) => {
 
 const getClinicianDashWithComments = async(req, res, next) => {
     try {
-        //Check login for deliverable 2
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
         patientsLatest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
@@ -299,7 +299,7 @@ const getClinicianDashWithComments = async(req, res, next) => {
 
 const getClinicianPatientDash = async(req, res, next) => {
     try {
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         let patient_id = req.query.id;
         let error;
         error = req.query.error;
@@ -347,7 +347,7 @@ const getClinicianPatientDash = async(req, res, next) => {
 
 const getClinicianPatientNotes = async(req, res, next) => {
     try {
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
+        let ClinicianID = req.user._id.toString();
         let patient_id = req.query.id;
         //Check that patient is managed by clinician
         const clinicianData = await Clinician.findById(ClinicianID).lean()
@@ -367,7 +367,6 @@ const getClinicianPatientNotes = async(req, res, next) => {
 
 const getClinicianAddPatient = async(req, res, next) => {
     try {
-        if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
         previousData = {
             first_name: "",
             last_name: "",
@@ -377,7 +376,8 @@ const getClinicianAddPatient = async(req, res, next) => {
             bio: "",
             error: ""
         }
-        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
+        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData });
+
     } catch (err) {
         return next(err)
     }
@@ -387,6 +387,7 @@ const getClinicianAddPatient = async(req, res, next) => {
 //Post endpoints
 const updatePatientSupportMessage = async(req, res, next) => {
     //Check that patient belongs to clinician
+    let ClinicianID = req.user._id.toString();
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
@@ -400,6 +401,7 @@ const updatePatientSupportMessage = async(req, res, next) => {
 
 const updatePatientNotes = async(req, res, next) => {
     //Check that patient belongs to clinician
+    let ClinicianID = req.user._id.toString();
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     if (clinicianData.patients.includes(patient_id)) {
@@ -413,10 +415,11 @@ const updatePatientNotes = async(req, res, next) => {
 }
 
 const updatePatientList = async(req, res, next) => {
+    let ClinicianID = req.user._id.toString();
     let username_taken = false
     let previousData
     let patients = await Patient.find({}).lean()
-    // First check if the username is taken
+        // First check if the username is taken
     for (let i = 0; i < patients.length; i++) {
         if (req.body.username == patients[i].user_name) {
             username_taken = true
@@ -432,10 +435,10 @@ const updatePatientList = async(req, res, next) => {
             bio: req.body.new_patient_bio,
             error: "Username taken"
         }
-        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
+        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData });
 
     } else {
-       //Create patient data
+        //Create patient data
         let newPatientData = {};
         newPatientData.first_name = req.body.first_name;
         newPatientData.last_name = req.body.last_name;
@@ -445,7 +448,7 @@ const updatePatientList = async(req, res, next) => {
         newPatientData.password = req.body.password;
         newPatientData.email = req.body.email;
         newPatientData.dob = new Date(req.body.dob);
-        
+
         // Check if any fields are empty
         if (!(newPatientData.first_name == "" || newPatientData.last_name == "" || newPatientData.user_name == "" || newPatientData.bio == "" || newPatientData.password == "" || newPatientData.email == "" || newPatientData.dob == "")) {
             //Create new patient
@@ -453,11 +456,18 @@ const updatePatientList = async(req, res, next) => {
             patient_id = newPatient._id.toString();
             //Update database
             newPatient.save();
-
+            //Add to leaderboard
+            leaderboard = {
+                patient_id: newPatient._id.toString(),
+                engagement_rate: 0,
+                username: newPatient.user_name
+            };
+            leaderboardObj = LeaderboardEntry(leaderboard)
+            leaderboardObj.save()
             await Clinician.updateOne({ _id: ClinicianID }, {
                 $push: { patients: patient_id }
             }).exec();
-            return res.redirect("/user/clinician/") 
+            return res.redirect("/user/clinician/")
         } else {
             previousData = {
                 first_name: req.body.first_name,
@@ -468,16 +478,49 @@ const updatePatientList = async(req, res, next) => {
                 bio: req.body.new_patient_bio,
                 error: "All fields must be provided"
             }
-            return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
+            return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData });
         }
-        
+
     }
 
-    
+    // let ClinicianID = req.user._id.toString();
+    // if (req.body.first_name == "" || req.body.last_name == "" || req.body.username == "" || req.body.password == "" || req.body.email == "" || req.body.dob == "") {
+    //     //Missing required data, return to home
+    //     return res.redirect("/user/clinician/");
+    // }
+    // //Create new patient
+    // let newPatientData = {};
+    // newPatientData.first_name = req.body.first_name;
+    // newPatientData.last_name = req.body.last_name;
+    // newPatientData.user_name = req.body.username;
+    // newPatientData.bio = req.body.bio;
+    // newPatientData.password = req.body.password;
+    // newPatientData.email = req.body.email;
+    // newPatientData.dob = new Date(req.body.dob);
+    // //Create new patient
+    // newPatient = Patient(newPatientData);
+    // patient_id = newPatient._id.toString();
+    // //Update database
+    // newPatient.save();
+    // //Add to leaderboard
+    // leaderboard = {
+    //     patient_id: newPatient._id.toString(),
+    //     engagement_rate: 0,
+    //     username: newPatient.user_name
+    // };
+    // leaderboardObj = LeaderboardEntry(leaderboard)
+    // leaderboardObj.save()
+    //     //Add to clinician
+    // const clinicianData = await Clinician.findById(ClinicianID).lean()
+    // await Clinician.updateOne({ _id: ClinicianID }, {
+    //     $push: { patients: patient_id }
+    // }).exec();
+    // return res.redirect("/user/clinician/")
 }
 
 const updatePatientDataSeries = async(req, res, next) => {
     //Check that patient belongs to clinician
+    let ClinicianID = req.user._id.toString();
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     let patient_id = req.query.id;
     let error = "none";
@@ -497,25 +540,25 @@ const updatePatientDataSeries = async(req, res, next) => {
 
         //Data Validation
 
-        if (req.body.glucose_bounds_lower != "" && req.body.glucose_bounds_upper != "" && isValidBounds(glucose_bounds[0], glucose_bounds[1])) { 
-            update_fields.glucose_bounds = glucose_bounds; 
-        } else if (req.body.glucose_bounds_lower != "" && req.body.glucose_bounds_upper != "") { 
-            error = "invalidbounds"; 
+        if (req.body.glucose_bounds_lower != "" && req.body.glucose_bounds_upper != "" && isValidBounds(glucose_bounds[0], glucose_bounds[1])) {
+            update_fields.glucose_bounds = glucose_bounds;
+        } else if (req.body.glucose_bounds_lower != "" && req.body.glucose_bounds_upper != "") {
+            error = "invalidbounds";
         }
-        if (req.body.weight_bounds_lower != "" && req.body.weight_bounds_upper != "" && isValidBounds(weight_bounds[0], weight_bounds[1])) { 
-            update_fields.weight_bounds = weight_bounds; 
-        } else if (req.body.weight_bounds_lower != "" && req.body.weight_bounds_upper != "") { 
-            error = "invalidbounds"; 
+        if (req.body.weight_bounds_lower != "" && req.body.weight_bounds_upper != "" && isValidBounds(weight_bounds[0], weight_bounds[1])) {
+            update_fields.weight_bounds = weight_bounds;
+        } else if (req.body.weight_bounds_lower != "" && req.body.weight_bounds_upper != "") {
+            error = "invalidbounds";
         }
-        if (req.body.insulin_bounds_lower != "" && req.body.insulin_bounds_upper != "" && isValidBounds(insulin_bounds[0], insulin_bounds[1])) { 
-            update_fields.insulin_bounds = insulin_bounds; 
-        } else if (req.body.insulin_bounds_lower != "" && req.body.insulin_bounds_upper != "") { 
-            error = "invalidbounds"; 
+        if (req.body.insulin_bounds_lower != "" && req.body.insulin_bounds_upper != "" && isValidBounds(insulin_bounds[0], insulin_bounds[1])) {
+            update_fields.insulin_bounds = insulin_bounds;
+        } else if (req.body.insulin_bounds_lower != "" && req.body.insulin_bounds_upper != "") {
+            error = "invalidbounds";
         }
-        if (req.body.exercise_bounds_lower != "" && req.body.exercise_bounds_upper != "" && isValidBounds(exercise_bounds[0], exercise_bounds[1])) { 
-            update_fields.exercise_bounds = exercise_bounds; 
-        } else if (req.body.exercise_bounds_lower != "" && req.body.exercise_bounds_upper != "") { 
-            error = "invalidbounds"; 
+        if (req.body.exercise_bounds_lower != "" && req.body.exercise_bounds_upper != "" && isValidBounds(exercise_bounds[0], exercise_bounds[1])) {
+            update_fields.exercise_bounds = exercise_bounds;
+        } else if (req.body.exercise_bounds_lower != "" && req.body.exercise_bounds_upper != "") {
+            error = "invalidbounds";
         }
 
         //Update patient
@@ -527,7 +570,7 @@ const updatePatientDataSeries = async(req, res, next) => {
 module.exports = {
     getClinicianDash,
     getClinicianLogin,
-    clinicianLoginRedirect,
+    //clinicianLoginRedirect,
     clinicianLogoutRedirect,
     getClinicianDashWithComments,
     getClinicianPatientDash,
