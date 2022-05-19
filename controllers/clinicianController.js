@@ -8,6 +8,7 @@ const Note = require('../models/note');
 require('../models')
 
 var warning_colour = "#FAC8C5"
+var required_symbol = "❗"
 
 //Deliverable 2 Hardcoded values
 const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
@@ -112,7 +113,7 @@ const getClinicianDash = async(req, res, next) => {
                     patientDataPackage.insulin_value = undefined
                     patientDataPackage.exercise_value = undefined
                 }
-
+                //Highlight values that are outside bounds
                 if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
                     patientDataPackage["glucose_colour"] = warning_colour
                 }
@@ -125,6 +126,21 @@ const getClinicianDash = async(req, res, next) => {
                 if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
                     patientDataPackage["exercise_colour"] = warning_colour
                 }
+
+                //Highlight required attributes
+                if (patientData.glucose_required) {
+                    patientDataPackage.glucose_value = String(patientDataPackage.glucose_value) + required_symbol;
+                }
+                if (patientData.weight_required) {
+                    patientDataPackage.weight_value = String(patientDataPackage.weight_value) + required_symbol;
+                }
+                if (patientData.insulin_required) {
+                    patientDataPackage.insulin_value = String(patientDataPackage.insulin_value) + required_symbol;
+                }
+                if (patientData.exercise_required) {
+                    patientDataPackage.exercise_value = String(patientDataPackage.exercise_value) + required_symbol;
+                }
+
                 patientsLatest.push(patientDataPackage)
             }
 
@@ -156,7 +172,7 @@ const getClinicianDash = async(req, res, next) => {
                         patientDataPackage.insulin_value = undefined
                         patientDataPackage.exercise_value = undefined
                     }
-
+                    //Highlight values that are outside bounds
                     if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
                         patientDataPackage["glucose_colour"] = warning_colour
                     }
@@ -169,6 +185,20 @@ const getClinicianDash = async(req, res, next) => {
                     if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
                         patientDataPackage["exercise_colour"] = warning_colour
                     }
+                    //Highlight required attributes
+                    if (patientData.glucose_required) {
+                        patientDataPackage.glucose_value = String(patientDataPackage.glucose_value) + required_symbol;
+                    }
+                    if (patientData.weight_required) {
+                        patientDataPackage.weight_value = String(patientDataPackage.weight_value) + required_symbol;
+                    }
+                    if (patientData.insulin_required) {
+                        patientDataPackage.insulin_value = String(patientDataPackage.insulin_value) + required_symbol;
+                    }
+                    if (patientData.exercise_required) {
+                        patientDataPackage.exercise_value = String(patientDataPackage.exercise_value) + required_symbol;
+                    }
+
                     patientsLatest.push(patientDataPackage)
                 }
             }
