@@ -1,3 +1,4 @@
+/* getting the date of a given day */
 const isToday = (someDate) => {
     const today = new Date()
     return someDate.getDate() == today.getDate() &&

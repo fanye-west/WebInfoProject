@@ -3,6 +3,8 @@ const passport = require('passport')
 const router = express.Router();
 const controller = require('../controllers/clinicianController');
 
+
+// checks if a user is loggin in to stop them from accessing pages that are only meant for logged in users
 const isAuthenticated = (req, res, next) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/user/clinician/login')
