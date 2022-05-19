@@ -241,7 +241,15 @@ const getPatientDataEntry = async(req, res, next) => {
 }
 
 const getPatientPasswordChange = async(req, res, next) => {
-    return res.render('changePassword', { layout: 'patientLayout' });
+    try {
+        let functions = {
+            redirect: "patientRedirectHomeNoAction()",
+            post: "/user/patient/changePassword"
+        }
+        return res.render('changePassword', { layout: 'patientLayout', functions: functions });
+    } catch (err) {
+        return next(err)
+    }
 }
 
 
