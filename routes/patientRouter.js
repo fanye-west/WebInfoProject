@@ -26,13 +26,14 @@ router.post("/insertPatientData", isAuthenticated, controller.insertPatientPassp
 
 // Handle login
 router.post('/login',
-        passport.authenticate('local', {
-            successRedirect: '/user/patient/',
-            failureRedirect: '/user/patient/login',
-            failureFlash: true
-        })
-    )
-    // Handle logout
+    passport.authenticate('patient-local', {
+        successRedirect: '/user/patient',
+        failureRedirect: '/user/patient/login',
+        failureFlash: true
+    })
+)
+
+// Handle logout
 router.post('/logout', (req, res) => {
     req.logout()
     res.redirect('/')
