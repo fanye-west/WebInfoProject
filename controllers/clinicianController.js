@@ -232,7 +232,6 @@ const getClinicianDash = async(req, res, next) => {
 
 const getClinicianDashWithComments = async(req, res, next) => {
     try {
-        console.log(1)
         let ClinicianID = req.user._id.toString();
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
@@ -242,7 +241,6 @@ const getClinicianDashWithComments = async(req, res, next) => {
         let patientData
         if (typeof(req.query.name) === 'undefined' || req.query.name === "") {
             for (i = 0; i < clinicianData.patients.length; i++) {
-                console.log(2)
                 patientID = clinicianData.patients[i]
                 patientData = await Patient.findById(patientID).lean()
 
@@ -289,7 +287,6 @@ const getClinicianDashWithComments = async(req, res, next) => {
             }
             clinicianData.searchterm = req.query.name;
         }
-        console.log(3)
         clinicianData["patientData"] = patientsLatest
         clinicianData["view_button_text"] = "View patient data"
         clinicianData["date"] = today
