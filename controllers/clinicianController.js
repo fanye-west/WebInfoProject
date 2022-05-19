@@ -232,6 +232,7 @@ const getClinicianDash = async(req, res, next) => {
 
 const getClinicianDashWithComments = async(req, res, next) => {
     try {
+        console.log(1)
         let ClinicianID = req.user._id.toString();
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
@@ -241,17 +242,20 @@ const getClinicianDashWithComments = async(req, res, next) => {
         let patientData
         if (typeof(req.query.name) === 'undefined' || req.query.name === "") {
             for (i = 0; i < clinicianData.patients.length; i++) {
+                console.log(2)
                 patientID = clinicianData.patients[i]
                 patientData = await Patient.findById(patientID).lean()
 
                 patientDataPackage = {
                     first_name: patientData.first_name,
                     last_name: patientData.last_name,
-                    patient_link: "/patientdetails",
-                    glucose_value: patientData.data[patientData.data.length - 1].glucose.comment,
-                    weight_value: patientData.data[patientData.data.length - 1].weight.comment,
-                    insulin_value: patientData.data[patientData.data.length - 1].insulin.comment,
-                    exercise_value: patientData.data[patientData.data.length - 1].exercise.comment,
+                    patient_link: "/patientdetails"
+                }
+                if (patientData.data.length > 0) {
+                    patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.comment
+                    patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.comment
+                    patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.comment
+                    patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.comment
                 }
                 patientsLatest.push(patientDataPackage)
             }
@@ -272,17 +276,20 @@ const getClinicianDashWithComments = async(req, res, next) => {
                     patientDataPackage = {
                         first_name: patientData.first_name,
                         last_name: patientData.last_name,
-                        patient_link: "/patientdetails",
-                        glucose_value: patientData.data[patientData.data.length - 1].glucose.comment,
-                        weight_value: patientData.data[patientData.data.length - 1].weight.comment,
-                        insulin_value: patientData.data[patientData.data.length - 1].insulin.comment,
-                        exercise_value: patientData.data[patientData.data.length - 1].exercise.comment,
+                        patient_link: "/patientdetails"
+                    }
+                    if (patientData.data.length > 0) {
+                        patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.comment
+                        patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.comment
+                        patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.comment
+                        patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.comment
                     }
                     patientsLatest.push(patientDataPackage)
                 }
             }
             clinicianData.searchterm = req.query.name;
         }
+        console.log(3)
         clinicianData["patientData"] = patientsLatest
         clinicianData["view_button_text"] = "View patient data"
         clinicianData["date"] = today

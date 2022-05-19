@@ -4,9 +4,7 @@ const router = express.Router();
 const controller = require('../controllers/clinicianController');
 
 const isAuthenticated = (req, res, next) => {
-    console.log("Clinician is auth: ", req.isAuthenticated())
     if (!req.isAuthenticated()) {
-        console.log()
         return res.redirect('/user/clinician/login')
     }
     return next()
