@@ -5,6 +5,7 @@ const Value = require('../models/value');
 const Data = require('../models/data');
 const LeaderboardEntry = require('../models/leaderboardentry.js');
 const { type } = require('express/lib/response');
+const { copyFileSync } = require('fs');
 require('../models')
 
 var green = "background-color:#9AD3A5";
@@ -59,6 +60,7 @@ const getPatientDash = async(req, res, next) => {
     try {
         //Check login for deliverable 2
         // if (!VISITED_LOGIN) { return res.redirect('/user/patient/login') }
+        console.log("");
         const patientData = await Patient.findById(PatientID).lean()
         const patientLeaderboardData = await LeaderboardEntry.find({ patient_id: PatientID }).lean()
         let patientLeaderboardDataFiltered = patientLeaderboardData[0]
@@ -81,13 +83,15 @@ const getPatientDash = async(req, res, next) => {
         //Get leaderboard
         //Get user badge
         let user_engagement_rate = patientLeaderboardDataFiltered.engagement_rate;
-        let badge_icon = "../assets/icons/bronze.png"
-        if (user_engagement_rate < 50) {
-            badge_icon = "../assets/icons/bronze.png"
-        } else if (user_engagement_rate > 80) {
-            badge_icon = "../assets/icons/gold.png"
-        } else {
-            badge_icon = "../assets/icons/silver_medal.png"
+        let badge_icon = ""
+        if (user_engagement_rate > 80) {
+            badge_icon = "/assets/icons/bronze.png"
+        }
+        if (user_engagement_rate > 85) {
+            badge_icon = "/assets/icons/silver_medal.png"
+        }
+        if (user_engagement_rate > 90) {
+            badge_icon = "/assets/icons/gold.png"
         }
         patientData.badge_icon = badge_icon;
         patientData.user_engagement_rate = Math.round(user_engagement_rate) + "%"
