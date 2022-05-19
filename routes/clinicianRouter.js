@@ -4,22 +4,21 @@ const router = express.Router();
 const controller = require('../controllers/clinicianController');
 
 const isAuthenticated = (req, res, next) => {
+    console.log("Clinician is auth: ", req.isAuthenticated())
     if (!req.isAuthenticated()) {
+        console.log()
         return res.redirect('/user/clinician/login')
     }
     return next()
 }
 
-
-router.get("/", controller.getClinicianDash);
+router.get("/login", controller.getClinicianLogin);
+router.get("/", isAuthenticated, controller.getClinicianDash);
 router.get("/comments", isAuthenticated, controller.getClinicianDashWithComments);
 router.get("/patientdetails", isAuthenticated, controller.getClinicianPatientDash);
 router.get("/notes", isAuthenticated, controller.getClinicianPatientNotes);
 router.get("/newpatient", isAuthenticated, controller.getClinicianAddPatient);
-
-router.get("/login", controller.getClinicianLogin);
-// router.get("/loginRedirect", controller.clinicianLoginRedirect);
-router.get("/logoutRedirect", controller.clinicianLogoutRedirect);
+router.get("/logoutRedirect", isAuthenticated, controller.clinicianLogoutRedirect);
 
 router.post("/updatePatientSupportMessage", isAuthenticated, controller.updatePatientSupportMessage);
 router.post("/insertNote", isAuthenticated, controller.updatePatientNotes);

@@ -16,9 +16,7 @@ router.get("/login", controller.getPatientLogin);
 router.get("/", isAuthenticated, controller.getPatientDash);
 router.get("/record", isAuthenticated, controller.getPatientDataEntry);
 router.get("/password", isAuthenticated, controller.getPatientPasswordChange);
-
-// router.get("/loginRedirect", controller.patientLoginRedirect);
-// router.get("/logoutRedirect", controller.patientLogoutRedirect);
+router.get("/logoutRedirect", isAuthenticated, controller.patientLogoutRedirect);
 
 //Post api routes
 router.post("/insertPatientData", isAuthenticated, controller.insertPatientData);
@@ -33,10 +31,10 @@ router.post('/login',
     })
 )
 
-// Handle logout
-router.post('/logout', (req, res) => {
-    req.logout()
-    res.redirect('/')
-})
+// // Handle logout
+// router.post('/logout', (req, res) => {
+//     req.logout()
+//     res.redirect('/')
+// })
 
 module.exports = router;

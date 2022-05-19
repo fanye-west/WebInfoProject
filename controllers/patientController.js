@@ -44,13 +44,8 @@ const patientLoginRedirect = async(req, res, next) => {
 }
 
 const patientLogoutRedirect = async(req, res, next) => {
-    //Checks logout for deliverable 2
-    try {
-        VISITED_LOGIN = false
-        return res.redirect('/')
-    } catch (err) {
-        return next(err)
-    }
+    req.logout()
+    res.redirect('/')
 }
 
 const getPatientDash = async(req, res, next) => {

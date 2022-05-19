@@ -63,25 +63,20 @@ const getClinicianLogin = async(req, res, next) => {
     }
 }
 
-const clinicianLoginRedirect = async(req, res, next) => {
-    //Checks login for deliverable 2
-    router.post('/login',
-        passport.authenticate('clinician-local', {
-            successRedirect: '/user/clinician/',
-            failureRedirect: '/user/clinician/login',
-            failureFlash: true
-        })
-    )
-}
+// const clinicianLoginRedirect = async(req, res, next) => {
+//     //Checks login for deliverable 2
+//     router.post('/login',
+//         passport.authenticate('clinician-local', {
+//             successRedirect: '/user/clinician/',
+//             failureRedirect: '/user/clinician/login',
+//             failureFlash: true
+//         })
+//     )
+// }
 
 const clinicianLogoutRedirect = async(req, res, next) => {
-    //Checks login for deliverable 2
-    try {
-        VISITED_LOGIN = false
-        return res.redirect('/')
-    } catch (err) {
-        return next(err)
-    }
+    req.logout()
+    res.redirect('/')
 }
 
 const getClinicianDash = async(req, res, next) => {
