@@ -6,6 +6,9 @@ const Value = require('../models/value');
 const Data = require('../models/data');
 const Note = require('../models/note');
 const LeaderboardEntry = require('../models/leaderboardentry.js');
+const passport = require('../config/passport')
+const express = require('express')
+const router = express.Router()
 
 require('../models')
 
@@ -65,12 +68,13 @@ const getClinicianLogin = async(req, res, next) => {
 
 const clinicianLoginRedirect = async(req, res, next) => {
     //Checks login for deliverable 2
-    try {
-        VISITED_LOGIN = true
-        return res.redirect('/user/clinician')
-    } catch (err) {
-        return next(err)
-    }
+    router.post('/login',
+        passport.authenticate('clinician-local', {
+            successRedirect: '/user/clinician/',
+            failureRedirect: '/user/clinician/login',
+            failureFlash: true
+        })
+    )
 }
 
 const clinicianLogoutRedirect = async(req, res, next) => {
@@ -455,7 +459,7 @@ const updatePatientDataSeries = async(req, res, next) => {
 module.exports = {
     getClinicianDash,
     getClinicianLogin,
-    clinicianLoginRedirect,
+    //clinicianLoginRedirect,
     clinicianLogoutRedirect,
     getClinicianDashWithComments,
     getClinicianPatientDash,
