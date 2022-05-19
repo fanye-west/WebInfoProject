@@ -48,6 +48,7 @@ function isValidBounds(lower, upper) {
     if (isNaN(upper)) { return false; }
     //Check that lower <= upper
     if (lower > upper) { return false; }
+    if (lower < 0 || upper < 0) { return false; }
     return true;
 }
 
@@ -127,18 +128,38 @@ const getClinicianDash = async(req, res, next) => {
                     patientDataPackage["exercise_colour"] = warning_colour
                 }
 
-                //Highlight required attributes
-                if (patientData.glucose_required) {
-                    patientDataPackage.glucose_value = String(patientDataPackage.glucose_value) + required_symbol;
+                //Highlight required attributes, ignoring if undefined
+                if (patientData.glucose_required ) {
+                    let val = String(patientDataPackage.glucose_value)
+                    if (val == 'undefined') {
+                        patientDataPackage.glucose_value = required_symbol;
+                    } else {
+                        patientDataPackage.glucose_value = val + required_symbol;
+                    }
                 }
                 if (patientData.weight_required) {
-                    patientDataPackage.weight_value = String(patientDataPackage.weight_value) + required_symbol;
+                    let val = String(patientDataPackage.weight_value)
+                    if (val == 'undefined') {
+                        patientDataPackage.weight_value = required_symbol;
+                    } else {
+                        patientDataPackage.weight_value = val + required_symbol;
+                    }
                 }
                 if (patientData.insulin_required) {
-                    patientDataPackage.insulin_value = String(patientDataPackage.insulin_value) + required_symbol;
+                    let val = String(patientDataPackage.insulin_value)
+                    if (val == 'undefined') {
+                        patientDataPackage.insulin_value = required_symbol;
+                    } else {
+                        patientDataPackage.insulin_value = val + required_symbol;
+                    }
                 }
                 if (patientData.exercise_required) {
-                    patientDataPackage.exercise_value = String(patientDataPackage.exercise_value) + required_symbol;
+                    let val = String(patientDataPackage.exercise_value)
+                    if (val == 'undefined') {
+                        patientDataPackage.exercise_value = required_symbol;
+                    } else {
+                        patientDataPackage.exercise_value = val + required_symbol;
+                    }
                 }
 
                 patientsLatest.push(patientDataPackage)
@@ -476,10 +497,26 @@ const updatePatientDataSeries = async(req, res, next) => {
 
         //Data Validation
 
-        if (isValidBounds(glucose_bounds[0], glucose_bounds[1])) { update_fields.glucose_bounds = glucose_bounds; } else { error = "invalidbounds"; }
-        if (isValidBounds(weight_bounds[0], weight_bounds[1])) { update_fields.weight_bounds = weight_bounds; } else { error = "invalidbounds"; }
-        if (isValidBounds(insulin_bounds[0], insulin_bounds[1])) { update_fields.insulin_bounds = insulin_bounds; } else { error = "invalidbounds"; }
-        if (isValidBounds(exercise_bounds[0], exercise_bounds[1])) { update_fields.exercise_bounds = exercise_bounds; } else { error = "invalidbounds"; }
+        if (req.body.glucose_bounds_lower != "" && req.body.glucose_bounds_upper != "" && isValidBounds(glucose_bounds[0], glucose_bounds[1])) { 
+            update_fields.glucose_bounds = glucose_bounds; 
+        } else if (req.body.glucose_bounds_lower != "" && req.body.glucose_bounds_upper != "") { 
+            error = "invalidbounds"; 
+        }
+        if (req.body.weight_bounds_lower != "" && req.body.weight_bounds_upper != "" && isValidBounds(weight_bounds[0], weight_bounds[1])) { 
+            update_fields.weight_bounds = weight_bounds; 
+        } else if (req.body.weight_bounds_lower != "" && req.body.weight_bounds_upper != "") { 
+            error = "invalidbounds"; 
+        }
+        if (req.body.insulin_bounds_lower != "" && req.body.insulin_bounds_upper != "" && isValidBounds(insulin_bounds[0], insulin_bounds[1])) { 
+            update_fields.insulin_bounds = insulin_bounds; 
+        } else if (req.body.insulin_bounds_lower != "" && req.body.insulin_bounds_upper != "") { 
+            error = "invalidbounds"; 
+        }
+        if (req.body.exercise_bounds_lower != "" && req.body.exercise_bounds_upper != "" && isValidBounds(exercise_bounds[0], exercise_bounds[1])) { 
+            update_fields.exercise_bounds = exercise_bounds; 
+        } else if (req.body.exercise_bounds_lower != "" && req.body.exercise_bounds_upper != "") { 
+            error = "invalidbounds"; 
+        }
 
         //Update patient
         await Patient.updateOne({ _id: patient_id }, update_fields).exec();
