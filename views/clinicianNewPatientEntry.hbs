@@ -16,7 +16,7 @@
                                     <p class="patient_info_label">Given Name</p>
 
                                     <label for="given_name"></label>
-                                    <input class="patient_new_input" type="text" name="first_name" id="first_name" value="{{first_name}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid first name"></input>
+                                    <input class="patient_new_input" type="text" name="first_name" id="first_name" value="{{first_name}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+(\s)?\S+" title="Must be a valid first name"></input>
                                 </div>
                             </div>
 
@@ -25,7 +25,7 @@
                                     <p class="patient_info_label">Family Name</p>
 
                                     <label for="family_name"></label>
-                                    <input class="patient_new_input" type="text" name="last_name" id="last_name" value="{{last_name}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid family name"></input>
+                                    <input class="patient_new_input" type="text" name="last_name" id="last_name" value="{{last_name}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+(\s)?\S+" title="Must be a valid family name"></input>
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@
                                 <p class="patient_info_label">Bio</p>
 
                                 <label for="new_patient_bio"></label>
-                                <input class="patient_new_input" id ="new_patient_bio" type="text" name="new_patient_bio" value="{{bio}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid bio"></input>
+                                <input class="patient_new_input" id ="new_patient_bio" type="text" name="new_patient_bio" value="{{bio}}" oninput="checkClinicianNewPatientEntry()"></input>
                             </div>      
                         </div>
 
@@ -90,7 +90,7 @@
                             <input type="submit" value="Submit" class="default_button grey data_button" id="new_patient_data_button" disabled>
                         </div>
                     </div>
-                    <b class="error">{{taken}}</b>
+                    <b class="error">{{error}}</b>
                 </div> 
             </form>
 

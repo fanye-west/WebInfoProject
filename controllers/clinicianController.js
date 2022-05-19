@@ -354,7 +354,7 @@ const getClinicianAddPatient = async(req, res, next) => {
             email: "",
             password: "",
             bio: "",
-            taken: ""
+            error: ""
         }
         return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
     } catch (err) {
@@ -392,12 +392,10 @@ const updatePatientNotes = async(req, res, next) => {
 }
 
 const updatePatientList = async(req, res, next) => {
-    if (req.body.first_name == "" || req.body.last_name == "" || req.body.username == "" || req.body.password == "" || req.body.email == "" || req.body.dob == "") {
-        //Missing required data, return to home
-        return res.redirect("/user/clinician/");
-    }
     let username_taken = false
+    let previousData
     let patients = await Patient.find({}).lean()
+    // First check if the username is taken
     for (let i = 0; i < patients.length; i++) {
         if (req.body.username == patients[i].user_name) {
             username_taken = true
@@ -411,31 +409,47 @@ const updatePatientList = async(req, res, next) => {
             email: req.body.email,
             password: req.body.password,
             bio: req.body.new_patient_bio,
-            taken: "Username taken"
+            error: "Username taken"
         }
         return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
 
     } else {
-       //Create new patient
+       //Create patient data
         let newPatientData = {};
         newPatientData.first_name = req.body.first_name;
         newPatientData.last_name = req.body.last_name;
         newPatientData.user_name = req.body.username;
-        newPatientData.bio = req.body.bio;
+        newPatientData.bio = req.body.new_patient_bio;
         //Add passwork with bcrypt TODO
         newPatientData.password = req.body.password;
         newPatientData.email = req.body.email;
         newPatientData.dob = new Date(req.body.dob);
-        //Create new patient
-        newPatient = Patient(newPatientData);
-        patient_id = newPatient._id.toString();
-        //Update database
-        newPatient.save();
-        const clinicianData = await Clinician.findById(ClinicianID).lean()
-        await Clinician.updateOne({ _id: ClinicianID }, {
-            $push: { patients: patient_id }
-        }).exec();
-        return res.redirect("/user/clinician/") 
+        
+        // Check if any fields are empty
+        if (!(newPatientData.first_name == "" || newPatientData.last_name == "" || newPatientData.user_name == "" || newPatientData.bio == "" || newPatientData.password == "" || newPatientData.email == "" || newPatientData.dob == "")) {
+            //Create new patient
+            newPatient = Patient(newPatientData);
+            patient_id = newPatient._id.toString();
+            //Update database
+            newPatient.save();
+
+            await Clinician.updateOne({ _id: ClinicianID }, {
+                $push: { patients: patient_id }
+            }).exec();
+            return res.redirect("/user/clinician/") 
+        } else {
+            previousData = {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                dob: req.body.dob,
+                email: req.body.email,
+                password: req.body.password,
+                bio: req.body.new_patient_bio,
+                error: "All fields must be provided"
+            }
+            return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
+        }
+        
     }
 
     
