@@ -16,6 +16,10 @@ function patientRedirectToRecord() {
     window.location.href = '/user/patient/record';
 }
 
+function patientChangePasswordRedirect() {
+    window.location.href = '/user/patient/password';
+}
+
 function patientLoginRedirect() {
     window.location.href = '/user/patient/loginRedirect';
 }

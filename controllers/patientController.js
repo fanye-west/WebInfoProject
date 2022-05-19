@@ -245,6 +245,12 @@ const getPatientDataEntry = async(req, res, next) => {
     }
 }
 
+const getPatientPasswordChange = async(req, res, next) => {
+    return res.render('changePassword', { layout: 'patientLayout' });
+}
+
+
+//Post
 const insertPatientData = async(req, res, next) => {
     //Expects data from a form with the following fields:
     // REQUIRED
@@ -420,11 +426,15 @@ const insertPatientData = async(req, res, next) => {
     }
 }
 
+const insertPatientPassport = async(req, res, next) => {}
+
 module.exports = {
     getPatientLogin,
     patientLoginRedirect,
     patientLogoutRedirect,
     getPatientDash,
     getPatientDataEntry,
+    getPatientPasswordChange,
     insertPatientData,
+    insertPatientPassport,
 }

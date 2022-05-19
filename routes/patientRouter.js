@@ -15,12 +15,14 @@ const isAuthenticated = (req, res, next) => {
 router.get("/login", controller.getPatientLogin);
 router.get("/", isAuthenticated, controller.getPatientDash);
 router.get("/record", isAuthenticated, controller.getPatientDataEntry);
+router.get("/password", isAuthenticated, controller.getPatientPasswordChange);
 
 // router.get("/loginRedirect", controller.patientLoginRedirect);
 // router.get("/logoutRedirect", controller.patientLogoutRedirect);
 
 //Post api routes
 router.post("/insertPatientData", isAuthenticated, controller.insertPatientData);
+router.post("/insertPatientData", isAuthenticated, controller.insertPatientPassport);
 
 // Handle login
 router.post('/login',
