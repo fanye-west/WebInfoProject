@@ -1,5 +1,5 @@
-<!--Patient Login Box-->
-	<div class ="main_page_body_under_navigation" >
+<!--Clincian Login Box-->
+{{!-- <div class ="main_page_body_under_navigation" >
 	<div class ="rounded_box_half_width long">
 		<form method="post" action="/user/clinician/login"></form>
 			<div class="basic_column">
@@ -7,19 +7,43 @@
 					<h1>Clinician Login</h1>
 				</div>
 				
-					<!--Username input field-->
 					<div class="left_text_column">
 						<h2>Username</h2>
+						<input class="input_field" type="text" id="username" name="username" placeholder="">
 					</div>
-					<input class="input_field" type="text" id="username" name="username" placeholder="">
-					<!--Password input field-->
+					
 					<div class="left_text_column">
 						<h2>Password</h2>
+						<input class="input_field" type="password" id="password" name="password" placeholder="">
 					</div>
-					<input class="input_field" type="password" id="password" name="password" placeholder="">
-					<!--Login Button-->
+					
 					<button class="default_button dark_blue_centered" type="submit">Login</button>
 			</div>
 		</form>
+	</div>
+</div> --}}
+
+<!--Patient Login Box-->
+<div class ="main_page_body_under_navigation" >
+	<div class ="rounded_box_half_width long">
+		<div class="basic_column">
+			<div class="center_text_column"> 
+				<h1>Clinician Login</h1>
+			</div>
+			<form method="post" action="/user/clinician/login">
+				<!--Username input field-->
+				<div class="left_text_column">
+					<h2>Username</h2>
+					<input class="input_field" type="text" id="username" name="username" placeholder="">
+				</div>
+				
+				<!--Password input field-->
+				<div class="left_text_column">
+					<h2>Password</h2>
+					<input class="input_field" type="password" id="password" name="password" placeholder="">
+					<button class="default_button dark_blue_centered" type="submit">Login</button>
+				</div>			
+			</form>
+		</div>
 	</div>
 </div>
