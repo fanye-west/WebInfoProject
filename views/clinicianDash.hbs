@@ -26,7 +26,7 @@
         </div>
 
         <div id="comment_toggle_button">
-            <button class="default_button faded_blue image_text_button" id="clinician_comment_button" onclick="toggleClincianCommentsView()">
+            <button class="default_button faded_blue image_text_button" id="clinician_comment_button" onclick="toggleClincianCommentsView('{{searchterm}}')">
                 <img src="/assets/icons/comment.png" alt="+">
                 <span>
                     <h3 class="data_button_heading clinician_page_button">{{view_button_text}}</h3>
@@ -41,10 +41,14 @@
                     <div>
                         <h3 class="centered_heading">Your patients on {{dateFormat date "DD/MM/YY"}}: </h3>
                     </div>
-                    <div class="search_bar">
-                        <input type="search" id="site-search" name="q">
-                        <button class="default_button dark_blue small_button" >Search</button>
-                    </div>
+                    <form>
+                        <div class="search_bar">
+                            <input type="search" id="site-search" name="name">
+                            <button class="default_button dark_blue small_button" >Search</button>
+                            <button class="default_button grey small_button" onclick="clearClinicianDashSearch()">Clear</button>
+                        </div>
+                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -86,9 +90,19 @@
 
             </tbody>
 
-
         </table>
+        <br>
+        <div class="outer_block_text_column" id="doctor_dash_profile_box">
+            <div class="light_theme_colour_background four_corners centred_elements">
+                <div class="inner_block_text_column four_corners" id="inner_block_clinician_page">
+                    Red highlighted items are data records that exceed the patient's safety bounds. <br>
+                    Items with ❗ are required fields.
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
 </div>
 {{/with}}

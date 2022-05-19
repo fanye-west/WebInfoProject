@@ -40,11 +40,26 @@ function clinicianPatientDashRedirect(patientID) {
     window.location.href = '/user/clinician/patientdetails?id=' + patientID;
 }
 
-function toggleClincianCommentsView() {
+function toggleClincianCommentsView(name) {
+    let searchquery = ""
+    if (!name == "") {
+        if (name.split(' ').length > 1) {
+            name = name.split(' ')[0] + "+" + name.split(' ')[1]
+        }
+        searchquery = "?name=" + name
+    }
     if (window.location.pathname == '/user/clinician') {
-        window.location.href = '/user/clinician/comments';
+        window.location.href = '/user/clinician/comments' + searchquery;
     } else {
-        window.location.href = '/user/clinician';
+        window.location.href = '/user/clinician' + searchquery;
+    }
+}
+
+function clearClinicianDashSearch() {
+    if (window.location.pathname == '/user/clinician') {
+        window.location.href = '/user/clinician/comments' + searchquery;
+    } else {
+        window.location.href = '/user/clinician' + searchquery;
     }
 }
 

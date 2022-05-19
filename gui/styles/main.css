@@ -268,7 +268,7 @@ body.white_background {
 }
 
 #clinician_table_search {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     margin-left: 40px;
     margin-right: 40px;

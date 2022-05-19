@@ -8,6 +8,7 @@ const Note = require('../models/note');
 require('../models')
 
 var warning_colour = "#FAC8C5"
+var required_symbol = "❗"
 
 //Deliverable 2 Hardcoded values
 const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
@@ -90,39 +91,118 @@ const getClinicianDash = async(req, res, next) => {
         let i
         let patientDataPackage
         let patientData
-        for (i = 0; i < clinicianData.patients.length; i++) {
-            patientID = clinicianData.patients[i]
-            patientData = await Patient.findById(patientID).lean()
-            patientDataPackage = {
-                first_name: patientData.first_name,
-                last_name: patientData.last_name,
-                patient_link: "/user/clinician/patientdetails?" + "id=" + patientID
-            }
-            if (patientData.data.length > 0) {
-                patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.value
-                patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.value
-                patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.value
-                patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.value
-            } else {
-                patientDataPackage.glucose_value = undefined
-                patientDataPackage.weight_value = undefined
-                patientDataPackage.insulin_value = undefined
-                patientDataPackage.exercise_value = undefined
+
+        if (typeof(req.query.name) === 'undefined' || req.query.name === "") {
+            // Display all patients if none are searched for
+            for (i = 0; i < clinicianData.patients.length; i++) {
+                patientID = clinicianData.patients[i]
+                patientData = await Patient.findById(patientID).lean()
+                patientDataPackage = {
+                    first_name: patientData.first_name,
+                    last_name: patientData.last_name,
+                    patient_link: "/user/clinician/patientdetails?" + "id=" + patientID
+                }
+                if (patientData.data.length > 0) {
+                    patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.value
+                    patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.value
+                    patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.value
+                    patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.value
+                } else {
+                    patientDataPackage.glucose_value = undefined
+                    patientDataPackage.weight_value = undefined
+                    patientDataPackage.insulin_value = undefined
+                    patientDataPackage.exercise_value = undefined
+                }
+                //Highlight values that are outside bounds
+                if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
+                    patientDataPackage["glucose_colour"] = warning_colour
+                }
+                if (patientDataPackage.weight_value < patientData.weight_bounds[0] || patientDataPackage.weight_value > patientData.weight_bounds[1]) {
+                    patientDataPackage["weight_colour"] = warning_colour
+                }
+                if (patientDataPackage.insulin_value < patientData.insulin_bounds[0] || patientDataPackage.insulin_value > patientData.insulin_bounds[1]) {
+                    patientDataPackage["insulin_colour"] = warning_colour
+                }
+                if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
+                    patientDataPackage["exercise_colour"] = warning_colour
+                }
+
+                //Highlight required attributes
+                if (patientData.glucose_required) {
+                    patientDataPackage.glucose_value = String(patientDataPackage.glucose_value) + required_symbol;
+                }
+                if (patientData.weight_required) {
+                    patientDataPackage.weight_value = String(patientDataPackage.weight_value) + required_symbol;
+                }
+                if (patientData.insulin_required) {
+                    patientDataPackage.insulin_value = String(patientDataPackage.insulin_value) + required_symbol;
+                }
+                if (patientData.exercise_required) {
+                    patientDataPackage.exercise_value = String(patientDataPackage.exercise_value) + required_symbol;
+                }
+
+                patientsLatest.push(patientDataPackage)
             }
 
-            if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
-                patientDataPackage["glucose_colour"] = warning_colour
+        } else {
+            // Otherwise, find and display the patients searched for
+            for (i = 0; i < clinicianData.patients.length; i++) {
+                patientID = clinicianData.patients[i]
+                patientData = await Patient.findById(patientID).lean()
+                let names = req.query.name.toLowerCase().split(' ')
+                let first_name = names[0]
+                let last_name
+                if (names.length > 1) {
+                    last_name = names[1]
+                }
+                if (patientData.first_name.toLowerCase() == first_name && patientData.last_name.toLowerCase() == last_name || patientData.first_name.toLowerCase() == first_name) {
+                    patientDataPackage = {
+                        first_name: patientData.first_name,
+                        last_name: patientData.last_name,
+                        patient_link: "/user/clinician/patientdetails?" + "id=" + patientID
+                    }
+                    if (patientData.data.length > 0) {
+                        patientDataPackage.glucose_value = patientData.data[patientData.data.length - 1].glucose.value
+                        patientDataPackage.weight_value = patientData.data[patientData.data.length - 1].weight.value
+                        patientDataPackage.insulin_value = patientData.data[patientData.data.length - 1].insulin.value
+                        patientDataPackage.exercise_value = patientData.data[patientData.data.length - 1].exercise.value
+                    } else {
+                        patientDataPackage.glucose_value = undefined
+                        patientDataPackage.weight_value = undefined
+                        patientDataPackage.insulin_value = undefined
+                        patientDataPackage.exercise_value = undefined
+                    }
+                    //Highlight values that are outside bounds
+                    if (patientDataPackage.glucose_value < patientData.glucose_bounds[0] || patientDataPackage.glucose_value > patientData.glucose_bounds[1]) {
+                        patientDataPackage["glucose_colour"] = warning_colour
+                    }
+                    if (patientDataPackage.weight_value < patientData.weight_bounds[0] || patientDataPackage.weight_value > patientData.weight_bounds[1]) {
+                        patientDataPackage["weight_colour"] = warning_colour
+                    }
+                    if (patientDataPackage.insulin_value < patientData.insulin_bounds[0] || patientDataPackage.insulin_value > patientData.insulin_bounds[1]) {
+                        patientDataPackage["insulin_colour"] = warning_colour
+                    }
+                    if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
+                        patientDataPackage["exercise_colour"] = warning_colour
+                    }
+                    //Highlight required attributes
+                    if (patientData.glucose_required) {
+                        patientDataPackage.glucose_value = String(patientDataPackage.glucose_value) + required_symbol;
+                    }
+                    if (patientData.weight_required) {
+                        patientDataPackage.weight_value = String(patientDataPackage.weight_value) + required_symbol;
+                    }
+                    if (patientData.insulin_required) {
+                        patientDataPackage.insulin_value = String(patientDataPackage.insulin_value) + required_symbol;
+                    }
+                    if (patientData.exercise_required) {
+                        patientDataPackage.exercise_value = String(patientDataPackage.exercise_value) + required_symbol;
+                    }
+
+                    patientsLatest.push(patientDataPackage)
+                }
             }
-            if (patientDataPackage.weight_value < patientData.weight_bounds[0] || patientDataPackage.weight_value > patientData.weight_bounds[1]) {
-                patientDataPackage["weight_colour"] = warning_colour
-            }
-            if (patientDataPackage.insulin_value < patientData.insulin_bounds[0] || patientDataPackage.insulin_value > patientData.insulin_bounds[1]) {
-                patientDataPackage["insulin_colour"] = warning_colour
-            }
-            if (patientDataPackage.exercise_value < patientData.exercise_bounds[0] || patientDataPackage.exercise_value > patientData.exercise_bounds[1]) {
-                patientDataPackage["exercise_colour"] = warning_colour
-            }
-            patientsLatest.push(patientDataPackage)
+            clinicianData.searchterm = req.query.name;
         }
         clinicianData["patientData"] = patientsLatest
         clinicianData["view_button_text"] = "View patient comments"
@@ -140,26 +220,53 @@ const getClinicianDashWithComments = async(req, res, next) => {
         const clinicianData = await Clinician.findById(ClinicianID).lean()
         let today = new Date()
         patientsLatest = [] // Each patent has {first_name, last_name, is_not_today (* if not today, else empty), glucose_value, glucose_colour, ...}
-        let i, j
+        let i
         let patientDataPackage
         let patientData
-        for (i = 0; i < clinicianData.patients.length; i++) {
-            patientID = clinicianData.patients[i]
-            patientData = await Patient.findById(patientID).lean()
+        if (typeof(req.query.name) === 'undefined' || req.query.name === "") {
+            for (i = 0; i < clinicianData.patients.length; i++) {
+                patientID = clinicianData.patients[i]
+                patientData = await Patient.findById(patientID).lean()
 
-            patientDataPackage = {
-                first_name: patientData.first_name,
-                last_name: patientData.last_name,
-                patient_link: "/patientdetails",
-                glucose_value: patientData.data[patientData.data.length - 1].glucose.comment,
-                weight_value: patientData.data[patientData.data.length - 1].weight.comment,
-                insulin_value: patientData.data[patientData.data.length - 1].insulin.comment,
-                exercise_value: patientData.data[patientData.data.length - 1].exercise.comment,
+                patientDataPackage = {
+                    first_name: patientData.first_name,
+                    last_name: patientData.last_name,
+                    patient_link: "/patientdetails",
+                    glucose_value: patientData.data[patientData.data.length - 1].glucose.comment,
+                    weight_value: patientData.data[patientData.data.length - 1].weight.comment,
+                    insulin_value: patientData.data[patientData.data.length - 1].insulin.comment,
+                    exercise_value: patientData.data[patientData.data.length - 1].exercise.comment,
+                }
+                patientsLatest.push(patientDataPackage)
             }
-            let test = patientData.data[patientData.data.length - 1].exercise.comment
-            patientsLatest.push(patientDataPackage)
-        }
+        } else {
+            for (i = 0; i < clinicianData.patients.length; i++) {
+                patientID = clinicianData.patients[i]
+                patientData = await Patient.findById(patientID).lean()
+                let names = req.query.name.toLowerCase().split(' ')
+                let first_name = names[0]
+                let last_name
+                if (names.length > 1) {
+                    last_name = names[1]
+                }
+                if (patientData.first_name.toLowerCase() == first_name && patientData.last_name.toLowerCase() == last_name || patientData.first_name.toLowerCase() == first_name) {
+                    patientID = clinicianData.patients[i]
+                    patientData = await Patient.findById(patientID).lean()
 
+                    patientDataPackage = {
+                        first_name: patientData.first_name,
+                        last_name: patientData.last_name,
+                        patient_link: "/patientdetails",
+                        glucose_value: patientData.data[patientData.data.length - 1].glucose.comment,
+                        weight_value: patientData.data[patientData.data.length - 1].weight.comment,
+                        insulin_value: patientData.data[patientData.data.length - 1].insulin.comment,
+                        exercise_value: patientData.data[patientData.data.length - 1].exercise.comment,
+                    }
+                    patientsLatest.push(patientDataPackage)
+                }
+            }
+            clinicianData.searchterm = req.query.name;
+        }
         clinicianData["patientData"] = patientsLatest
         clinicianData["view_button_text"] = "View patient data"
         clinicianData["date"] = today
