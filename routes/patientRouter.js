@@ -22,7 +22,7 @@ router.get("/password", isAuthenticated, controller.getPatientPasswordChange);
 
 //Post api routes
 router.post("/insertPatientData", isAuthenticated, controller.insertPatientData);
-router.post("/insertPatientData", isAuthenticated, controller.insertPatientPassport);
+router.post("/changePassword", isAuthenticated, controller.insertPatientPassword);
 
 // Handle login
 router.post('/login',

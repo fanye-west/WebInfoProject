@@ -426,7 +426,18 @@ const insertPatientData = async(req, res, next) => {
     }
 }
 
-const insertPatientPassport = async(req, res, next) => {}
+const insertPatientPassword = async(req, res, next) => {
+    let PatientID = req.user._id.toString();
+    let newPassword = req.body.newpassword1;
+    let newPasswordConfirm = req.body.newpassword1;
+    console.log(PatientID, newPassword);
+    if (newPassword == newPasswordConfirm) {
+        await Patient.updateOne({ _id: PatientID }, { password: newPassword }, { upsert: true }).exec();
+        return res.redirect('/user/patient');
+    } else {
+        return res.render('changePassword', { layout: 'patientLayout' });
+    }
+}
 
 module.exports = {
     getPatientLogin,
@@ -436,5 +447,5 @@ module.exports = {
     getPatientDataEntry,
     getPatientPasswordChange,
     insertPatientData,
-    insertPatientPassport,
+    insertPatientPassword,
 }

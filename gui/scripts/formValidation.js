@@ -106,7 +106,7 @@ function checkClinicianNewPatientEntry() {
 function checkPatientNewPassword() {
     let valid_submission = true;
     //Check current state of the form - has at least one submission that was not pre-filled been filled in?
-    let ids_to_check = ['passwordOld', 'newpassword1', 'newpassword2']
+    let ids_to_check = ['newpassword1', 'newpassword2']
     let i;
     let id;
     for (i = 0; i < ids_to_check.length; i++) {

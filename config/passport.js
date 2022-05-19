@@ -37,7 +37,7 @@ passport.use(
                     return done(undefined, false, { message: 'unknown' })
                 }
                 if (!valid) {
-                    console.log('password')
+                    console.log('password is not valid')
                     return done(undefined, false, { message: 'password' })
                 }
                 return done(undefined, user)
