@@ -480,42 +480,7 @@ const updatePatientList = async(req, res, next) => {
             }
             return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData });
         }
-
     }
-
-    // let ClinicianID = req.user._id.toString();
-    // if (req.body.first_name == "" || req.body.last_name == "" || req.body.username == "" || req.body.password == "" || req.body.email == "" || req.body.dob == "") {
-    //     //Missing required data, return to home
-    //     return res.redirect("/user/clinician/");
-    // }
-    // //Create new patient
-    // let newPatientData = {};
-    // newPatientData.first_name = req.body.first_name;
-    // newPatientData.last_name = req.body.last_name;
-    // newPatientData.user_name = req.body.username;
-    // newPatientData.bio = req.body.bio;
-    // newPatientData.password = req.body.password;
-    // newPatientData.email = req.body.email;
-    // newPatientData.dob = new Date(req.body.dob);
-    // //Create new patient
-    // newPatient = Patient(newPatientData);
-    // patient_id = newPatient._id.toString();
-    // //Update database
-    // newPatient.save();
-    // //Add to leaderboard
-    // leaderboard = {
-    //     patient_id: newPatient._id.toString(),
-    //     engagement_rate: 0,
-    //     username: newPatient.user_name
-    // };
-    // leaderboardObj = LeaderboardEntry(leaderboard)
-    // leaderboardObj.save()
-    //     //Add to clinician
-    // const clinicianData = await Clinician.findById(ClinicianID).lean()
-    // await Clinician.updateOne({ _id: ClinicianID }, {
-    //     $push: { patients: patient_id }
-    // }).exec();
-    // return res.redirect("/user/clinician/")
 }
 
 const updatePatientDataSeries = async(req, res, next) => {

@@ -81,7 +81,7 @@ const getPatientDash = async(req, res, next) => {
         if (patientLeaderboardData.length > 0) {
             let patientLeaderboardDataSingle = patientLeaderboardData[0]
             let user_engagement_rate = patientLeaderboardDataSingle.engagement_rate;
-            let badge_icon = ""
+            let badge_icon = "/assets/icons/empty.png"
             if (user_engagement_rate > 80) {
                 badge_icon = "/assets/icons/bronze.png"
             }
@@ -430,9 +430,10 @@ const insertPatientPassword = async(req, res, next) => {
     let PatientID = req.user._id.toString();
     let newPassword = req.body.newpassword1;
     let newPasswordConfirm = req.body.newpassword1;
-    console.log(PatientID, newPassword);
     if (newPassword == newPasswordConfirm) {
-        await Patient.updateOne({ _id: PatientID }, { password: newPassword }, { upsert: true }).exec();
+        const patient = await Patient.findById(PatientID);
+        patient.password = newPassword;
+        patient.save(); //Using .save() allows bcrypt to work and save the hashed password
         return res.redirect('/user/patient');
     } else {
         return res.render('changePassword', { layout: 'patientLayout' });

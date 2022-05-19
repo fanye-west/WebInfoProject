@@ -21,10 +21,10 @@ router.get("/login", controller.getClinicianLogin);
 // router.get("/loginRedirect", controller.clinicianLoginRedirect);
 router.get("/logoutRedirect", controller.clinicianLogoutRedirect);
 
-router.post("/updatePatientSupportMessage", controller.updatePatientSupportMessage);
-router.post("/insertNote", controller.updatePatientNotes);
-router.post("/updatePatientDataSeries", controller.updatePatientDataSeries);
-router.post("/insertNewPatient", controller.updatePatientList);
+router.post("/updatePatientSupportMessage", isAuthenticated, controller.updatePatientSupportMessage);
+router.post("/insertNote", isAuthenticated, controller.updatePatientNotes);
+router.post("/updatePatientDataSeries", isAuthenticated, controller.updatePatientDataSeries);
+router.post("/insertNewPatient", isAuthenticated, controller.updatePatientList);
 
 router.post('/login',
     passport.authenticate('clinician-local', {
