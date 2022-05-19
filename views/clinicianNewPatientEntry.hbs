@@ -1,3 +1,4 @@
+{{#with previous}}
 <div class="main_page_body_under_navigation" id="patient_data_entry">
     <div class="outer_block_text_column" id="patient_data_entry_box">
         <div class="light_theme_colour_background" id="data_entry_page">
@@ -15,7 +16,7 @@
                                     <p class="patient_info_label">Given Name</p>
 
                                     <label for="given_name"></label>
-                                    <input class="patient_new_input" type="text" name="first_name" id="first_name" oninput="checkClinicianNewPatientEntry()"></input>
+                                    <input class="patient_new_input" type="text" name="first_name" id="first_name" value="{{first_name}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid first name"></input>
                                 </div>
                             </div>
 
@@ -24,7 +25,7 @@
                                     <p class="patient_info_label">Family Name</p>
 
                                     <label for="family_name"></label>
-                                    <input class="patient_new_input" type="text" name="last_name" id="last_name" oninput="checkClinicianNewPatientEntry()"></input>
+                                    <input class="patient_new_input" type="text" name="last_name" id="last_name" value="{{last_name}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid family name"></input>
                                 </div>
                             </div>
 
@@ -33,7 +34,7 @@
                                     <p class="patient_info_label">Date of Birth</p>
 
                                     <label for="dob"></label>
-                                    <input class="patient_new_input" type="date" name="dob" id="dob" oninput="checkClinicianNewPatientEntry()"></input>
+                                    <input class="patient_new_input" type="date" name="dob" id="dob" value="{{dob}}" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
                             
@@ -42,7 +43,7 @@
                                     <p class="patient_info_label">Email Address</p>
 
                                     <label for="email_address"></label>
-                                    <input class="patient_new_input" type="text" name="email" id="email" pattern="\S+@\S+" title="Must be a valid email address" oninput="checkClinicianNewPatientEntry()"></input>
+                                    <input class="patient_new_input" type="text" name="email" id="email" pattern="\S+@\S+" title="Must be a valid email address" value="{{email}}" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>
                             </div>
 
@@ -52,7 +53,7 @@
                                     <p class="patient_info_label">Username</p>
 
                                     <label for="username"></label>
-                                    <input class="patient_new_input" type="text" name="username" id="username" oninput="checkClinicianNewPatientEntry()"></input>
+                                    <input class="patient_new_input" type="text" name="username" id="username" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid username" c></input>
                                 </div>
                             </div>
 
@@ -62,7 +63,7 @@
                                     <p class="patient_info_label">Password</p>
 
                                     <label for="password"></label>
-                                    <input class="patient_new_input" type="text" name="password" id="password" pattern="\S{8,}" title="Must be at least 8 characters" oninput="checkClinicianNewPatientEntry()"></input>
+                                    <input class="patient_new_input" type="text" name="password" id="password" pattern="\S{8,}" title="Must be at least 8 characters" value="{{password}}" oninput="checkClinicianNewPatientEntry()"></input>
                                 </div>      
                             </div>
                         </div>
@@ -72,7 +73,7 @@
                                 <p class="patient_info_label">Bio</p>
 
                                 <label for="new_patient_bio"></label>
-                                <input class="patient_new_input" id ="new_patient_bio" type="text" name="new_patient_bio" oninput="checkClinicianNewPatientEntry()"></input>
+                                <input class="patient_new_input" id ="new_patient_bio" type="text" name="new_patient_bio" value="{{bio}}" oninput="checkClinicianNewPatientEntry()" pattern="\S+" title="Must be a valid bio"></input>
                             </div>      
                         </div>
 
@@ -89,9 +90,11 @@
                             <input type="submit" value="Submit" class="default_button grey data_button" id="new_patient_data_button" disabled>
                         </div>
                     </div>
+                    <b class="error">{{taken}}</b>
                 </div> 
             </form>
 
         </div>
     </div>
 </div>
+{{/with}}

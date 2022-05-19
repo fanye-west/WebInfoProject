@@ -11,7 +11,7 @@ var warning_colour = "#FAC8C5"
 var required_symbol = "❗"
 
 //Deliverable 2 Hardcoded values
-const ClinicianID = "628085744fe82f14cb55d5e9" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
+const ClinicianID = "6286049f990540b00e0ce98d" //SEEDED CLINICIAN: "6275ca17e6f40fa90c688bc5"
 var VISITED_LOGIN = false
 
 //Utils
@@ -347,7 +347,16 @@ const getClinicianPatientNotes = async(req, res, next) => {
 const getClinicianAddPatient = async(req, res, next) => {
     try {
         if (!VISITED_LOGIN) { return res.redirect('/user/clinician/login') }
-        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout' });
+        previousData = {
+            first_name: "",
+            last_name: "",
+            dob: "",
+            email: "",
+            password: "",
+            bio: "",
+            taken: ""
+        }
+        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
     } catch (err) {
         return next(err)
     }
@@ -387,26 +396,49 @@ const updatePatientList = async(req, res, next) => {
         //Missing required data, return to home
         return res.redirect("/user/clinician/");
     }
-    //Create new patient
-    let newPatientData = {};
-    newPatientData.first_name = req.body.first_name;
-    newPatientData.last_name = req.body.last_name;
-    newPatientData.user_name = req.body.username;
-    newPatientData.bio = req.body.bio;
-    //Add passwork with bcrypt TODO
-    newPatientData.password = req.body.password;
-    newPatientData.email = req.body.email;
-    newPatientData.dob = new Date(req.body.dob);
-    //Create new patient
-    newPatient = Patient(newPatientData);
-    patient_id = newPatient._id.toString();
-    //Update database
-    newPatient.save();
-    const clinicianData = await Clinician.findById(ClinicianID).lean()
-    await Clinician.updateOne({ _id: ClinicianID }, {
-        $push: { patients: patient_id }
-    }).exec();
-    return res.redirect("/user/clinician/")
+    let username_taken = false
+    let patients = await Patient.find({}).lean()
+    for (let i = 0; i < patients.length; i++) {
+        if (req.body.username == patients[i].user_name) {
+            username_taken = true
+        }
+    }
+    if (username_taken) {
+        previousData = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            dob: req.body.dob,
+            email: req.body.email,
+            password: req.body.password,
+            bio: req.body.new_patient_bio,
+            taken: "Username taken"
+        }
+        return res.render('clinicianNewPatientEntry', { layout: 'clinicianLayout', previous: previousData});
+
+    } else {
+       //Create new patient
+        let newPatientData = {};
+        newPatientData.first_name = req.body.first_name;
+        newPatientData.last_name = req.body.last_name;
+        newPatientData.user_name = req.body.username;
+        newPatientData.bio = req.body.bio;
+        //Add passwork with bcrypt TODO
+        newPatientData.password = req.body.password;
+        newPatientData.email = req.body.email;
+        newPatientData.dob = new Date(req.body.dob);
+        //Create new patient
+        newPatient = Patient(newPatientData);
+        patient_id = newPatient._id.toString();
+        //Update database
+        newPatient.save();
+        const clinicianData = await Clinician.findById(ClinicianID).lean()
+        await Clinician.updateOne({ _id: ClinicianID }, {
+            $push: { patients: patient_id }
+        }).exec();
+        return res.redirect("/user/clinician/") 
+    }
+
+    
 }
 
 const updatePatientDataSeries = async(req, res, next) => {

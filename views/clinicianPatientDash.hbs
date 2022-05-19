@@ -50,8 +50,8 @@
 									<input type="checkbox" id="blood_glucose_checkbox" name="glucose_required" {{glucose_checked}}>
 									<b> Blood Glucose (nmol/L):</b></span>
 								<span class="ranges_data_box entry_form">
-									<span><input class="ranges_input" type="text" name="glucose_bounds_lower" value="{{glucose_bounds.[0]}}"></span>
-									<span><input class="ranges_input" type="text" name="glucose_bounds_upper" value="{{glucose_bounds.[1]}}"></span>
+									<span><input class="ranges_input" type="text" name="glucose_bounds_lower" value="{{glucose_bounds.[0]}}" pattern="([0-9]*[.])?[0-9]+" title="Must be a number"></span>
+									<span><input class="ranges_input" type="text" name="glucose_bounds_upper" value="{{glucose_bounds.[1]}}" pattern="([0-9]*[.])?[0-9]+" title="Must be a number"></span>
 								</span>
 							</li>
 
@@ -60,8 +60,8 @@
 									<input type="checkbox" id="weight_checkbox" name="weight_required" {{weight_checked}}>
 									<b> Weight (kg):</b></span>
 								<span class="ranges_data_box entry_form">
-									<span><input class="ranges_input" type="text" name="weight_bounds_lower" value="{{weight_bounds.[0]}}"></span>
-									<span><input class="ranges_input" type="text" name="weight_bounds_upper" value="{{weight_bounds.[1]}}"></span>
+									<span><input class="ranges_input" type="text" name="weight_bounds_lower" value="{{weight_bounds.[0]}}" pattern="([0-9]*[.])?[0-9]+" title="Must be a number"></span>
+									<span><input class="ranges_input" type="text" name="weight_bounds_upper" value="{{weight_bounds.[1]}}" pattern="([0-9]*[.])?[0-9]+" title="Must be a number"></span>
 								</span>
 							</li>
 
@@ -70,8 +70,8 @@
 									<input type="checkbox" id="insulin_checkbox" name="insulin_required" {{insulin_checked}}>
 									<b> Insulin Doses:</b></span>
 								<span class="ranges_data_box entry_form">
-									<span><input class="ranges_input" type="text" name="insulin_bounds_lower" value="{{insulin_bounds.[0]}}"></span>
-									<span><input class="ranges_input" type="text" name="insulin_bounds_upper" value="{{insulin_bounds.[1]}}"></span>
+									<span><input class="ranges_input" type="text" name="insulin_bounds_lower" value="{{insulin_bounds.[0]}}" pattern="[0-9]+" title="Must be a whole number"></span>
+									<span><input class="ranges_input" type="text" name="insulin_bounds_upper" value="{{insulin_bounds.[1]}}" pattern="[0-9]+" title="Must be a whole number"></span>
 								</span>
 							</li>
 
@@ -80,8 +80,8 @@
 									<input type="checkbox" id="steps_checkbox" name="exercise_required" {{exercise_checked}}>
 									<b> Steps:</b></span>
 								<span class="ranges_data_box entry_form">
-									<span><input class="ranges_input" type="text" name="exercise_bounds_lower" value="{{exercise_bounds.[0]}}"></span>
-									<span><input class="ranges_input" type="text" name="exercise_bounds_upper" value="{{exercise_bounds.[1]}}"></span>
+									<span><input class="ranges_input" type="text" name="exercise_bounds_lower" value="{{exercise_bounds.[0]}}" pattern="[0-9]+" title="Must be a whole number"></span>
+									<span><input class="ranges_input" type="text" name="exercise_bounds_upper" value="{{exercise_bounds.[1]}}" pattern="[0-9]+" title="Must be a whole number"></span>
 								</span>
 							</li>
 							
