@@ -5,6 +5,8 @@ const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
 const Note = require('../models/note');
+const LeaderboardEntry = require('../models/leaderboardentry.js');
+
 require('../models')
 
 var warning_colour = "#FAC8C5"
@@ -393,7 +395,6 @@ const updatePatientList = async(req, res, next) => {
     newPatientData.last_name = req.body.last_name;
     newPatientData.user_name = req.body.username;
     newPatientData.bio = req.body.bio;
-    //Add passwork with bcrypt TODO
     newPatientData.password = req.body.password;
     newPatientData.email = req.body.email;
     newPatientData.dob = new Date(req.body.dob);
@@ -402,6 +403,15 @@ const updatePatientList = async(req, res, next) => {
     patient_id = newPatient._id.toString();
     //Update database
     newPatient.save();
+    //Add to leaderboard
+    leaderboard = {
+        patient_id: newPatient._id.toString(),
+        engagement_rate: 0,
+        username: newPatient.user_name
+    };
+    leaderboardObj = LeaderboardEntry(leaderboard)
+    leaderboardObj.save()
+        //Add to clinician
     const clinicianData = await Clinician.findById(ClinicianID).lean()
     await Clinician.updateOne({ _id: ClinicianID }, {
         $push: { patients: patient_id }
