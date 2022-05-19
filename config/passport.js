@@ -21,16 +21,25 @@ passport.deserializeUser((userId, done) => {
     // http://www.passportjs.org/docs/downloads/html/#strategies
 passport.use(
     new LocalStrategy((username, password, done) => {
-        Patient.findOne({ username: 'user_name' }, {}, {}, (err, user) => {
-            if (err)
+        Patient.findOne({ user_name: username }, {}, {}, (err, user) => {
+            if (err) {
+                console.log('error')
                 return done(undefined, false, { message: 'unknown error' })
-            if (!user)
+            }
+            if (!user) {
+                console.log('username')
                 return done(undefined, false, { message: 'username' })
+            }
             user.verifyPassword(password, (err, valid) => {
-                if (err)
+
+                if (err) {
+                    console.log('error password')
                     return done(undefined, false, { message: 'unknown' })
-                if (!valid)
+                }
+                if (!valid) {
+                    console.log('password')
                     return done(undefined, false, { message: 'password' })
+                }
                 return done(undefined, user)
             })
         })

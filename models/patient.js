@@ -28,7 +28,7 @@ const patientSchema = new mongoose.Schema({
 
 patientSchema.methods.verifyPassword = function(password, callback) {
     bcrypt.compare(password, this.password, (err, valid) => {
-        console.log(password, '\n', this.password)
+        console.log(password, this.password)
         callback(err, valid)
     })
 }
