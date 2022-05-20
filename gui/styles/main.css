@@ -188,6 +188,7 @@ body.white_background {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3%;
     align-items: start;
+    margin-top: 1%;
 }
 
 .add_note_form {
@@ -215,7 +216,8 @@ body.white_background {
 }
 
 .data_entry_format_grid#new_patient {
-    row-gap: 30px;
+    row-gap: 20px;
+    grid-template-rows: 8fr 1fr;
 }
 
 .change_password_box {
@@ -933,7 +935,7 @@ iframe {
     font-size: 90%;
     background-color: #B1CCE0;
     outline: none;
-    margin-left: 5%;
+    margin-left: 4%;
 }
 
 .data_entry::placeholder {
@@ -1348,6 +1350,12 @@ p.grey {
     margin-bottom: 30px;
     font-weight: bold;
     white-space: nowrap;
+}
+
+.data_entry_heading#password{
+    padding-top: 2%;
+    margin-left: 4%;
+    margin-bottom: 2%;
 }
 
 .leaderboard_heading {
