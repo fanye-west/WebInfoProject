@@ -57,7 +57,7 @@ function isValidBounds(lower, upper) {
 
 const getClinicianLogin = async(req, res, next) => {
     try {
-        return res.render('clinicianLogin', { layout: 'loginLayout' });
+        return res.render('clinicianLogin', { layout: 'loginLayout', flash: req.flash('error') });
     } catch (err) {
         return next(err)
     }

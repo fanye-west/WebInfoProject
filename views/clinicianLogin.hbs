@@ -21,6 +21,10 @@
 				<div class="center_row">
 					<button class="default_button dark_blue_centered" type="submit">Login</button>
 				</div>			
+				{{#each flash}}
+				<p class="alert">{{this}}</p>
+        		{{/each}}
+
 			</form>
 		</div>
 	</div>

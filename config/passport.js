@@ -40,15 +40,15 @@ passport.use('patient-local',
                 return done(undefined, false, { message: 'unknown error' })
             }
             if (!user) {
-                return done(undefined, false, { message: 'username' })
+                return done(undefined, false, { message: 'invalid credentials' })
             }
             user.verifyPassword(password, (err, valid) => {
 
                 if (err) {
-                    return done(undefined, false, { message: 'unknown' })
+                    return done(undefined, false, { message: 'unknown error' })
                 }
                 if (!valid) {
-                    return done(undefined, false, { message: 'password' })
+                    return done(undefined, false, { message: 'invalid credentials' })
                 }
                 return done(undefined, user)
             })

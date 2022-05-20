@@ -452,8 +452,7 @@ body.white_background {
         height: 100%;
         margin-top: 2.5%;
     }
-
-    .data_entry_button_grid#password{
+    .data_entry_button_grid#password {
         row-gap: 5px;
     }
 }
@@ -1352,7 +1351,7 @@ p.grey {
     white-space: nowrap;
 }
 
-.data_entry_heading#password{
+.data_entry_heading#password {
     padding-top: 2%;
     margin-left: 4%;
     margin-bottom: 2%;
@@ -1647,6 +1646,14 @@ p.grey {
 }
 
 .center_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.alert {
+    margin-top: 0.001%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

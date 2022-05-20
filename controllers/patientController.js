@@ -1,5 +1,4 @@
 //Import Models
-const res = require('express/lib/response');
 const Patient = require('../models/patient');
 const Value = require('../models/value');
 const Data = require('../models/data');
@@ -27,7 +26,7 @@ function isToday(date) {
 
 const getPatientLogin = async(req, res, next) => {
     try {
-        return res.render('patientLogin', { layout: 'loginLayout' });
+        return res.render('patientLogin', { layout: 'loginLayout', flash: req.flash('error') });
     } catch (err) {
         return next(err)
     }

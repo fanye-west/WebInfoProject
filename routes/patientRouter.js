@@ -12,7 +12,14 @@ const isAuthenticated = (req, res, next) => {
 }
 
 //Pages
-router.get("/login", controller.getPatientLogin);
+router.get("/login", (req, res) => {
+    try {
+        return res.render('patientLogin', { layout: 'loginLayout', flash: req.flash('error') });
+    } catch (err) {
+        return next(err)
+    }
+
+});
 router.get("/", isAuthenticated, controller.getPatientDash);
 router.get("/record", isAuthenticated, controller.getPatientDataEntry);
 router.get("/password", isAuthenticated, controller.getPatientPasswordChange);
